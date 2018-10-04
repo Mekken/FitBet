@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'react-emotion'
-import FormItem from '../components/FormItem'
+import FormItem from '../../components/FormItem'
 
 const ContactWrapper = styled('div')({
   maxWidth: 500,
@@ -23,7 +23,7 @@ const SubmitButton = styled('button')({
   borderRadius: 5
 })
 
-class Contact extends Component {
+class Register extends Component {
 
   state = {
     name: '',
@@ -49,25 +49,37 @@ class Contact extends Component {
     return (
       <ContactWrapper>
         <WelcomeMessage>
-          Hello {this.state.name ? this.state.name : 'there' }, please leave us a message!
+          Hello {this.state.nickname ? this.state.nickname : 'there' }!
         </WelcomeMessage>
-        <FormItem
-          name="name"
-          label="Name"
-          onChangeFn={this.handleChange}
-          value={this.state.name}
-        />
-        <FormItem
-          name="occupation"
-          label="Occupation"
-          onChangeFn={this.handleChange}
-          value={this.state.occupation}
-        />
         <FormItem
           name="email"
           label="Email"
           onChangeFn={this.handleChange}
           value={this.state.email}
+        />
+        <FormItem
+          name="password"
+          label="Password"
+          onChangeFn={this.handleChange}
+          value={this.state.password}
+        />
+        <FormItem
+          name="nickname"
+          label="Nickname"
+          onChangeFn={this.handleChange}
+          value={this.state.nickname}
+        />
+        <FormItem
+          name="cellphone"
+          label="Cellphone"
+          onChangeFn={this.handleChange}
+          value={this.state.cellphone}
+        />
+        <FormItem
+          name="device"
+          label="Device Type"
+          onChangeFn={this.handleChange}
+          value={this.state.device}
         />
         <SubmitButton onClick={this.handleSubmit}>
           Submit!
@@ -77,4 +89,4 @@ class Contact extends Component {
   }
 }
 
-export default Contact
+export default Register
