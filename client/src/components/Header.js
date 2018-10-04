@@ -15,8 +15,10 @@ const HeaderWrapper = styled('header')({
 const Header = () => (
   <HeaderWrapper>
     <Link to="/">Home</Link>
-    <Link to="/about">About</Link>
-    <Link to="/contact">Contact</Link>
+    <Link to="/challenge">Challenge</Link>
+    <Link to="/register">Register</Link>
+    <Link to="/events">Events</Link>
+    <Link to="/create">Create Event</Link>
   </HeaderWrapper>
 )
 

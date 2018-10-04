@@ -8,9 +8,11 @@ import {
 } from 'react-router-dom'
 
 import Header from './components/Header'
-import Welcome from './pages/Welcome'
-import About from './pages/About'
-import Contact from './pages/Contact'
+import Home from './pages/home/Home'
+import Challenge from './pages/challenge/Challenge'
+import Create from './pages/create/Create'
+import Register from './pages/register/Register'
+import Events from './pages/events/Events'
 
 const Content = styled('div')({
   marginTop: 50
@@ -24,9 +26,11 @@ class App extends Component {
           <Header />
           <Content>
             <Switch>
-              <Route exact path="/" component={Welcome} />
-              <Route path="/about" component={About} />
-              <Route path="/contact" component={Contact} />
+              <Route exact path="/" component={Home} />
+              <Route path="/challenge" component={Challenge} />
+              <Route path="/register" component={Register} />
+              <Route path="/create" component={Create} />
+              <Route path="/events" component={Events} />
             </Switch>
           </Content>
         </div>
