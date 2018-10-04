@@ -6,7 +6,9 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   nickname: { type: String, required: true },
   cellphone: { type: String },
-  deviceToken: { type: String, required: true }
+  deviceToken: { type: String, required: true },
+  deviceType: { type: String, required: true },
+  passwordSalt: { type: String, required: true }
 });
 
 const User = mongoose.model("User", userSchema);

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const db = require("../models");
 
-// This file empties the Books collection and inserts the books below
+// This file empties the users collection and inserts the users below
 
 mongoose.connect(
   process.env.MONGODB_URI ||
@@ -14,14 +14,18 @@ const userSeed = [
     password: "fredfred",
     nickname: "annette",
     cellphone: "8587752704",
-    deviceToken: "123456789"
+    deviceToken: "123456789",
+    deviceType: "FitBit",
+    passwordSalt: ""
   },
   {
     emailaddress: "john@jbeatty.com",
     password: "fredfred",
     nickname: "john",
     cellphone: "8583952704",
-    deviceToken: "987654321"
+    deviceToken: "987654321",
+    deviceType: "MisFit",
+    passwordSalt: ""
   }
 ];
 
