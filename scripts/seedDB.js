@@ -15,6 +15,7 @@ const userSeed = [
     nickname: "annette",
     cellphone: "8587752704",
     deviceToken: "123456789",
+    refreshToken: "123456789",
     deviceType: "FitBit",
     passwordSalt: ""
   },
@@ -24,6 +25,7 @@ const userSeed = [
     nickname: "john",
     cellphone: "8583952704",
     deviceToken: "987654321",
+    refreshToken: "123456789",
     deviceType: "MisFit",
     passwordSalt: ""
   }
