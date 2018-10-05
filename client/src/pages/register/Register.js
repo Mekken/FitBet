@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'react-emotion'
 import FormItem from '../../components/FormItem'
+import API from '../../components/utils/App.js'
 
 const ContactWrapper = styled('div')({
   maxWidth: 500,
@@ -26,9 +27,11 @@ const SubmitButton = styled('button')({
 class Register extends Component {
 
   state = {
-    name: '',
-    occupation: '',
-    email: ''
+    email: '',
+    password: '',
+    nickname: '',
+    cellphone: "",
+    device: ""
   }
 
   handleChange = (e) => {
@@ -38,11 +41,37 @@ class Register extends Component {
     })
   }
 
+  // Save user data to DB
+  processUser = userObject => {
+    // This needs to be sent to the DB for saving
+    API.saveUser(userObject)
+    .then()
+    .catch(err => console.log(err));
+  }
+
   handleSubmit = () => {
     // post my state to the api to save the contact form,
     // then set the state to some kind of success message
     // and show the user some feedback
-    alert(JSON.stringify(this.state))
+    var userObj = {
+      emailaddress: this.state.email,
+      password: this.state.password,
+      nickname: this.state.nickname,
+      cellphone: this.state.cellphone,
+      deviceType: this.state.device,
+      deviceToken: "default",
+      refreshToken: "default",
+      passwordSalt: "default"
+    }
+    this.processUser(userObj);
+
+    this.setState({
+        emailaddress: '',
+        password: '',
+        nickname: '',
+        cellphone: "",
+        deviceType: ""
+    });
   }
 
   render() {

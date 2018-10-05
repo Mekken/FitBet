@@ -7,6 +7,7 @@ const userSchema = new Schema({
   nickname: { type: String, required: true },
   cellphone: { type: String },
   deviceToken: { type: String, required: true },
+  refreshToken: { type: String, required: true },
   deviceType: { type: String, required: true },
   passwordSalt: { type: String, required: true }
 });
