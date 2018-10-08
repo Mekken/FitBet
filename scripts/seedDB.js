@@ -17,7 +17,8 @@ const userSeed = [
     deviceToken: "123456789",
     refreshToken: "123456789",
     deviceType: "FitBit",
-    passwordSalt: ""
+    passwordSalt: "",
+    challenges: ""
   },
   {
     emailaddress: "john@jbeatty.com",
@@ -27,7 +28,8 @@ const userSeed = [
     deviceToken: "987654321",
     refreshToken: "123456789",
     deviceType: "MisFit",
-    passwordSalt: ""
+    passwordSalt: "",
+    challenges: ""
   }
 ];
 
