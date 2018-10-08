@@ -12,7 +12,7 @@ const EventsPageWrapper = styled('div')({
 class Events extends Component {
   state = {
     events: "",
-    playerObj: ""
+    playerObj: {}
   };
 
 // When this component mounts, load/clear array
@@ -29,14 +29,40 @@ loadEvents = () => {
 
 // This function handles when a user clicks to join event
 handleJoinClick = (id) => { 
-  console.log("Got into HandleJoinClick");
-  API.getChallenge(id)
-  .then(function(response) {
-    console.log("got this event object ", response);
+  console.log("Got into HandleJoinClick, challenge to join is ", id);
+
+  // Get the user data
+  // We fudge the data here since it should be stored locally
+  // 5bbac4b28918bacf998d1224
+  API.getUser("5bbac4b28918bacf998d1224")
+  .then(function(respPlayer) {
+    console.log("got this player object ", respPlayer);
+
+    let newPlayerObj = {
+      _id: respPlayer.data._id,
+     name: respPlayer.data.nickname,
+    }
+
+    console.log("data to stuff into challenge ", newPlayerObj);
+
+    // Get the challenge data
+    API.getChallenge(id)
+    .then(function(response) {
+      console.log("got this event object ", response);
+      // Push player data onto challenge object
+
+      let newPlayerArray = response.data.players;
+      newPlayerArray.push(newPlayerObj);
+
+      console.log("new player array", newPlayerArray);
+
+    })
+    .catch(err => console.log(err));
   })
     //res => this.setState({ playerObj: res.data }))
-  //.then(res => this.setState({ events: res.data }))
   .catch(err => console.log(err));
+  // Need to add this player to the challenge
+
 }
 
 // Get this player
