@@ -11,6 +11,6 @@ export default {
   // Saves a user to the database
   saveUser: function(userObj) {
     console.log("Stuffing this: ", userObj);
-    return axios.post("/api/users", userObj);
+    return axios.post("/api/users/register", userObj);
   }
 };

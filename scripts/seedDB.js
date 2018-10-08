@@ -11,23 +11,23 @@ mongoose.connect(
 const userSeed = [
   {
     emailaddress: "annette.beatty@gmail.com",
-    password: "fredfred",
+    password: "$2b$10$bdG2CYItXENG5uxuCL3bJeOxAZI3gqyVu/xq9FvDz.my7tl0TKdIy",
     nickname: "annette",
     cellphone: "8587752704",
     deviceToken: "123456789",
     refreshToken: "123456789",
     deviceType: "FitBit",
-    passwordSalt: ""
+    passwordSalt: "$2b$10$bdG2CYItXENG5uxuCL3bJe"
   },
   {
     emailaddress: "john@jbeatty.com",
-    password: "fredfred",
+    password: "$2b$10$bdG2CYItXENG5uxuCL3bJeOxAZI3gqyVu/xq9FvDz.my7tl0TKdIy",
     nickname: "john",
     cellphone: "8583952704",
     deviceToken: "987654321",
     refreshToken: "123456789",
     deviceType: "MisFit",
-    passwordSalt: ""
+    passwordSalt: "$2b$10$bdG2CYItXENG5uxuCL3bJe"
   }
 ];
 
