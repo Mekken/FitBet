@@ -8,6 +8,8 @@ import Challenge from "./pages/challenge/Challenge";
 import Create from "./pages/create/Create";
 import Register from "./pages/register/Register";
 import Events from "./pages/events/Events";
+import Login from "./pages/login/login";
+
 
 const Content = styled("div")({
   marginTop: 50
@@ -26,6 +28,7 @@ class App extends Component {
               <Route path="/register" component={Register} />
               <Route path="/create" component={Create} />
               <Route path="/events" component={Events} />
+              <Route path="/login" component={Login} />
             </Switch>
           </Content>
         </div>
