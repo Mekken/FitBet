@@ -12,7 +12,9 @@ const EventsPageWrapper = styled('div')({
 class Events extends Component {
   state = {
     events: "",
-    playerObj: {}
+    playerObj: "",
+    playerID: "",
+    addEventID: ""
   };
 
 // When this component mounts, load/clear array
@@ -33,14 +35,16 @@ handleJoinClick = (id) => {
 
   // Get the user data
   // We fudge the data here since it should be stored locally
-  // 5bbac4b28918bacf998d1224
-  API.getUser("5bbac4b28918bacf998d1224")
+  // 5bbbeacc77452191168edb0b -- Note for testing if you drop DB,
+  // You'll need to get another one
+  API.getUser("5bbbeacc77452191168edb0b")
   .then(function(respPlayer) {
     console.log("got this player object ", respPlayer);
 
     let newPlayerObj = {
       _id: respPlayer.data._id,
      name: respPlayer.data.nickname,
+     challenge_steps: 0
     }
 
     console.log("data to stuff into challenge ", newPlayerObj);
@@ -55,24 +59,70 @@ handleJoinClick = (id) => {
       newPlayerArray.push(newPlayerObj);
 
       console.log("new player array", newPlayerArray);
+      response.data.players = newPlayerArray;
+      console.log("Response to push to DB = ", response.data);
+      let challengeObj = {
+        title: response.data.title,
+        desc: response.data.desc,
+        stakes: response.data.stakes,
+        startDate: response.data.startDate,
+        endDate: response.data.endDate,
+        lastDate: response.data.lastDate,
+        players: newPlayerArray
+      }
 
-    })
+      // Update the challenge object and add the new player
+      API.updateChallenge(response.data._id, challengeObj)
+      .then (function(upd) {
+        // Now need to update the player object with the new challenge
+        console.log("return from Update challenge ", upd);
+        
+        let newChallengeObj = {
+          _id: id
+        }
+
+        let newChallengeArray = respPlayer.data.challenges;
+
+        console.log("current challenges ", respPlayer.data.challenges);
+        console.log("this challenge ", id);
+
+        if (respPlayer.data.challenges[0] !== "") {
+          newChallengeArray.push(newChallengeObj);
+        }
+        else 
+          newChallengeArray[0] = newChallengeObj;
+
+        respPlayer.data.challenges = newChallengeArray;
+
+        console.log("Sending this to get stuffed to user array ", respPlayer.data);
+        // Update the user array with new challenge
+        API.updateUser(respPlayer.data._id, respPlayer.data)
+        .then (function(playerResp) {
+            console.log("Player Resp ", playerResp);
+            this.loadEvents();
+        })
+      })  // UpdateChallenge
+      .catch(err => console.log(err))
+    }) // Get challenge
     .catch(err => console.log(err));
-  })
+  }) // Get user
     //res => this.setState({ playerObj: res.data }))
   .catch(err => console.log(err));
-  // Need to add this player to the challenge
-
 }
 
 // Get this player
-handlePlayerInput = id => {
+handlePlayerSubmit = event => {
+  event.preventDefault();
+
+  console.log('player ID', this.state.playerID);
+  /*
   API.getUser(id)
   .then(function(response) {
     console.log("got this player object ", response);
   })
     //res => this.setState({ playerObj: res.data }))
   .catch(err => console.log(err));
+  */
 }
 
 // This renders the Results section if they exist

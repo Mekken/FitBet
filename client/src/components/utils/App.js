@@ -7,6 +7,11 @@ export default {
   getUser: function(id) {
     return axios.get("/api/users/" + id);
   },
+  updateUser: function(id, data) {
+    console.log("Id to update: ", id);
+    console.log("data inserting ", data);
+    return axios.put("/api/users/" + id, data);
+  },
   // Deletes the user with the given id
   deleteNote: function(id) {
     return axios.delete("/api/users/" + id);
@@ -20,9 +25,12 @@ export default {
     console.log("Stuffing this to challenge: ", challengeObj);
     return axios.post("/api/challenges", challengeObj);
   },
+  updateChallenge: function(id, record) {
+    console.log("updating this challenge id = ", id, " record = ", record);
+    return axios.put("/api/challenges/" + id, record);
+  },
   getChallenges: function() {
-    console.log("Getting all challenges");
-    return axios.get("/api/challenges");
+    return axios.get("/api/challenges/");
   },
   getChallenge: function(id) {
     console.log("getting this challenge ", id)

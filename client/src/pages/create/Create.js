@@ -31,8 +31,9 @@ const SubmitButton = styled('button')({
 class Create extends Component {
 
   state = {
-    name: '',
+    title: '',
     stakes: '',
+    desc: "",
     startDate: "",
     endDate: "",
     lastDate: '',
@@ -49,6 +50,7 @@ class Create extends Component {
   // Save user data to DB
   processCreate = challengeObject => {
     // This needs to be sent to the DB for saving
+    console.log("Create challenge data ", challengeObject);
     API.saveChallenge(challengeObject)
     .then()
     .catch(err => console.log(err));
@@ -63,25 +65,27 @@ class Create extends Component {
     // Convert date to YYYY-MM-DD
     // Stuff first element of players array to be me
     let myObj = {
-      _id: "5bb6ef0b5aef0d7f6c691649",
+      _id: "5bbbeacc77452191168edb0a",
       name: "annette - default",
       challenge_steps: 0
     }
 
     var challengeObj = {
-      name: this.state.name,
+      title: this.state.title,
+      desc: this.state.desc,
       stakes: this.state.stakes,
       startDate: this.state.startDate,
       endDate: this.state.endDate,
       lastDate: today,
-      players: [myObj]
+      players: [ myObj ]
     }
     console.log("challenge obj ", challengeObj);
 
     this.processCreate(challengeObj);
 
     this.setState({
-        name: '',
+        title: '',
+        desc: "",
         stakes: '',
         startDate: "",
         endDate: "",
@@ -97,10 +101,17 @@ class Create extends Component {
           Create Challenge
         </WelcomeMessage>
         <FormItem
-          name="name"
-          label="Name of your challenge"
+          name="title"
+          label="Title of your challenge"
           onChangeFn={this.handleChange}
-          value={this.state.name}
+          value={this.state.title}
+        />
+        <label htmlFor="desc">Description</label>
+        <textarea
+          name="desc"
+          label="Description"
+          onChange={this.handleChange}
+          value={this.state.desc}
         />
         <label htmlFor="title">Stakes</label>
         <textarea
