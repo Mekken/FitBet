@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'react-emotion'
+import EventsContainer from '../../components/EventsContainer'
 
 const EventsPageWrapper = styled('div')({
   display: 'flex',
@@ -9,7 +10,8 @@ const EventsPageWrapper = styled('div')({
 
 const Events = () => (
   <EventsPageWrapper>
-    Hello, welcome to my Events page!
+    This is where you can view and join events
+    <EventsContainer />
   </EventsPageWrapper>
 )
 

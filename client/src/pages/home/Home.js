@@ -1,15 +1,18 @@
 import React from 'react'
 import styled from 'react-emotion'
+import CardsContainer from "../../components/CardsContainer"
+import RedirectButton from '../../components/RedirectButton';
 
 const HomePageWrapper = styled('div')({
-  display: 'flex',
+  display: 'block',
   alignItems: 'center',
   justifyContent: 'center'
 })
 
 const Home = () => (
   <HomePageWrapper>
-    Hello, welcome to my Home page!
+    <CardsContainer />
+    <RedirectButton />
   </HomePageWrapper>
 )
 
