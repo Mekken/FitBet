@@ -14,6 +14,7 @@ import Create from './pages/create/Create'
 import Register from './pages/register/Register'
 import Events from './pages/events/Events'
 
+
 const Content = styled('div')({
   marginTop: 50
 })

@@ -11,9 +11,9 @@ const HeaderWrapper = styled('header')({
   alignItems: 'center',
   justifyContent: 'space-around'
 })
-
+ 
 const Header = () => (
-  <HeaderWrapper>
+    <HeaderWrapper> 
     <Link to="/">Home</Link>
     <Link to="/challenge">Challenge</Link>
     <Link to="/register">Register</Link>
