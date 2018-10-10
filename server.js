@@ -1,7 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const passport = require("passport");
+const passportController = require("./controllers/passportController");
 const routes = require("./routes");
+
+passportController.passportSetup();
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -12,6 +17,18 @@ app.use(bodyParser.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
+//PassportJS Session Setup
+app.use(require('cookie-parser')('passport_cookie'));
+app.use(require('express-session')({ secret: 'passport_cookie', resave: false, saveUninitialized: false}));
+
+// Initialize Passport and restore authentication state, if any, from the
+// session.
+app.use(passport.initialize());
+app.use(passport.session());
+
+passportController.passportSerializeSetup();
+
 // Add routes, both API and view
 app.use(routes);
 
