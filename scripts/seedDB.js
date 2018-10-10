@@ -28,6 +28,16 @@ const userSeed = [
     refreshToken: "123456789",
     deviceType: "MisFit",
     passwordSalt: "$2b$10$bdG2CYItXENG5uxuCL3bJe"
+  },
+  {
+    emailaddress: "dheardjr@gmail.com",
+    password: "$2b$10$DlLhKMbaZY5H03tOIl2M8eMo3zeKK/g9ckMZqwQ6oFNHrdNVhn7ce",
+    nickname: "DarnelTheTester",
+    cellphone: "4544842247",
+    deviceType: "",
+    deviceToken: "",
+    refreshToken: "",
+    passwordSalt: "$2b$10$DlLhKMbaZY5H03tOIl2M8e"
   }
 ];
 
