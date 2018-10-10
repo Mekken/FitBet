@@ -1,23 +1,19 @@
 import React, { Component } from "react";
-import styled from 'react-emotion'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from 'react-router-dom'
+import styled from "react-emotion";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Header from './components/Header'
-import Home from './pages/home/Home'
-import Challenge from './pages/challenge/Challenge'
-import Create from './pages/create/Create'
-import Register from './pages/register/Register'
-import Events from './pages/events/Events'
+import Header from "./components/Header";
+import Home from "./pages/home/Home";
+import Challenge from "./pages/challenge/Challenge";
+import Create from "./pages/create/Create";
+import Register from "./pages/register/Register";
+import Events from "./pages/events/Events";
+import Login from "./pages/login/login";
 
 
-const Content = styled('div')({
+const Content = styled("div")({
   marginTop: 50
-})
+});
 
 class App extends Component {
   render() {
@@ -32,6 +28,7 @@ class App extends Component {
               <Route path="/register" component={Register} />
               <Route path="/create" component={Create} />
               <Route path="/events" component={Events} />
+              <Route path="/login" component={Login} />
             </Switch>
           </Content>
         </div>

@@ -1,19 +1,14 @@
-import React from 'react'
-import styled from 'react-emotion'
-import CardsContainer from "../../components/CardsContainer"
-import RedirectButton from '../../components/RedirectButton';
+import React from "react";
+import styled from "react-emotion";
 
-const HomePageWrapper = styled('div')({
-  display: 'block',
-  alignItems: 'center',
-  justifyContent: 'center'
-})
+const HomePageWrapper = styled("div")({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center"
+});
 
 const Home = () => (
-  <HomePageWrapper>
-    <CardsContainer />
-    <RedirectButton />
-  </HomePageWrapper>
-)
+  <HomePageWrapper>Hello, welcome to my Home page!</HomePageWrapper>
+);
 
-export default Home
+export default Home;

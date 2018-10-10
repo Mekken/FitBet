@@ -1,6 +1,9 @@
 import axios from "axios";
 
 export default {
+  login: function(loginObj) {
+    return axios.post("/api/users/login", loginObj);
+  },
   getUser: function() {
     return axios.get("/api/");
   },
@@ -11,6 +14,6 @@ export default {
   // Saves a user to the database
   saveUser: function(userObj) {
     console.log("Stuffing this: ", userObj);
-    return axios.post("/api/users", userObj);
+    return axios.post("/api/users/register", userObj);
   }
 };

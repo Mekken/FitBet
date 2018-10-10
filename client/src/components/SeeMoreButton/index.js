@@ -11,11 +11,11 @@ class SeeMoreButton extends React.Component {
     setTask = () => {
         if(this.state.buttonDisplay ==="Details"){
            this.setState({buttonDisplay:"Close"}) 
-           return this.props.hideDetails
+           return this.props.showDetails
         }
         else{
             this.setState({buttonDisplay:"Details"}) 
-            return this.props.showDetails
+            return this.props.closeDetails
         }
         
     }
@@ -32,7 +32,7 @@ class SeeMoreButton extends React.Component {
     render(){
         return(
     <div className="button">
-    <button onClick={this.setTask} showDetails={this.props.showDetails} hideDetails={this.props.hideDetails}>
+    <button onClick={this.state.buttonDisplay === "Details" ? this.props.showDetails : this.props.hideDetails} showDetails={this.props.showDetails} hideDetails={this.props.hideDetails}>
     {this.state.buttonDisplay}
     {this.props.children}
     </button>
