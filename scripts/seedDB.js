@@ -17,7 +17,8 @@ const userSeed = [
     deviceToken: "123456789",
     refreshToken: "123456789",
     deviceType: "FitBit",
-    passwordSalt: "$2b$10$bdG2CYItXENG5uxuCL3bJe"
+    passwordSalt: "$2b$10$bdG2CYItXENG5uxuCL3bJe",
+    challenges: ""
   },
   {
     emailaddress: "john@jbeatty.com",
@@ -27,7 +28,8 @@ const userSeed = [
     deviceToken: "987654321",
     refreshToken: "123456789",
     deviceType: "MisFit",
-    passwordSalt: "$2b$10$bdG2CYItXENG5uxuCL3bJe"
+    passwordSalt: "$2b$10$bdG2CYItXENG5uxuCL3bJe",
+    challenges: ""
   },
   {
     emailaddress: "dheardjr@gmail.com",
@@ -37,7 +39,8 @@ const userSeed = [
     deviceType: "",
     deviceToken: "",
     refreshToken: "",
-    passwordSalt: "$2b$10$DlLhKMbaZY5H03tOIl2M8e"
+    passwordSalt: "$2b$10$DlLhKMbaZY5H03tOIl2M8e",
+    challenges: ""
   }
 ];
 
