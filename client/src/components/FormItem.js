@@ -5,7 +5,7 @@ const CustomInput = styled('input')({
   padding: 5,
   border: 'none',
   margin: '10px 0 20px 0',
-  boxShadow: '0 0 1px 1px rgba(0,0,0,.3)',
+  boxShadow: '0 0 1px 1px rgba(0,0,0,.3)'
 })
 
 const Label = styled('div')({
