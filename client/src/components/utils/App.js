@@ -11,19 +11,19 @@ export default {
     console.log("Id to update: ", id);
     console.log("data inserting ", data);
     return axios.put("/api/users/" + id, data);
-
+  },
   login: function(loginObj) {
     return axios.post("/api/users/login", loginObj);
   },
   // Deletes the user with the given id
-  deleteNote: function(id) {
+  deleteUser: function(id) {
     return axios.delete("/api/users/" + id);
   },
   // Saves a user to the database
   saveUser: function(userObj) {
     console.log("Stuffing this: ", userObj);
     return axios.post("/api/users/register", userObj);
-  }
+  },
   saveChallenge: function(challengeObj) {
     console.log("Stuffing this to challenge: ", challengeObj);
     return axios.post("/api/challenges", challengeObj);
