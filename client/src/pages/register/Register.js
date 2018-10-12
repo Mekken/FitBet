@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'react-emotion'
 import FormItem from '../../components/FormItem'
 import API from '../../components/utils/App.js'
+import Button from '../../components/Button'
 
 const ContactWrapper = styled('div')({
   maxWidth: 500,
@@ -110,9 +111,9 @@ class Register extends Component {
           onChangeFn={this.handleChange}
           value={this.state.device}
         />
-        <SubmitButton onClick={this.handleSubmit}>
+        <Button variant='contained' color='secondary' type='submit' onClick={this.handleSubmit}>
           Submit!
-        </SubmitButton>
+        </Button>
       </ContactWrapper>
     )
   }
