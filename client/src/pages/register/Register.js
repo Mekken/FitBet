@@ -1,29 +1,27 @@
 import React, { Component } from 'react'
-import styled from 'react-emotion'
-import FormItem from '../../components/FormItem'
+/* import FormItem from '../../components/FormItem' */
 import API from '../../components/utils/App.js'
 import Button from '../../components/Button'
+import SubmitButton from '@material-ui/core/Button'
+import { withStyles } from '@material-ui/core/styles';
+import FormItem from '../../components/FormItem';
+import { Grid} from '@material-ui/core';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 
-const ContactWrapper = styled('div')({
-  maxWidth: 500,
-  minHeight: 300,
-  margin: '0 auto',
-  boxShadow: '1px 1px 2px 2px rgba(0,0,0,.3)',
-  display: 'flex',
-  flexDirection: 'column',
-  padding: 20
-})
 
-const WelcomeMessage = styled('div')({
-  padding: 24
-})
-
-const SubmitButton = styled('button')({
-  padding: 15,
-  textTransform: 'uppercase',
-  border: '1px solid black',
-  borderRadius: 5
-})
+const styles = theme => ({
+ 
+  card: {
+    minWidth: 300,
+    marginTop: '3%',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  }
+});
 
 class Register extends Component {
 
@@ -34,7 +32,8 @@ class Register extends Component {
     cellphone: "",
     device: ""
   }
-
+  
+  
   handleChange = (e) => {
     const { name, value } = e.target
     this.setState({
@@ -76,47 +75,72 @@ class Register extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
-      <ContactWrapper>
-        <WelcomeMessage>
+    
+      <Grid container spacing={0} alignItems='center' justify='center' alignContent='center'>
+      <Card className={classes.card}>
+      <CardContent>
+      <form  noValidate autoComplete="off">
+        {/* <WelcomeMessage>
           Hello {this.state.nickname ? this.state.nickname : 'there' }!
-        </WelcomeMessage>
+        </WelcomeMessage> */}
+        <Grid item xs={12}>
         <FormItem
+        className={classes.textField}
           name="email"
           label="Email"
           onChangeFn={this.handleChange}
           value={this.state.email}
         />
+        </Grid>
+        <Grid item xs={12}>
         <FormItem
+          className={classes.textField}
           name="password"
           label="Password"
           onChangeFn={this.handleChange}
           value={this.state.password}
-        />
+        /></Grid>
+        <Grid item xs={12}>
         <FormItem
+        className={classes.textField}
           name="nickname"
           label="Nickname"
           onChangeFn={this.handleChange}
           value={this.state.nickname}
-        />
+        /></Grid>
+        <Grid item xs={12}>
         <FormItem
+        className={classes.textField}
           name="cellphone"
           label="Cellphone"
           onChangeFn={this.handleChange}
           value={this.state.cellphone}
-        />
+        /></Grid>
+        <Grid item xs={12}>
         <FormItem
+        className={classes.textField}
           name="device"
           label="Device Type"
           onChangeFn={this.handleChange}
           value={this.state.device}
         />
-        <Button variant='contained' color='secondary' type='submit' onClick={this.handleSubmit}>
-          Submit!
-        </Button>
-      </ContactWrapper>
+        </Grid>
+        <Grid item xs={12}>
+        <CardActions>
+      <SubmitButton variant='text' color='secondary' fullWidth='true' type='submit' onClick={this.handleSubmit}>
+      Submit!
+    </SubmitButton>
+    </CardActions>
+    </Grid>
+      </form>
+      
+    </CardContent>
+    </Card>
+    </Grid>
+  
     )
   }
 }
-
-export default Register
+export default withStyles(styles)(Register)

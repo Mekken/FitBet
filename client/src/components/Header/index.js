@@ -7,22 +7,14 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
 import theme from "../../utils/theme-util";
+import Button from '../../components/Button';
 import { MuiThemeProvider } from "@material-ui/core/styles";
 
-const HeaderWrapper = styled("header")({
-  width: "100%",
-  height: 60,
-  boxShadow: "0 2px 2px 2px rgba(0,0,0,.3)",
-  textAlign: "center",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-around"
-});
 
 const Header = () => (
   <MuiThemeProvider theme={theme}>
     <AppBar
-      color="secondary"
+      color="primary"
       position="static"
       >
 
@@ -31,41 +23,41 @@ const Header = () => (
         justifyContent: 'space-between'
       }}>
       
-        <Typography variant="subtitle1" align="justify" gutterBottom>
-          <Link to="/" style={{ color: "white", textDecoration: "none" , fontFamily:"Quicksand"}}>
-            Home
+        <Typography variant="subtitle1" align="justify">
+          <Link to="/" style={{ textDecoration: "none" , fontFamily:"Quicksand"}}>
+            <Button>Home</Button>
           </Link>
         </Typography>
 
-        <Typography variant="subtitle1" align="left" gutterBottom>
+        <Typography variant="subtitle1" align="left">
           <Link
             to="/challenge"
-            style={{ color: "white", textDecoration: "none", fontFamily:"Quicksand"}}>
-            Challenge
+            style={{ textDecoration: "none", fontFamily:"Quicksand"}}>
+            <Button>Challenge</Button>
           </Link>
         </Typography>
 
-        <Typography variant="subtitle1" align="justify" gutterBottom>
+        <Typography variant="subtitle1" align="justify">
           <Link
             to="/register"
-            style={{ color: "white", textDecoration: "none", fontFamily:"Quicksand" }}>
-            Register
+            style={{ textDecoration: "none", fontFamily:"Quicksand" }}>
+            <Button>Register</Button>
           </Link>
         </Typography>
-        <Typography variant="subtitle1" align="center" gutterBottom>
-          <Link to="/login" style={{ color: "white", textDecoration: "none", fontFamily:"Quicksand" }}>
-            Login
+        <Typography variant="subtitle1" align="center">
+          <Link to="/login" style={{ textDecoration: "none", fontFamily:"Quicksand" }}>
+          <Button>Login</Button>
           </Link>
         </Typography>
-        <Typography variant="subtitle1" align="justify" gutterBottom>
-          <Link to="/events" style={{ color: "white", textDecoration: "none", fontFamily:"Quicksand"}}>
-            Events
+        <Typography variant="subtitle1" align="justify">
+          <Link to="/events" style={{ textDecoration: "none", fontFamily:"Quicksand"}}>
+            <Button>Events</Button>
           </Link>
         </Typography>
 
-        <Typography variant="subtitle1" align="right" gutterBottom>
-          <Link to="/create" style={{ color: "white", textDecoration: "none", fontFamily:"Quicksand" }}>
-            Create
+        <Typography variant="subtitle1" align="right">
+          <Link to="/create" style={{ textDecoration: "none", fontFamily:"Quicksand" }}>
+            <Button>Create</Button>
           </Link>
         </Typography>
       </Toolbar>
