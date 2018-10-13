@@ -10,7 +10,7 @@ const HomePageWrapper = styled("div")({
 });
 
 // This is John's id
-const myID = "5bc1555bd7bacf81743af5f3";
+const myID = localStorage.getItem("userID");
 
 class Home extends Component {
   state = {

@@ -1,16 +1,21 @@
 const router = require("express").Router();
 const challengeController = require("../../controllers/challengeController");
+const authController = require("../../controllers/authController");
 
 // Matches with "/api/challenges"
 router.route("/")
-  .get(challengeController.findAll)
-  .post(challengeController.create);
+  .get(authController.checkAuthentication, challengeController.findAll)
+  .post(authController.checkAuthentication, challengeController.create);
 
 // Matches with "/api/challenges/:id"
 router
   .route("/:id")
-  .get(challengeController.findById)
-  .put(challengeController.update)
-  .delete(challengeController.remove);
+  .get(authController.checkAuthentication, challengeController.findChallengeByUserId)
+  .put(authController.checkAuthentication, challengeController.update)
+  .delete(authController.checkAuthentication, challengeController.remove);
 
+// Matches with "/api/challenges/challengeID/:id"
+router
+  .route("/challengeID/:id")
+  .get(authController.checkAuthentication, challengeController.findChallengeById)
 module.exports = router;

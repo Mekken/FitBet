@@ -9,8 +9,14 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findById: function(req, res) {
-    console.log("req user ", req.params.id);
+  findChallengeByUserId: function(req, res) {
+    console.log("findById ", req.params.id);
+    db.Challenge
+      .find({ players: { $elemMatch: { _id: req.params.id }}})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findChallengeById: function(req, res) {
     db.Challenge
       .findById(req.params.id)
       .then(dbModel => res.json(dbModel))
