@@ -11,19 +11,19 @@ export default {
     console.log("Id to update: ", id);
     console.log("data inserting ", data);
     return axios.put("/api/users/" + id, data);
-
+  },
   login: function(loginObj) {
     return axios.post("/api/users/login", loginObj);
   },
   // Deletes the user with the given id
-  deleteNote: function(id) {
+  deleteUser: function(id) {
     return axios.delete("/api/users/" + id);
   },
   // Saves a user to the database
   saveUser: function(userObj) {
     console.log("Stuffing this: ", userObj);
     return axios.post("/api/users/register", userObj);
-  }
+  },
   saveChallenge: function(challengeObj) {
     console.log("Stuffing this to challenge: ", challengeObj);
     return axios.post("/api/challenges", challengeObj);
@@ -38,5 +38,28 @@ export default {
   getChallenge: function(id) {
     console.log("getting this challenge ", id)
     return axios.get("/api/challenges/" + id);
+  },
+  getMyEvents: function(id) {
+    console.log("getting events for ", id)
+
+    //{ players: { $elemMatch: { _id: "5bc1555bd7bacf81743af5f3"}}}
+    /*
+    let searching = "players: { $elemMatch: { _id: '" + id + "'}}"
+
+    let req = {
+      query: searching
+    };
+    */
+
+    // Grab this guy's user data
+    return axios.get("/api/challenges/", id);
+    /*
+    .then(function(response) {
+      console.log("Obj returned ", response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    */
   }
 };
