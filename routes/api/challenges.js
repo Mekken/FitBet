@@ -10,6 +10,7 @@ router.route("/")
 // Matches with "/api/challenges/:id"
 router
   .route("/:id")
+
   .get(authController.checkAuthentication, challengeController.findChallengeByUserId)
   .put(authController.checkAuthentication, challengeController.update)
   .delete(authController.checkAuthentication, challengeController.remove);
