@@ -37,9 +37,7 @@ class Events extends Component {
 
     // Get the user data
     // We fudge the data here since it should be stored locally
-    // 5bbbeacc77452191168edb0b -- Note for testing if you drop DB,
-    // You'll need to get another one
-    API.getUser("5bbbeacc77452191168edb0b")
+    API.getUser(localStorage.getItem("userID"))
     .then(function(respPlayer) {
       console.log("got this player object ", respPlayer);
 

@@ -64,9 +64,10 @@ class Create extends Component {
     
     // Convert date to YYYY-MM-DD
     // Stuff first element of players array to be me
+
     let myObj = {
-      _id: "5bbbeacc77452191168edb0a",
-      name: "annette - default",
+      _id: localStorage.getItem("userID"),
+      name: localStorage.getItem("nickname"),
       challenge_steps: 0
     }
 

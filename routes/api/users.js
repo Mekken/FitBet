@@ -17,6 +17,11 @@ router
 router
   .route("/login")
   .post(passport.authenticate("local"), (req, res) => {
+    let userInfo = {
+      id: req.user._id,
+      nickname: req.user.nickname
+    }
+    res.json(userInfo);
     res.status(200).end()
   });
 

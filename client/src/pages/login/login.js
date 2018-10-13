@@ -28,14 +28,22 @@ class Login extends Component {
 
   state = {
     email: '',
-    password: ''
+    password: '',
   }
 
     // Save user data to DB
   loginUser = userObject => {
     // This needs to be sent to the DB for saving
     API.login(userObject)
-    .then()
+    .then(function (response) {
+      // update localStorage
+      console.log("Response ", response);
+      localStorage.setItem("userID", response.data.id);
+      localStorage.setItem("nickname", response.data.nickname);
+      console.log("userID ", localStorage.getItem("userID"));
+      console.log("nickname ", localStorage.getItem("nickname"));
+    })
+      // res => this.setState({ user: res.data }))
     .catch(err => console.log(err));
   }
 
