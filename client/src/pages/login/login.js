@@ -1,34 +1,35 @@
 import React, { Component } from 'react'
-import styled from 'react-emotion'
+import {withStyles} from '@material-ui/core/styles'
+import {Grid, Card, CardActions, CardContent} from '@material-ui/core'
 import FormItem from '../../components/FormItem'
 import API from '../../components/utils/App.js'
+import SubmitButton from '@material-ui/core/Button'
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
-const ContactWrapper = styled('div')({
-  maxWidth: 500,
-  minHeight: 300,
-  margin: '0 auto',
-  boxShadow: '1px 1px 2px 2px rgba(0,0,0,.3)',
-  display: 'flex',
-  flexDirection: 'column',
-  padding: 20
-})
 
-const WelcomeMessage = styled('div')({
-  padding: 24
-})
+const styles = theme => ({
+ 
+  card: {
+    minWidth: 300,
+    marginTop: '3%',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    display:'block'
+  }
+});
 
-const SubmitButton = styled('button')({
-  padding: 15,
-  textTransform: 'uppercase',
-  border: '1px solid black',
-  borderRadius: 5
-})
 
 class Login extends Component {
 
   state = {
     email: '',
-    password: ''
+    password: '',
+    showPassword: false
   }
 
     // Save user data to DB
@@ -45,6 +46,9 @@ class Login extends Component {
       [name]: value
     })
   }
+  handleClickShowPassword = () => {
+    this.setState(state => ({ showPassword: !state.showPassword }));
+  };
 
   handleSubmit = () => {
     var userObj = {
@@ -60,29 +64,52 @@ class Login extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
-      <ContactWrapper>
-        <WelcomeMessage>
-          Hello {this.state.nickname ? this.state.nickname : 'there' }!
-        </WelcomeMessage>
+      <Grid container spacing={0} alignItems='center' justify='center' alignContent='center'>
+      <Card className={classes.card}>
+      <CardContent>
+        <form>
+        <Grid item xs={12}>
         <FormItem
           name="email"
           label="Email"
-          onChangeFn={this.handleChange}
+          onChange={this.handleChange}
           value={this.state.email}
         />
+        </Grid>
+        <Grid item xs={12}>
         <FormItem
           name="password"
           label="Password"
-          onChangeFn={this.handleChange}
+          onChange={this.handleChange}
           value={this.state.password}
+          type={this.state.showPassword ? 'text' : 'password'}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="Toggle password visibility"
+                  onClick={this.handleClickShowPassword}
+                >
+                  {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         />
-        <SubmitButton onClick={this.handleSubmit}>
-          Submit!
-        </SubmitButton>
-      </ContactWrapper>
+        </Grid>
+        <CardActions>
+        <SubmitButton variant='text' color='secondary' fullWidth='true' type='submit' onClick={this.handleSubmit}>
+      Submit
+    </SubmitButton>
+    </CardActions>
+    </form>
+    </CardContent>
+    </Card>
+    </Grid>
     )
   }
 }
 
-export default Login;
+export default withStyles(styles)(Login)
