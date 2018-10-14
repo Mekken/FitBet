@@ -37,6 +37,29 @@ export default {
   },
   getChallenge: function(id) {
     console.log("getting this challenge ", id)
+    return axios.get("/api/challenges/challengeID/" + id);
+  },
+  getMyEvents: function(id) {
+    console.log("getting events for ", id)
+
+    //{ players: { $elemMatch: { _id: "5bc1555bd7bacf81743af5f3"}}}
+    /*
+    let searching = "players: { $elemMatch: { _id: '" + id + "'}}"
+
+    let req = {
+      query: searching
+    };
+    */
+
+    // Grab this guy's user data
     return axios.get("/api/challenges/" + id);
+    /*
+    .then(function(response) {
+      console.log("Obj returned ", response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    */
   }
 };

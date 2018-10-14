@@ -25,18 +25,25 @@ const styles = theme => ({
 
 class Login extends Component {
   state = {
-    email: "",
-    password: "",
-    showPassword: false
-  };
+    email: '',
+    password: '',
+  }
 
   // Save user data to DB
   loginUser = userObject => {
     // This needs to be sent to the DB for saving
     API.login(userObject)
-      .then()
-      .catch(err => console.log(err));
-  };
+    .then(function (response) {
+      // update localStorage
+      console.log("Response ", response);
+      localStorage.setItem("userID", response.data.id);
+      localStorage.setItem("nickname", response.data.nickname);
+      console.log("userID ", localStorage.getItem("userID"));
+      console.log("nickname ", localStorage.getItem("nickname"));
+    })
+      // res => this.setState({ user: res.data }))
+    .catch(err => console.log(err));
+  }
 
   handleChange = e => {
     const { name, value } = e.target;
