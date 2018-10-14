@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles'
 const styles = {
     buttonRoot: {
         borderRadius: '100px',
+        padding:0,
         background: 'linear-gradient(0deg, #f5f5f5 9%, #c6ff00 10%)'
     }
 }
