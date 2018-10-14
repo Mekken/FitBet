@@ -28,7 +28,10 @@ class App extends Component {
               <Route path="/register" component={Register} />
               <Route path="/create" component={Create} />
               <Route path="/events" component={Events} />
+              <Route path="/login" component={ props => <Login {...props}/>} />
+              {/*}
               <Route path="/login" component={Login} />
+    */}
             </Switch>
           </Content>
         </div>

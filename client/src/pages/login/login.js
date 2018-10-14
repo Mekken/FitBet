@@ -36,6 +36,8 @@ class Login extends Component {
     // Save user data to DB
   loginUser = userObject => {
     // This needs to be sent to the DB for saving
+    var self = this;
+
     API.login(userObject)
     .then(function (response) {
       // update localStorage
@@ -44,6 +46,7 @@ class Login extends Component {
       localStorage.setItem("nickname", response.data.nickname);
       console.log("userID ", localStorage.getItem("userID"));
       console.log("nickname ", localStorage.getItem("nickname"));
+      self.props.history.push(`/`);
     })
       // res => this.setState({ user: res.data }))
     .catch(err => console.log(err));
