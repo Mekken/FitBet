@@ -24,7 +24,7 @@ class App extends Component {
           <Content>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/challenge" component={Challenge} />
+              <Route path="/challenge/:id" component={Challenge} />
               <Route path="/register" component={Register} />
               <Route path="/create" component={Create} />
               <Route path="/events" component={Events} />

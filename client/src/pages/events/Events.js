@@ -98,7 +98,6 @@ class Events extends Component {
       }) // Get challenge
       .catch(err => console.log(err));
     }) // Get user
-      //res => this.setState({ playerObj: res.data }))
     .catch(err => console.log(err));
   }
 
