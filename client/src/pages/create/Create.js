@@ -9,6 +9,7 @@ import API from "../../components/utils/App.js";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import SubmitButton from "@material-ui/core/Button";
+import Typography from '@material-ui/core/Typography'
 
 const styles = theme => ({
   card: {
@@ -100,9 +101,9 @@ class Create extends Component {
         justify="center"
         alignContent="center">
         <Paper className={classes.card}>
-          {/*  <WelcomeMessage>
+        <Typography align='center' variant='headline' color='secondary'>
           Create Challenge
-        </WelcomeMessage> */}
+        </Typography> 
           <Grid item xs={12}>
             <TextField
               className={classes.TextField}

@@ -148,7 +148,7 @@ class Register extends Component {
                     fullWidth
                     type="submit"
                     onClick={this.handleSubmit}>
-                    Submit
+                    Register
                   </SubmitButton>
                 </CardActions>
               </Grid>

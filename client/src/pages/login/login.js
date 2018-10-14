@@ -120,7 +120,7 @@ class Login extends Component {
               fullWidth="true"
               type="submit"
               onClick={this.handleSubmit}>
-              Submit
+              Login
             </SubmitButton>
           </Form>
         </Paper>
