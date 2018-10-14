@@ -1,15 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styled from "react-emotion";
-
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-
 import theme from "../../utils/theme-util";
 import Button from '../../components/Button';
 import { MuiThemeProvider } from "@material-ui/core/styles";
-
+import Grid from '@material-ui/core/Grid';
 
 const Header = () => (
   <MuiThemeProvider theme={theme}>

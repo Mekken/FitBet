@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-/* import FormItem from '../../components/FormItem' */
 import API from "../../components/utils/App.js";
-import Button from "../../components/Button";
 import SubmitButton from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
-import FormItem from "../../components/FormItem";
+import Form from "@material-ui/core/FormControl";
 import { Grid } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -13,7 +12,8 @@ import CardContent from "@material-ui/core/CardContent";
 const styles = theme => ({
   card: {
     minWidth: 300,
-    marginTop: "3%"
+    marginTop: "3%",
+    padding: "1% 7% 1%"
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -81,12 +81,14 @@ class Register extends Component {
         alignContent="center">
         <Card className={classes.card}>
           <CardContent>
-            <form noValidate autoComplete="off">
+            <Form>
               {/* <WelcomeMessage>
           Hello {this.state.nickname ? this.state.nickname : 'there' }!
         </WelcomeMessage> */}
               <Grid item xs={12}>
-                <FormItem
+                <TextField
+                  fullWidth
+                  required
                   className={classes.textField}
                   name="email"
                   label="Email"
@@ -95,7 +97,9 @@ class Register extends Component {
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormItem
+                <TextField
+                  fullWidth
+                  required
                   className={classes.textField}
                   name="password"
                   label="Password"
@@ -104,7 +108,9 @@ class Register extends Component {
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormItem
+                <TextField
+                  fullWidth
+                  required
                   className={classes.textField}
                   name="nickname"
                   label="Nickname"
@@ -113,7 +119,9 @@ class Register extends Component {
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormItem
+                <TextField
+                  fullWidth
+                  required
                   className={classes.textField}
                   name="cellphone"
                   label="Cellphone"
@@ -122,7 +130,9 @@ class Register extends Component {
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormItem
+                <TextField
+                  fullWidth
+                  required
                   className={classes.textField}
                   name="device"
                   label="Device Type"
@@ -135,14 +145,14 @@ class Register extends Component {
                   <SubmitButton
                     variant="text"
                     color="secondary"
-                    fullWidth={true}
+                    fullWidth
                     type="submit"
                     onClick={this.handleSubmit}>
                     Submit
                   </SubmitButton>
                 </CardActions>
               </Grid>
-            </form>
+            </Form>
           </CardContent>
         </Card>
       </Grid>
