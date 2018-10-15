@@ -9,9 +9,6 @@ const HomePageWrapper = styled("div")({
   justifyContent: "center"
 });
 
-// This is John's id
-const myID = localStorage.getItem("userID");
-
 class Home extends Component {
   state = {
     events: ""
@@ -37,8 +34,8 @@ class Home extends Component {
   // This function gets the available events
   loadMyEvents = () => { 
     console.log("load my events");
-    
-    API.getMyEvents(myID)
+
+    API.getMyEvents(localStorage.getItem("userID"))
     .then(res => this.setState({ events: res.data }))
     .catch(err => console.log(err));
   }

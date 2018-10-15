@@ -7,7 +7,7 @@ const MyEvents = props => (
        {
         props.events.map(result => (
             <li className="list-group-item" key={result._id}>
-            <h3>Event name: {result.title}</h3>
+            <h3><a href={"/challenge/" + result._id} target="_blank">Event name: {result.title}</a></h3>
             <h3>Event description: {result.desc}</h3>
             <h3>Stakes: {result.stakes}</h3>
             <h3>Start date: {result.startDate}</h3>
