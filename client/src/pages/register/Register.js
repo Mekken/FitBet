@@ -39,6 +39,9 @@ class Register extends Component {
     formErrors: {email: '', cell: ''},
     emailValid: false,
     cellValid: false,
+    passwordValid: false,
+    nicknameValid: false,
+    deviceValid: false,
     formValid: false
   }
 
@@ -54,13 +57,18 @@ class Register extends Component {
   }
 
   handleCell = (e) => {
+    if (!e)
+      return;
     this.validateField("cellphone", e);
   }
 
   validateField(fieldName, value) {
     let fieldValidationErrors = this.state.formErrors;
     let emailValid = this.state.emailValid;
-    let cellValid = this.state.cellValid;
+    let cellValid = this.state.cellValid; 
+    let passwordValid = this.state.passwordValid;
+    let nicknameValid = this.state.nicknameValid;
+    let deviceValid = this.state.deviceValid;
   
     switch(fieldName) {
       case 'email':
@@ -73,17 +81,39 @@ class Register extends Component {
         fieldValidationErrors.cell = cellValid ? '': ' is invalid';
         break;
 
+      case 'password':
+        passwordValid = value.length >= 6;
+        fieldValidationErrors.password = passwordValid ? '': ' is invalid';
+        break;
+
+      case 'nickname':
+        nicknameValid = value.length >= 4;
+        fieldValidationErrors.nickname = nicknameValid ? '': ' is invalid';
+        break;
+
+      case 'device':
+        deviceValid = value.length >= 1;
+        fieldValidationErrors.device = deviceValid ? '': ' is invalid';
+        break;
+
       default:
         break;
     }
     this.setState({formErrors: fieldValidationErrors,
                     emailValid: emailValid,
-                    cellValid: cellValid
+                    cellValid: cellValid,
+                    passwordValid: passwordValid,
+                    nicknameValid: nicknameValid,
+                    deviceValid: deviceValid
                   }, this.validateForm);
   }
   
   validateForm() {
-    this.setState({formValid: this.state.emailValid && this.state.cellValid});
+    this.setState({formValid: 
+      this.state.emailValid && this.state.cellValid &&
+      this.state.passwordValid && this.state.nicknameValid &&
+      this.state.deviceValid
+    });
   }
   
 
@@ -135,13 +165,13 @@ class Register extends Component {
         />
         <FormItem
           name="password"
-          label="Password"
+          label="Password (at least 6 characters)"
           onChangeFn={this.handleChange}
           value={this.state.password}
         />
         <FormItem
           name="nickname"
-          label="Nickname"
+          label="Nickname (at least 4 characters)"
           onChangeFn={this.handleChange}
           value={this.state.nickname}
         />
