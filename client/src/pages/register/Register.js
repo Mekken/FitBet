@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'react-emotion'
 import FormItem from '../../components/FormItem'
+import FormErrors from '../../components/FormErrors'
 import API from '../../components/utils/App.js'
 
 const ContactWrapper = styled('div')({
@@ -31,15 +32,53 @@ class Register extends Component {
     password: '',
     nickname: '',
     cellphone: "",
-    device: ""
+    device: "",
+    formErrors: {email: '', cell: ''},
+    emailValid: false,
+    cellValid: false,
+    formValid: false
   }
 
   handleChange = (e) => {
     const { name, value } = e.target
+    this.setState({[name]: value}, 
+      () => { this.validateField(name, value) });
+    /*
     this.setState({
       [name]: value
     })
+    */
   }
+
+  validateField(fieldName, value) {
+    let fieldValidationErrors = this.state.formErrors;
+    let emailValid = this.state.emailValid;
+    let cellValid = this.state.cellValid;
+  
+    switch(fieldName) {
+      case 'email':
+        emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+        break;
+
+      case 'cell':
+        cellValid = value.length >= 6;
+        fieldValidationErrors.cell = cellValid ? '': ' is invalid';
+        break;
+
+      default:
+        break;
+    }
+    this.setState({formErrors: fieldValidationErrors,
+                    emailValid: emailValid,
+                    cellValid: cellValid
+                  }, this.validateForm);
+  }
+  
+  validateForm() {
+    this.setState({formValid: this.state.emailValid && this.state.cellValid});
+  }
+  
 
   // Save user data to DB
   processUser = userObject => {
@@ -110,9 +149,9 @@ class Register extends Component {
           onChangeFn={this.handleChange}
           value={this.state.device}
         />
-        <SubmitButton onClick={this.handleSubmit}>
-          Submit!
-        </SubmitButton>
+        <button onClick={this.handleSubmit} type="submit" className="btn btn-primary" 
+          disabled={!this.state.formValid}>Sign up!</button>
+        <FormErrors formErrors={this.state.formErrors} />
       </ContactWrapper>
     )
   }
