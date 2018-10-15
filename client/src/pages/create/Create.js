@@ -7,6 +7,7 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment'
 import styled from 'react-emotion'
 import FormItem from '../../components/FormItem'
+import FormErrors from '../../components/FormErrors'
 import API from '../../components/utils/App.js'
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -37,6 +38,10 @@ class Create extends Component {
     title: '',
     stakes: '',
     desc: "",
+    titleValid: false,
+    descValid: false,
+    stakesValid: false,
+    formErrors: {title: '', stakes: '', desc: ''},
     startDate: moment().add(1, "days"),
     endDate: moment().add(2, "days"),
     minDate: moment().add(2, "days"),
@@ -46,10 +51,49 @@ class Create extends Component {
 
   handleChange = (e) => {
     const { name, value } = e.target
-    this.setState({
-      [name]: value
-    })
+    this.setState({[name]: value}, 
+      () => { this.validateField(name, value) });
   }
+
+  validateField(fieldName, value) {
+    let fieldValidationErrors = this.state.formErrors;
+    let titleValid = this.state.titleValid;
+    let descValid = this.state.descValid; 
+    let stakesValid = this.state.stakesValid;
+  
+    switch(fieldName) {
+      case 'title':
+        titleValid = value.length >= 6;
+        fieldValidationErrors.title = titleValid ? '' : ' is invalid';
+        break;
+
+      case 'desc':
+        descValid = value.length >= 6;
+        fieldValidationErrors.desc = descValid ? '': ' is invalid';
+        break;
+
+      case 'stakes':
+        stakesValid = value.length >= 3;
+        fieldValidationErrors.stakes = stakesValid ? '': ' is invalid';
+        break;
+
+      default:
+        break;
+    }
+    this.setState({formErrors: fieldValidationErrors,
+                    titleValid: titleValid,
+                    descValid: descValid,
+                    stakesValid: stakesValid
+                  }, this.validateForm);
+  }
+  
+  validateForm() {
+    this.setState({formValid: 
+      this.state.titleValid && this.state.descValid &&
+      this.state.stakesValid
+    });
+  }
+  
 
   handleStartDateChange = (e) => {
     //moment(e).add(1, "days")
@@ -126,21 +170,19 @@ class Create extends Component {
         </WelcomeMessage>
         <FormItem
           name="title"
-          label="Title of your challenge"
+          label="Title of your challenge (> 6 characters)"
           onChangeFn={this.handleChange}
           value={this.state.title}
         />
-        <label htmlFor="desc">Description</label>
+        <label htmlFor="desc">Description (> 6 characters)</label>
         <textarea
           name="desc"
-          label="Description"
           onChange={this.handleChange}
           value={this.state.desc}
         />
-        <label htmlFor="title">Stakes</label>
+        <label htmlFor="title">Stakes (> 3 characters)</label>
         <textarea
           name="stakes"
-          label="Stakes"
           onChange={this.handleChange}
           value={this.state.stakes}
         />
@@ -169,6 +211,7 @@ class Create extends Component {
         <SubmitButton onClick={this.handleSubmit}>
           Submit!
         </SubmitButton>
+        <FormErrors formErrors={this.state.formErrors} />
       </CreateWrapper>
     )
   }

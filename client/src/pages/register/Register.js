@@ -36,7 +36,7 @@ class Register extends Component {
     nickname: '',
     cellphone: "",
     device: "",
-    formErrors: {email: '', cell: ''},
+    formErrors: {email: '', password: '', nickname: '', cell: '',},
     emailValid: false,
     cellValid: false,
     passwordValid: false,
@@ -49,11 +49,6 @@ class Register extends Component {
     const { name, value } = e.target
     this.setState({[name]: value}, 
       () => { this.validateField(name, value) });
-    /*
-    this.setState({
-      [name]: value
-    })
-    */
   }
 
   handleCell = (e) => {
