@@ -14,10 +14,9 @@ const HeaderWrapper = styled('header')({
 
 const Header = () => (
   <HeaderWrapper>
-    <Link to="/">Home</Link>
-    <Link to="/challenge">Challenge</Link>
-    <Link to="/register">Register</Link>
     <Link to="/login">Login</Link>
+    <Link to="/">Home</Link>
+    <Link to="/register">Register</Link>
     <Link to="/events">Events</Link>
     <Link to="/create">Create Event</Link>
   </HeaderWrapper>
