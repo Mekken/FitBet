@@ -10,7 +10,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findChallengeByUserId: function(req, res) {
-    console.log("findById ", req.params.id);
     db.Challenge
       .find({ players: { $elemMatch: { _id: req.params.id }}})
       .then(dbModel => res.json(dbModel))

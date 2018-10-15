@@ -22,11 +22,14 @@ class App extends Component {
           <div>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/challenge" component={Challenge} />
+              <Route path="/challenge/:id" component={Challenge} />
               <Route path="/register" component={Register} />
               <Route path="/create" component={Create} />
               <Route path="/events" component={Events} />
+              <Route path="/login" component={ props => <Login {...props}/>} />
+              {/*}
               <Route path="/login" component={Login} />
+    */}
             </Switch>
           </div>
         </MuiThemeProvider>
