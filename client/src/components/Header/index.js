@@ -20,8 +20,7 @@ const Header = () => (
         <Typography variant="subtitle1" align="justify">
           <Button
             component={Link}
-            to="/"
-            style={{ textDecoration: "none", fontFamily: "Quicksand" }}>
+            to="/">
             Home
           </Button>
         </Typography>
@@ -29,8 +28,7 @@ const Header = () => (
         <Typography variant="subtitle1" align="left">
           <Button
             component={Link}
-            to="/challenge"
-            style={{ textDecoration: "none", fontFamily: "Quicksand" }}>
+            to="/challenge">
             Challenge
           </Button>
         </Typography>
@@ -38,24 +36,21 @@ const Header = () => (
         <Typography variant="subtitle1" align="justify">
           <Button
             component={Link}
-            to="/register"
-            style={{ textDecoration: "none", fontFamily: "Quicksand" }}>
+            to="/register">
             Register
           </Button>
         </Typography>
         <Typography variant="subtitle1" align="center">
           <Button
             component={Link}
-            to="/login"
-            style={{ textDecoration: "none", fontFamily: "Quicksand" }}>
+            to="/login">
             Login
           </Button>
         </Typography>
         <Typography variant="subtitle1" align="justify">
           <Button
             component={Link}
-            to="/events"
-            style={{ textDecoration: "none", fontFamily: "Quicksand" }}>
+            to="/events">
             Events
           </Button>
         </Typography>
@@ -63,8 +58,7 @@ const Header = () => (
         <Typography variant="subtitle1" align="right">
           <Button
             component={Link}
-            to="/create"
-            style={{ textDecoration: "none", fontFamily: "Quicksand" }}>
+            to="/create">
             Create
           </Button>
         </Typography>
