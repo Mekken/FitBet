@@ -29,8 +29,9 @@
     "if-env": "^1.0.4",
     "moment": "^2.22.2",
     "mongoose": "^5.0.17",
-    "react-datepicker": "^1.6.0",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "react-datepicker": "^1.6.0",
+    "react-phone-number-input": "^2.2.14"
   }
 }

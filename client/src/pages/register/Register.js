@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import styled from 'react-emotion'
+import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css'
 import FormItem from '../../components/FormItem'
 import FormErrors from '../../components/FormErrors'
 import API from '../../components/utils/App.js'
+import { isValidNumber } from 'libphonenumber-js';
 
 const ContactWrapper = styled('div')({
   maxWidth: 500,
@@ -50,6 +53,10 @@ class Register extends Component {
     */
   }
 
+  handleCell = (e) => {
+    this.validateField("cellphone", e);
+  }
+
   validateField(fieldName, value) {
     let fieldValidationErrors = this.state.formErrors;
     let emailValid = this.state.emailValid;
@@ -61,8 +68,8 @@ class Register extends Component {
         fieldValidationErrors.email = emailValid ? '' : ' is invalid';
         break;
 
-      case 'cell':
-        cellValid = value.length >= 6;
+      case 'cellphone':
+        cellValid = isValidNumber(value);
         fieldValidationErrors.cell = cellValid ? '': ' is invalid';
         break;
 
@@ -92,6 +99,7 @@ class Register extends Component {
     // post my state to the api to save the contact form,
     // then set the state to some kind of success message
     // and show the user some feedback
+    console.log("cell = ", this.state.cellphone);
     var userObj = {
       emailaddress: this.state.email,
       password: this.state.password,
@@ -138,17 +146,20 @@ class Register extends Component {
           value={this.state.nickname}
         />
         <FormItem
-          name="cellphone"
-          label="Cellphone"
-          onChangeFn={this.handleChange}
-          value={this.state.cellphone}
-        />
-        <FormItem
           name="device"
           label="Device Type"
           onChangeFn={this.handleChange}
           value={this.state.device}
         />
+        <PhoneInput
+          placeholder="Enter phone number"
+          name="cellphone"
+          value={ this.state.cellphone }
+          country="US"
+          indicateInvalid="true"
+          onChange={ this.handleCell }
+        />
+        <br></br>
         <button onClick={this.handleSubmit} type="submit" className="btn btn-primary" 
           disabled={!this.state.formValid}>Sign up!</button>
         <FormErrors formErrors={this.state.formErrors} />
