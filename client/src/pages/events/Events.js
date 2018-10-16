@@ -25,7 +25,7 @@ class Events extends Component {
   // This function gets the available events
   loadEvents = () => { 
     console.log("load events");
-    API.getChallenges()
+    API.getNotChallenge(localStorage.getItem("userID"))
     .then(res => this.setState({ events: res.data }))
     .catch(err => console.log(err));
   }

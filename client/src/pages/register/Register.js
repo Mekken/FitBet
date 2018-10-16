@@ -52,7 +52,12 @@ class Register extends Component {
   handleCell = e => {
     if (!e) return;
     this.validateField("cellphone", e);
+<<<<<<< HEAD
   };
+=======
+    this.setState({ cellphone: e });
+  }
+>>>>>>> a5c69ff214ab69a5669f3d347bdf153049f5df22
 
   validateField(fieldName, value) {
     let fieldValidationErrors = this.state.formErrors;
@@ -119,9 +124,18 @@ class Register extends Component {
   processUser = userObject => {
     // This needs to be sent to the DB for saving
     API.saveUser(userObject)
+<<<<<<< HEAD
       .then()
       .catch(err => console.log(err));
   };
+=======
+    .then()
+    .catch(err => {
+      console.log(err.response);
+      alert(err.response);
+    })
+  }
+>>>>>>> a5c69ff214ab69a5669f3d347bdf153049f5df22
 
   handleSubmit = () => {
     // post my state to the api to save the contact form,
@@ -163,6 +177,7 @@ class Register extends Component {
             <Form>
               {/* <WelcomeMessage>
           Hello {this.state.nickname ? this.state.nickname : 'there' }!
+<<<<<<< HEAD
         </WelcomeMessage> */}
               <Grid item xs={12}>
                 <TextField
@@ -247,6 +262,46 @@ class Register extends Component {
         </Card>
       </Grid>
     );
+=======
+        </WelcomeMessage>
+        <FormItem
+          name="email"
+          label="Email"
+          onChangeFn={this.handleChange}
+          value={this.state.email}
+        />
+        <FormItem
+          name="password"
+          label="Password (at least 6 characters)"
+          onChangeFn={this.handleChange}
+          value={this.state.password}
+        />
+        <FormItem
+          name="nickname"
+          label="Nickname (at least 4 characters)"
+          onChangeFn={this.handleChange}
+          value={this.state.nickname}
+        />
+        <FormItem
+          name="device"
+          label="Device Type"
+          onChangeFn={this.handleChange}
+          value={this.state.device}
+        />
+        <PhoneInput
+          placeholder="Enter phone number"
+          name="cellphone"
+          value={ this.state.cellphone }
+          country="US"
+          onChange={ this.handleCell }
+        />
+        <br></br>
+        <button onClick={this.handleSubmit} type="submit" className="btn btn-primary" 
+          disabled={!this.state.formValid}>Sign up!</button>
+        <FormErrors formErrors={this.state.formErrors} />
+      </ContactWrapper>
+    )
+>>>>>>> a5c69ff214ab69a5669f3d347bdf153049f5df22
   }
 }
 export default withStyles(styles)(Register);

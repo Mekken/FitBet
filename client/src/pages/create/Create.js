@@ -1,7 +1,3 @@
-// To Dos:
-// Date defaults to today + 1
-// Need to add check to make sure it's at least today + 1
-
 import React, { Component } from 'react'
 import DatePicker from 'react-datepicker';
 import moment from 'moment'
