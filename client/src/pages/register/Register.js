@@ -21,13 +21,6 @@ const WelcomeMessage = styled('div')({
   padding: 24
 })
 
-const SubmitButton = styled('button')({
-  padding: 15,
-  textTransform: 'uppercase',
-  border: '1px solid black',
-  borderRadius: 5
-})
-
 class Register extends Component {
 
   state = {
@@ -55,6 +48,7 @@ class Register extends Component {
     if (!e)
       return;
     this.validateField("cellphone", e);
+    this.setState({ cellphone: e });
   }
 
   validateField(fieldName, value) {
@@ -117,7 +111,10 @@ class Register extends Component {
     // This needs to be sent to the DB for saving
     API.saveUser(userObject)
     .then()
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err.response);
+      alert(err.response);
+    })
   }
 
   handleSubmit = () => {
@@ -181,7 +178,6 @@ class Register extends Component {
           name="cellphone"
           value={ this.state.cellphone }
           country="US"
-          indicateInvalid="true"
           onChange={ this.handleCell }
         />
         <br></br>

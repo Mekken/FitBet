@@ -15,6 +15,12 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findNotChallengeByUserId: function(req, res) {
+    db.Challenge
+      .find({ players: { $not : {$elemMatch: { _id: req.params.id }}}})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   findChallengeById: function(req, res) {
     db.Challenge
       .findById(req.params.id)
