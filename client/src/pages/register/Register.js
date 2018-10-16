@@ -117,7 +117,7 @@ class Register extends Component {
     // This needs to be sent to the DB for saving
     API.saveUser(userObject)
     .then()
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err.response.data));
   }
 
   handleSubmit = () => {
