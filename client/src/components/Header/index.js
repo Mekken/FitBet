@@ -22,13 +22,13 @@ const Header = () => (
         <Hidden smUp>
           <HamburgerMenu />
         </Hidden>
-        <Hidden xsDown>
+        {/* <Hidden xsDown>
           <Typography variant="subtitle1" align="justify">
             <Button component={Link} to="/">
               Dashboard
             </Button>
           </Typography>
-        </Hidden>
+        </Hidden> */}
         <Hidden xsDown>
           <Typography variant="subtitle1" align="left">
             <Button component={Link} to="/challenge">
