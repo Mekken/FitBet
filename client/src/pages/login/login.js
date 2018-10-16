@@ -8,6 +8,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
   paper: {
@@ -129,6 +130,15 @@ class Login extends Component {
               onClick={this.handleSubmit}>
               Login
             </SubmitButton>
+          
+          <SubmitButton
+
+            component={Link}
+            to="/register">
+            Sign up
+          </SubmitButton>
+      
+
           </Form>
         </Paper>
       </Grid>

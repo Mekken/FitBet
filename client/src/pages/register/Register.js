@@ -8,14 +8,11 @@ import TextField from "@material-ui/core/TextField";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import React, { Component } from 'react'
-import styled from 'react-emotion'
-import PhoneInput from 'react-phone-number-input'
-import 'react-phone-number-input/style.css'
-import FormItem from '../../components/FormItem'
-import FormErrors from '../../components/FormErrors'
-import API from '../../components/utils/App.js'
-import { isValidNumber } from 'libphonenumber-js';
+import styled from "react-emotion";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import FormErrors from "../../components/FormErrors";
+import { isValidNumber } from "libphonenumber-js";
 
 const styles = theme => ({
   card: {
@@ -36,81 +33,87 @@ class Register extends Component {
     nickname: "",
     cellphone: "",
     device: "",
-    formErrors: {email: '', password: '', nickname: '', cell: '',},
+    formErrors: { email: "", password: "", nickname: "", cell: "" },
     emailValid: false,
     cellValid: false,
     passwordValid: false,
     nicknameValid: false,
     deviceValid: false,
     formValid: false
-  }
+  };
 
-  handleChange = (e) => {
-    const { name, value } = e.target
-    this.setState({[name]: value}, 
-      () => { this.validateField(name, value) });
-  }
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value }, () => {
+      this.validateField(name, value);
+    });
+  };
 
-  handleCell = (e) => {
-    if (!e)
-      return;
+  handleCell = e => {
+    if (!e) return;
     this.validateField("cellphone", e);
-  }
+  };
 
   validateField(fieldName, value) {
     let fieldValidationErrors = this.state.formErrors;
     let emailValid = this.state.emailValid;
-    let cellValid = this.state.cellValid; 
+    let cellValid = this.state.cellValid;
     let passwordValid = this.state.passwordValid;
     let nicknameValid = this.state.nicknameValid;
     let deviceValid = this.state.deviceValid;
-  
-    switch(fieldName) {
-      case 'email':
+
+    switch (fieldName) {
+      case "email":
         emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-        fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+        fieldValidationErrors.email = emailValid ? "" : " is invalid";
         break;
 
-      case 'cellphone':
+      case "cellphone":
         cellValid = isValidNumber(value);
-        fieldValidationErrors.cell = cellValid ? '': ' is invalid';
+        fieldValidationErrors.cell = cellValid ? "" : " is invalid";
         break;
 
-      case 'password':
+      case "password":
         passwordValid = value.length >= 6;
-        fieldValidationErrors.password = passwordValid ? '': ' is invalid';
+        fieldValidationErrors.password = passwordValid ? "" : " is invalid";
         break;
 
-      case 'nickname':
+      case "nickname":
         nicknameValid = value.length >= 4;
-        fieldValidationErrors.nickname = nicknameValid ? '': ' is invalid';
+        fieldValidationErrors.nickname = nicknameValid ? "" : " is invalid";
         break;
 
-      case 'device':
+      case "device":
         deviceValid = value.length >= 1;
-        fieldValidationErrors.device = deviceValid ? '': ' is invalid';
+        fieldValidationErrors.device = deviceValid ? "" : " is invalid";
         break;
 
       default:
         break;
     }
-    this.setState({formErrors: fieldValidationErrors,
-                    emailValid: emailValid,
-                    cellValid: cellValid,
-                    passwordValid: passwordValid,
-                    nicknameValid: nicknameValid,
-                    deviceValid: deviceValid
-                  }, this.validateForm);
+    this.setState(
+      {
+        formErrors: fieldValidationErrors,
+        emailValid: emailValid,
+        cellValid: cellValid,
+        passwordValid: passwordValid,
+        nicknameValid: nicknameValid,
+        deviceValid: deviceValid
+      },
+      this.validateForm
+    );
   }
-  
+
   validateForm() {
-    this.setState({formValid: 
-      this.state.emailValid && this.state.cellValid &&
-      this.state.passwordValid && this.state.nicknameValid &&
-      this.state.deviceValid
+    this.setState({
+      formValid:
+        this.state.emailValid &&
+        this.state.cellValid &&
+        this.state.passwordValid &&
+        this.state.nicknameValid &&
+        this.state.deviceValid
     });
   }
-  
 
   // Save user data to DB
   processUser = userObject => {
@@ -217,6 +220,16 @@ class Register extends Component {
                 />
               </Grid>
               <Grid item xs={12}>
+                <PhoneInput
+                  placeholder="Enter phone number"
+                  name="cellphone"
+                  value={this.state.cellphone}
+                  country="US"
+                  indicateInvalid="true"
+                  onChange={this.handleCell}
+                />
+              </Grid>
+              <Grid item xs={12}>
                 <CardActions>
                   <SubmitButton
                     variant="text"
@@ -228,50 +241,12 @@ class Register extends Component {
                   </SubmitButton>
                 </CardActions>
               </Grid>
+              <FormErrors formErrors={this.state.formErrors} />
             </Form>
           </CardContent>
         </Card>
       </Grid>
     );
-        </WelcomeMessage>
-        <FormItem
-          name="email"
-          label="Email"
-          onChangeFn={this.handleChange}
-          value={this.state.email}
-        />
-        <FormItem
-          name="password"
-          label="Password (at least 6 characters)"
-          onChangeFn={this.handleChange}
-          value={this.state.password}
-        />
-        <FormItem
-          name="nickname"
-          label="Nickname (at least 4 characters)"
-          onChangeFn={this.handleChange}
-          value={this.state.nickname}
-        />
-        <FormItem
-          name="device"
-          label="Device Type"
-          onChangeFn={this.handleChange}
-          value={this.state.device}
-        />
-        <PhoneInput
-          placeholder="Enter phone number"
-          name="cellphone"
-          value={ this.state.cellphone }
-          country="US"
-          indicateInvalid="true"
-          onChange={ this.handleCell }
-        />
-        <br></br>
-        <button onClick={this.handleSubmit} type="submit" className="btn btn-primary" 
-          disabled={!this.state.formValid}>Sign up!</button>
-        <FormErrors formErrors={this.state.formErrors} />
-      </ContactWrapper>
-    )
   }
 }
 export default withStyles(styles)(Register);

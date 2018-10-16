@@ -7,7 +7,9 @@ import theme from "../../utils/theme-util";
 import Button from "../../components/Button";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-
+import Hidden from "@material-ui/core/Hidden";
+import HamburgerMenu from "../../components/HamburgerMenu";
+import ProfileMenu from "../../components/Profile";
 const Header = () => (
   <MuiThemeProvider theme={theme}>
     <AppBar color="primary" position="static">
@@ -17,29 +19,32 @@ const Header = () => (
           display: "flex",
           justifyContent: "space-between"
         }}>
-        <Typography variant="subtitle1" align="justify">
-          <Button
-            component={Link}
-            to="/">
-            Home
-          </Button>
-        </Typography>
+        <Hidden smUp>
+          <HamburgerMenu />
+        </Hidden>
+        <Hidden xsDown>
+          <Typography variant="subtitle1" align="justify">
+            <Button component={Link} to="/">
+              Dashboard
+            </Button>
+          </Typography>
+        </Hidden>
+        <Hidden xsDown>
+          <Typography variant="subtitle1" align="left">
+            <Button component={Link} to="/challenge">
+              Challenge
+            </Button>
+          </Typography>
+        </Hidden>
 
-        <Typography variant="subtitle1" align="left">
-          <Button
-            component={Link}
-            to="/challenge">
-            Challenge
-          </Button>
-        </Typography>
-
-        <Typography variant="subtitle1" align="justify">
+        {/* <Typography variant="subtitle1" align="justify">
           <Button
             component={Link}
             to="/register">
             Register
           </Button>
-        </Typography>
+        </Typography> */}
+        {/* <Hidden xsDown>
         <Typography variant="subtitle1" align="center">
           <Button
             component={Link}
@@ -47,21 +52,22 @@ const Header = () => (
             Login
           </Button>
         </Typography>
-        <Typography variant="subtitle1" align="justify">
-          <Button
-            component={Link}
-            to="/events">
-            Events
-          </Button>
-        </Typography>
-
-        <Typography variant="subtitle1" align="right">
-          <Button
-            component={Link}
-            to="/create">
-            Create
-          </Button>
-        </Typography>
+        </Hidden> */}
+        <Hidden xsDown>
+          <Typography variant="subtitle1" align="justify">
+            <Button component={Link} to="/events">
+              Events
+            </Button>
+          </Typography>
+        </Hidden>
+        <Hidden xsDown>
+          <Typography variant="subtitle1" align="right">
+            <Button component={Link} to="/create">
+              Create
+            </Button>
+          </Typography>
+        </Hidden>
+        <ProfileMenu />
       </Toolbar>
     </AppBar>
   </MuiThemeProvider>

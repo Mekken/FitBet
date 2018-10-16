@@ -6,10 +6,15 @@ import React, { Component } from 'react'
 import DatePicker from 'react-datepicker';
 import moment from 'moment'
 import styled from 'react-emotion'
-import FormItem from '../../components/FormItem'
+
 import FormErrors from '../../components/FormErrors'
 import API from '../../components/utils/App.js'
 import 'react-datepicker/dist/react-datepicker.css';
+import {withStyles} from "@material-ui/core/styles";
+import { Grid } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
+import SubmitButton from "@material-ui/core/Button";
+import {Paper, Typography} from '@material-ui/core'
 
 const styles = theme => ({
   card: {
@@ -207,7 +212,7 @@ class Create extends Component {
               value={this.state.stakes}
             />
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <TextField
               fullWidth
               type="date"
@@ -232,38 +237,8 @@ class Create extends Component {
               onChange={this.handleChange}
               value={this.state.endDate}
             />
-          </Grid>
-          <SubmitButton
-            variant="text"
-            color="secondary"
-            fullWidth={true}
-            type="submit"
-            onClick={this.handleSubmit}>
-            Submit
-          </SubmitButton>
-        </Paper>
-      </Grid>
-    );
-        </WelcomeMessage>
-        <FormItem
-          name="title"
-          label="Title of your challenge (> 6 characters)"
-          onChangeFn={this.handleChange}
-          value={this.state.title}
-        />
-        <label htmlFor="desc">Description (> 6 characters)</label>
-        <textarea
-          name="desc"
-          onChange={this.handleChange}
-          value={this.state.desc}
-        />
-        <label htmlFor="title">Stakes (> 3 characters)</label>
-        <textarea
-          name="stakes"
-          onChange={this.handleChange}
-          value={this.state.stakes}
-        />
-        <div>
+          </Grid> */}
+          <div>
           Start Date
           <DatePicker
             name="startDate"
@@ -285,13 +260,18 @@ class Create extends Component {
             selected={this.state.endDate}
           />
         </div>
-        <SubmitButton onClick={this.handleSubmit}>
-          Submit!
-        </SubmitButton>
-        <FormErrors formErrors={this.state.formErrors} />
-      </CreateWrapper>
-    )
-  }
-}
-
+          <SubmitButton
+            variant="text"
+            color="secondary"
+            fullWidth={true}
+            type="submit"
+            onClick={this.handleSubmit}>
+            Submit
+          </SubmitButton>
+          <FormErrors formErrors={this.state.formErrors} />
+        </Paper>
+      </Grid>
+    );
+        }
+      }
 export default withStyles(styles)(Create);
