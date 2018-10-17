@@ -173,7 +173,7 @@ class Create extends Component {
               className={classes.TextField}
               fullWidth
               name="title"
-              label="Title of your challenge"
+              label="Challenge Title (> 6 characters)"
               onChange={this.handleChange}
               value={this.state.title}
             />
@@ -183,7 +183,7 @@ class Create extends Component {
               fullWidth
               name="desc"
               id="outlined-multiline-static"
-              label="Description"
+              label="Describe your challenge (> 6 characters)"
               multiline
               rows="4"
               defaultValue="Default Value"
@@ -198,7 +198,7 @@ class Create extends Component {
               fullWidth
               name="stakes"
               id="outlined-multiline-static"
-              label="Stakes"
+              label="Stakes (> 3 characters)"
               multiline
               rows="4"
               defaultValue="Default Value"

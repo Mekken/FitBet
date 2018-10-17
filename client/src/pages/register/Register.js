@@ -240,7 +240,8 @@ class Register extends Component {
                     color="secondary"
                     fullWidth
                     type="submit"
-                    onClick={this.handleSubmit}>
+                    onClick={this.handleSubmit}
+                    disabled={!this.state.formValid}>
                     Register
                   </SubmitButton>
                 </CardActions>
