@@ -13,9 +13,24 @@ const ChallengeDetail = props => (
         { 
             props.events.players.map(res => (
                 <h3 key={res._id}>Participants: {res.name} </h3>
+            ))
+        }
+        {
+            props.events.chat.map(res => (
+                <h3 key={res.date}> {res.date} - {res.name}: {res.text} </h3>
         ))
-        }         
+        }        
         </li>
+        <div>
+        Enter chat
+        </div>
+        <textarea
+          name="chat"
+          value={props.chat}
+          onChange={props.handleChange}
+        />
+        <button onClick={props.handleSubmit} type="submit" className="btn btn-primary" 
+          >Submit</button>
        </div>
     </div>
 );
