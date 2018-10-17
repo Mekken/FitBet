@@ -1,39 +1,38 @@
-import React, { Component } from 'react'
-import styled from 'react-emotion'
-import FormItem from '../../components/FormItem'
-import API from '../../components/utils/App.js'
+import React, { Component } from "react";
+import { withStyles } from "@material-ui/core/styles";
+import { Grid, Paper, TextField } from "@material-ui/core";
+import Form from "@material-ui/core/FormControl";
+import API from "../../components/utils/App.js";
+import SubmitButton from "@material-ui/core/Button";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import { Link } from "react-router-dom";
 
-const ContactWrapper = styled('div')({
-  maxWidth: 500,
-  minHeight: 300,
-  margin: '0 auto',
-  boxShadow: '1px 1px 2px 2px rgba(0,0,0,.3)',
-  display: 'flex',
-  flexDirection: 'column',
-  padding: 20
-})
+const styles = theme => ({
+  paper: {
+    padding: "4% 10% 4%",
+    minWidth: 300,
+    marginTop: "3%"
+  },
 
-const WelcomeMessage = styled('div')({
-  padding: 24
-})
-
-const SubmitButton = styled('button')({
-  padding: 15,
-  textTransform: 'uppercase',
-  border: '1px solid black',
-  borderRadius: 5
-})
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    display: "block"
+  }
+});
 
 
 
 class Login extends Component {
-
   state = {
     email: '',
     password: '',
   }
 
-    // Save user data to DB
+  // Save user data to DB
   loginUser = userObject => {
     // This needs to be sent to the DB for saving
     var self = this;
@@ -52,52 +51,99 @@ class Login extends Component {
     .catch(err => console.log(err));
   }
 
-  handleChange = (e) => {
-    const { name, value } = e.target
+  handleChange = e => {
+    const { name, value } = e.target;
     this.setState({
       [name]: value
-    })
-  }
+    });
+  };
+  handleClickShowPassword = () => {
+    this.setState(state => ({ showPassword: !state.showPassword }));
+  };
 
   handleSubmit = () => {
 
 
     var userObj = {
       emailaddress: this.state.email,
-      password: this.state.password,
-    }
+      password: this.state.password
+    };
     this.loginUser(userObj);
 
     this.setState({
-        emailaddress: '',
-        password: ''
+      emailaddress: "",
+      password: ""
     });
-  }
+  };
 
   render() {
+    const { classes } = this.props;
     return (
-      <ContactWrapper>
-        <WelcomeMessage>
-          Hello {this.state.nickname ? this.state.nickname : 'there' }!
-        </WelcomeMessage>
-        <FormItem
-          name="email"
-          label="Email"
-          onChangeFn={this.handleChange}
-          value={this.state.email}
-        />
-        <FormItem
-          name="password"
-          label="Password"
-          onChangeFn={this.handleChange}
-          value={this.state.password}
-        />
-        <SubmitButton onClick={this.handleSubmit}>
-          Submit!
-        </SubmitButton>
-      </ContactWrapper>
-    )
+      <Grid
+        container
+        spacing={0}
+        alignItems="center"
+        justify="center"
+        alignContent="center">
+        <Paper className={classes.paper}>
+          <Form>
+            <Grid item xs={12}>
+              <TextField
+                required
+                name="email"
+                label="Email"
+                onChange={this.handleChange}
+                value={this.state.email}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                name="password"
+                label="Password"
+                onChange={this.handleChange}
+                value={this.state.password}
+                type={this.state.showPassword ? "text" : "password"}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="Toggle password visibility"
+                        onClick={this.handleClickShowPassword}>
+                        {this.state.showPassword ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
+              />
+            </Grid>
+
+            <SubmitButton
+              variant="text"
+              color="secondary"
+              fullWidth="true"
+              type="submit"
+              onClick={this.handleSubmit}>
+              Login
+            </SubmitButton>
+          
+          <SubmitButton
+
+            component={Link}
+            to="/register">
+            Sign up
+          </SubmitButton>
+      
+
+          </Form>
+        </Paper>
+      </Grid>
+    );
   }
 }
 
-export default Login;
+export default withStyles(styles)(Login);
