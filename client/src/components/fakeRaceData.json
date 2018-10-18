@@ -1,0 +1,44 @@
+[
+    {
+     "id":1,
+     "userName":"Annette",
+     "steps": 8900,
+     "challengeName":"Annette's Challenge",
+     "challengePrize": "$1000"
+    },
+    {
+     "id":2,
+     "userName":"John",
+     "steps": 7501,
+     "challengeName":"Annette's Challenge", 
+     "challengePrize": "$1000"
+    },
+    {
+     "id":3,
+     "userName":"Donnie",
+     "steps": 11012,
+     "challengeName":"Annette's Challenge",
+     "challengePrize": "$1000"
+    },
+    {
+     "id":4,
+     "userName":"Senyan",
+     "steps": 5000,
+     "challengeName":"Senyan's Challenge",
+     "challengePrize": "$500"
+    },
+    {
+     "id":5,
+     "userName":"Bob",
+     "steps": 8900,
+     "challengeName":"Senyan's Challenge",
+     "challengePrize": "$500"
+    },
+    {
+     "id":6,
+     "userName":"Annette",
+     "steps": 8920,
+     "challengeName":"Senyan's Challenge",
+     "challengePrize": "$500"
+    }
+]
