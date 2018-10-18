@@ -1,16 +1,20 @@
-import React from 'react'
+import React from "react";
 
-const FormErrors = ({ formErrors }) =>
-  <div className='formErrors'>
+const FormErrors = ({ formErrors }) => (
+  <div className="formErrors">
     {Object.keys(formErrors).map((fieldName, i) => {
       if (formErrors[fieldName].length > 0) {
         return (
-          <p key={i}>{fieldName} {formErrors[fieldName]}</p>
-        )        
+          <p key={i}>
+            {fieldName} {formErrors[fieldName]}
+          </p>
+        );
       } else {
-        return '';
+        return "";
       }
     })}
+    ;
   </div>
+);
 
-export default FormErrors
+export default FormErrors;

@@ -3,10 +3,7 @@ const db = require("../models");
 
 // This file empties the users collection and inserts the users below
 
-mongoose.connect(
-  process.env.MONGODB_URI ||
-  "mongodb://localhost/fitlist"
-);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitlist");
 
 const userSeed = [
   {
@@ -44,14 +41,13 @@ const userSeed = [
   }
 ];
 
-db.User
-  .remove({})
+db.User.remove({})
   .then(() => db.User.collection.insertMany(userSeed))
   .then(data => {
-    console.log(data.result.n + " records inserted!");
+    // console.log(data.result.n + " records inserted!");
     process.exit(0);
   })
   .catch(err => {
-    console.error(err);
+    //console.error(err);
     process.exit(1);
   });

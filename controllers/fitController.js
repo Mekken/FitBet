@@ -14,12 +14,11 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  create: function(req, res, next) {
+  create: function(req, res) {
     authController.serializeAccount(req, res);
   },
   update: function(req, res) {
-    db.User
-      .replaceOne({ _id: req.params.id }, req.body)
+    db.User.replaceOne({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

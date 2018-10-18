@@ -18,7 +18,8 @@ const Header = () => (
         style={{
           display: "flex",
           justifyContent: "space-between"
-        }}>
+        }}
+      >
         <Hidden smUp>
           <HamburgerMenu />
         </Hidden>

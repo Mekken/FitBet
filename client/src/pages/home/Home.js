@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "react-emotion";
-import MyEvents from '../../components/home/home.js'
-import API from '../../components/utils/App.js'
+import MyEvents from "../../components/home/home.js";
+import API from "../../components/utils/App.js";
 
 const HomePageWrapper = styled("div")({
   display: "flex",
@@ -16,7 +16,7 @@ class Home extends Component {
 
   // When this component mounts, load/clear array
   componentDidMount() {
- //   this.updateSteps();
+    //   this.updateSteps();
     this.loadMyEvents();
   }
 
@@ -36,18 +36,16 @@ class Home extends Component {
     console.log("load my events");
 
     API.getMyEvents(localStorage.getItem("userID"))
-    .then(res => this.setState({ events: res.data }))
-    .catch(err => console.log(err));
-  }
+      .then(res => this.setState({ events: res.data }))
+      .catch(err => console.log(err));
+  };
 
   // This renders events I'm in if they exist
   renderPage = () => {
     console.log("rendering events");
     console.log("Events = ", this.state.events);
     if (this.state.events) {
-      return <MyEvents 
-        events={this.state.events}
-      />;
+      return <MyEvents events={this.state.events} />;
     }
   };
 
@@ -57,7 +55,7 @@ class Home extends Component {
         Hello, welcome to my Home page!
         {this.renderPage()}
       </HomePageWrapper>
-    )
+    );
   }
 }
 

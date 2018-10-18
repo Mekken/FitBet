@@ -8,7 +8,6 @@ import TextField from "@material-ui/core/TextField";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import styled from "react-emotion";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import FormErrors from "../../components/FormErrors";
@@ -50,10 +49,13 @@ class Register extends Component {
   };
 
   handleCell = e => {
-    if (!e) return;
+    if (!e) {
+      return;
+    }
+
     this.validateField("cellphone", e);
     this.setState({ cellphone: e });
-  }
+  };
 
   validateField(fieldName, value) {
     let fieldValidationErrors = this.state.formErrors;
@@ -64,33 +66,33 @@ class Register extends Component {
     let deviceValid = this.state.deviceValid;
 
     switch (fieldName) {
-      case "email":
-        emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-        fieldValidationErrors.email = emailValid ? "" : " is invalid";
-        break;
+    case "email":
+      emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+      fieldValidationErrors.email = emailValid ? "" : " is invalid";
+    break;
 
-      case "cellphone":
-        cellValid = isValidNumber(value);
-        fieldValidationErrors.cell = cellValid ? "" : " is invalid";
-        break;
+    case "cellphone":
+      cellValid = isValidNumber(value);
+      fieldValidationErrors.cell = cellValid ? "" : " is invalid";
+    break;
 
-      case "password":
-        passwordValid = value.length >= 6;
-        fieldValidationErrors.password = passwordValid ? "" : " is invalid";
-        break;
+    case "password":
+      passwordValid = value.length >= 6;
+      fieldValidationErrors.password = passwordValid ? "" : " is invalid";
+    break;
 
-      case "nickname":
-        nicknameValid = value.length >= 4;
-        fieldValidationErrors.nickname = nicknameValid ? "" : " is invalid";
-        break;
+    case "nickname":
+      nicknameValid = value.length >= 4;
+      fieldValidationErrors.nickname = nicknameValid ? "" : " is invalid";
+      break;
 
-      case "device":
-        deviceValid = value.length >= 1;
-        fieldValidationErrors.device = deviceValid ? "" : " is invalid";
-        break;
+    case "device":
+      deviceValid = value.length >= 1;
+      fieldValidationErrors.device = deviceValid ? "" : " is invalid";
+      break;
 
-      default:
-        break;
+    default:
+      break;
     }
     this.setState(
       {
@@ -120,12 +122,12 @@ class Register extends Component {
   processUser = userObject => {
     // This needs to be sent to the DB for saving
     API.saveUser(userObject)
-    .then()
-    .catch(err => {
-      console.log(err.response);
-      alert(err.response);
-    })
-  }
+      .then()
+      .catch(err => {
+        console.log(err.response);
+        alert(err.response);
+      });
+  };
 
   handleSubmit = () => {
     // post my state to the api to save the contact form,
