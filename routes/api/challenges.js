@@ -10,13 +10,18 @@ router.route("/")
 // Matches with "/api/challenges/:id"
 router
   .route("/:id")
-
-  .get(authController.checkAuthentication, challengeController.findChallengeByUserId)
+  .get(authController.checkAuthentication, challengeController.findChallengeById)
   .put(authController.checkAuthentication, challengeController.update)
   .delete(authController.checkAuthentication, challengeController.remove);
 
 // Matches with "/api/challenges/challengeID/:id"
 router
   .route("/challengeID/:id")
-  .get(authController.checkAuthentication, challengeController.findChallengeById)
+  .get(authController.checkAuthentication, challengeController.findChallengeByUserId);
+
+// Matches with "/api/challenges/notchallengeID/:id"
+router
+  .route("/notchallengeID/:id")
+  .get(authController.checkAuthentication, challengeController.findNotChallengeByUserId);
+
 module.exports = router;

@@ -12,7 +12,13 @@ const challengeSchema = new Schema({
       _id: { type: String },
       name: { type: String },
       challenge_steps: { type: Number }
-  }]
+  }],
+  chat: [{
+    _id: { type: String },
+    date: { type: String },
+    name: { type: String },
+    text: { type: String }
+}]
 });
 
 const Challenge = mongoose.model("Challenge", challengeSchema);
