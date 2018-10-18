@@ -13,7 +13,8 @@ const ChallengePageWrapper = styled('div')({
 class Challenge extends Component {
   state = {
     event: "",
-    chat: ""
+    chat: "",
+    formValid: false
   };
 
   // When this component mounts, load/clear array
@@ -24,7 +25,15 @@ class Challenge extends Component {
 
   handleChange = (e) => {
     const { name, value } = e.target
-    this.setState({[name]: value});
+    this.setState({[name]: value}, this.validateInput);
+  }
+
+  validateInput () {
+    // Chat must be at least 2 characters
+    if (this.state.chat.length > 1)
+      this.setState({ formValid: true });
+    else
+      this.setState({ formValid: false });
   }
 
   // This function gets the event passed
@@ -38,6 +47,7 @@ class Challenge extends Component {
   }
 
   handleSubmit = () => {
+
     // Need to get the chat
     var dateTime = new Date();
 
@@ -66,7 +76,8 @@ class Challenge extends Component {
 
     // Clear out parameters
     this.setState({
-      chat: ""
+      chat: "",
+      formValid: false
     });
 
   }
@@ -77,6 +88,7 @@ class Challenge extends Component {
       return <ChallengeDetail 
         events={this.state.event}
         chat={this.state.chat}
+        formValid={this.state.formValid}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
       />;

@@ -29,8 +29,12 @@ const ChallengeDetail = props => (
           value={props.chat}
           onChange={props.handleChange}
         />
-        <button onClick={props.handleSubmit} type="submit" className="btn btn-primary" 
-          >Submit</button>
+        <button 
+            onClick={props.handleSubmit} 
+            type="submit" 
+            className="btn btn-primary" 
+            disabled={!props.formValid}
+            >Submit</button>
        </div>
     </div>
 );
