@@ -29,14 +29,14 @@ const Header = () => (
             </Button>
           </Typography>
         </Hidden> */}
-        <Hidden xsDown>
+        {/* <Hidden xsDown>
           <Typography variant="subtitle1" align="left">
             <Button component={Link} to="/challenge">
               Challenge
             </Button>
           </Typography>
         </Hidden>
-
+ */}
         {/* <Typography variant="subtitle1" align="justify">
           <Button
             component={Link}

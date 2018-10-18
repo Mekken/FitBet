@@ -124,7 +124,7 @@ class Login extends Component {
 
             <SubmitButton
               variant="text"
-              color="secondary"
+              color="primary"
               fullWidth="true"
               type="submit"
               onClick={this.handleSubmit}>
