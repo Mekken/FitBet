@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from 'react-emotion'
+import moment from 'moment'
 import ChallengeDetail from '../../components/challenge/challenge.js'
 import API from '../../components/utils/App.js'
 
@@ -11,7 +12,8 @@ const ChallengePageWrapper = styled('div')({
 
 class Challenge extends Component {
   state = {
-    events: ""
+    event: "",
+    chat: ""
   };
 
   // When this component mounts, load/clear array
@@ -20,23 +22,63 @@ class Challenge extends Component {
     this.loadChallenge();
   }
 
-  // This function gets the available events
+  handleChange = (e) => {
+    const { name, value } = e.target
+    this.setState({[name]: value});
+  }
+
+  // This function gets the event passed
   loadChallenge = () => { 
     console.log("Challenge ID ", this.props.match.params.id);
     
     API.getChallenge(this.props.match.params.id)
-    .then(res => this.setState({ events: res.data }))
+    .then(res => this.setState({ event: res.data }))
     .catch(err => console.log(err));
     
   }
 
+  handleSubmit = () => {
+    // Need to get the chat
+    var dateTime = new Date();
+
+    dateTime = (moment(dateTime).format("MM-DD-YYYY HH:mm:ss")).toString();
+
+    let newChatObj = {
+      date: dateTime,
+      name: localStorage.getItem("nickname"),
+      text: this.state.chat
+    }
+
+    // Push chat data onto challenge object
+    var eventObj = this.state.event;
+    let newChatArray = eventObj.chat;
+
+    newChatArray.push(newChatObj);
+    eventObj.chat = newChatArray;
+
+    // Update the challenge object and add the new player
+    API.updateChallenge(this.props.match.params.id, eventObj)
+    .then(function(upd) {
+      // Now need to update the player object with the new challenge
+      console.log("return from Update challenge ", upd);
+    })  // UpdateChallenge
+    .catch(err => console.log(err))
+
+    // Clear out parameters
+    this.setState({
+      chat: ""
+    });
+
+  }
+
   // This renders events I'm in if they exist
   renderPage = () => {
-    console.log("rendering events");
-    console.log("Events = ", this.state.events);
-    if (this.state.events) {
+    if (this.state.event) {
       return <ChallengeDetail 
-        events={this.state.events}
+        events={this.state.event}
+        chat={this.state.chat}
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
       />;
     }
   };
@@ -44,7 +86,7 @@ class Challenge extends Component {
   render() {
     return (
       <ChallengePageWrapper>
-        Hello, welcome to my Home page!
+        Hello, welcome to my Challenge page!
         {this.renderPage()}
       </ChallengePageWrapper>
     )
