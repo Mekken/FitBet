@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import React, { Component } from "react";
 import API from "../../components/utils/App.js";
 import SubmitButton from "@material-ui/core/Button";
@@ -8,7 +9,6 @@ import TextField from "@material-ui/core/TextField";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import styled from "react-emotion";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import FormErrors from "../../components/FormErrors";
@@ -50,10 +50,13 @@ class Register extends Component {
   };
 
   handleCell = e => {
-    if (!e) return;
+    if (!e) {
+      return;
+    }
+
     this.validateField("cellphone", e);
     this.setState({ cellphone: e });
-  }
+  };
 
   validateField(fieldName, value) {
     let fieldValidationErrors = this.state.formErrors;
@@ -120,12 +123,12 @@ class Register extends Component {
   processUser = userObject => {
     // This needs to be sent to the DB for saving
     API.saveUser(userObject)
-    .then()
-    .catch(err => {
-      console.log(err.response);
-      alert(err.response);
-    })
-  }
+      .then()
+      .catch(err => {
+        console.log(err.response);
+        alert(err.response);
+      });
+  };
 
   handleSubmit = () => {
     // post my state to the api to save the contact form,

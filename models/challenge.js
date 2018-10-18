@@ -8,17 +8,21 @@ const challengeSchema = new Schema({
   startDate: { type: Date, default: Date.now },
   endDate: { type: Date, default: Date.now },
   lastDate: { type: Date, default: Date.now },
-  players: [{
+  players: [
+    {
       _id: { type: String },
       name: { type: String },
-      challenge_steps: { type: Number }
-  }],
-  chat: [{
-    _id: { type: String },
-    date: { type: String },
-    name: { type: String },
-    text: { type: String }
-}]
+      challengeSteps: { type: Number }
+    }
+  ],
+  chat: [
+    {
+      _id: { type: String },
+      date: { type: String },
+      name: { type: String },
+      text: { type: String }
+    }
+  ]
 });
 
 const Challenge = mongoose.model("Challenge", challengeSchema);

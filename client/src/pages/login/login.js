@@ -24,13 +24,11 @@ const styles = theme => ({
   }
 });
 
-
-
 class Login extends Component {
   state = {
-    email: '',
-    password: '',
-  }
+    email: "",
+    password: ""
+  };
 
   // Save user data to DB
   loginUser = userObject => {
@@ -38,18 +36,18 @@ class Login extends Component {
     var self = this;
 
     API.login(userObject)
-    .then(function (response) {
-      // update localStorage
-      console.log("Response ", response);
-      localStorage.setItem("userID", response.data.id);
-      localStorage.setItem("nickname", response.data.nickname);
-      console.log("userID ", localStorage.getItem("userID"));
-      console.log("nickname ", localStorage.getItem("nickname"));
-      self.props.history.push(`/`);
-    })
+      .then(function(response) {
+        // update localStorage
+        console.log("Response ", response);
+        localStorage.setItem("userID", response.data.id);
+        localStorage.setItem("nickname", response.data.nickname);
+        console.log("userID ", localStorage.getItem("userID"));
+        console.log("nickname ", localStorage.getItem("nickname"));
+        self.props.history.push("/");
+      })
       // res => this.setState({ user: res.data }))
-    .catch(err => console.log(err));
-  }
+      .catch(err => console.log(err));
+  };
 
   handleChange = e => {
     const { name, value } = e.target;
@@ -62,8 +60,6 @@ class Login extends Component {
   };
 
   handleSubmit = () => {
-
-
     var userObj = {
       emailaddress: this.state.email,
       password: this.state.password
@@ -130,15 +126,10 @@ class Login extends Component {
               onClick={this.handleSubmit}>
               Login
             </SubmitButton>
-          
-          <SubmitButton
 
-            component={Link}
-            to="/register">
-            Sign up
-          </SubmitButton>
-      
-
+            <SubmitButton component={Link} to="/register">
+              Sign up
+            </SubmitButton>
           </Form>
         </Paper>
       </Grid>
