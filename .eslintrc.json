@@ -11,7 +11,6 @@
     },
     "extends": [
         "prettier",
-        "eslint:recommended",
         "plugin:react/recommended",
         "plugin:import/recommended"
     ],
@@ -35,8 +34,9 @@
         "no-unused-vars": "error",
         "camelcase": "error",
         "indent": [
-            1,
-            2
+            2,
+            2,
+            { "SwitchCase": 1 }
         ],
         "linebreak-style": [
             "error",

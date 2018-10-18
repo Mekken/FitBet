@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import React from "react";
 
 const ChallengeDetail = props => (
@@ -20,7 +21,7 @@ const ChallengeDetail = props => (
         ))}
       </li>
       <div>Enter chat</div>
-      <textarea name="chat" value={props.chat} onChange={props.handleChange}/>
+      <textarea name="chat" value={props.chat} onChange={props.handleChange} />
       <button
         onClick={props.handleSubmit}
         type="submit"

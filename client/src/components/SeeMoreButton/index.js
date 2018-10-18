@@ -18,7 +18,7 @@ class SeeMoreButton extends React.Component {
     }
   };
 
-   /*  renderTask = () => {
+  /*  renderTask = () => {
             if(this.state.buttonDisplay === "Details") {
                 return this.props.hideDetails
             }

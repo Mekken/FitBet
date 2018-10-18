@@ -87,6 +87,7 @@ class Events extends Component {
                 respPlayer.data.challenges = newChallengeArray;
 
                 console.log("Sending this to get stuffed to user array ", respPlayer.data);
+
                 // Update the user array with new challenge
                 API.updateUser(respPlayer.data._id, respPlayer.data)
                   .then (function(playerResp) {

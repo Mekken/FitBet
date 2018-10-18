@@ -32,7 +32,7 @@ class Home extends Component {
   */
 
   // This function gets the available events
-  loadMyEvents = () => { 
+  loadMyEvents = () => {
     console.log("load my events");
 
     API.getMyEvents(localStorage.getItem("userID"))

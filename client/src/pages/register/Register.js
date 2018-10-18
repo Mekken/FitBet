@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import React, { Component } from "react";
 import API from "../../components/utils/App.js";
 import SubmitButton from "@material-ui/core/Button";
@@ -66,33 +67,33 @@ class Register extends Component {
     let deviceValid = this.state.deviceValid;
 
     switch (fieldName) {
-    case "email":
-      emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-      fieldValidationErrors.email = emailValid ? "" : " is invalid";
-    break;
+      case "email":
+        emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        fieldValidationErrors.email = emailValid ? "" : " is invalid";
+        break;
 
-    case "cellphone":
-      cellValid = isValidNumber(value);
-      fieldValidationErrors.cell = cellValid ? "" : " is invalid";
-    break;
+      case "cellphone":
+        cellValid = isValidNumber(value);
+        fieldValidationErrors.cell = cellValid ? "" : " is invalid";
+        break;
 
-    case "password":
-      passwordValid = value.length >= 6;
-      fieldValidationErrors.password = passwordValid ? "" : " is invalid";
-    break;
+      case "password":
+        passwordValid = value.length >= 6;
+        fieldValidationErrors.password = passwordValid ? "" : " is invalid";
+        break;
 
-    case "nickname":
-      nicknameValid = value.length >= 4;
-      fieldValidationErrors.nickname = nicknameValid ? "" : " is invalid";
-      break;
+      case "nickname":
+        nicknameValid = value.length >= 4;
+        fieldValidationErrors.nickname = nicknameValid ? "" : " is invalid";
+        break;
 
-    case "device":
-      deviceValid = value.length >= 1;
-      fieldValidationErrors.device = deviceValid ? "" : " is invalid";
-      break;
+      case "device":
+        deviceValid = value.length >= 1;
+        fieldValidationErrors.device = deviceValid ? "" : " is invalid";
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
     this.setState(
       {

@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import React, { Component } from "react";
 import DatePicker from "react-datepicker";
 import moment from "moment";
@@ -58,20 +59,20 @@ class Create extends Component {
       case "title":
         titleValid = value.length >= 6;
         fieldValidationErrors.title = titleValid ? "" : " is invalid";
-      break;
+        break;
 
       case "desc":
         descValid = value.length >= 6;
         fieldValidationErrors.desc = descValid ? "" : " is invalid";
-      break;
+        break;
 
       case "stakes":
         stakesValid = value.length >= 3;
         fieldValidationErrors.stakes = stakesValid ? "" : " is invalid";
-      break;
+        break;
 
       default:
-      break;
+        break;
     }
 
     this.setState(
