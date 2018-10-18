@@ -86,7 +86,7 @@ class Challenge extends Component {
   render() {
     return (
       <ChallengePageWrapper>
-        Hello, welcome to my Challenge page!
+        This is the challenge detail page
         {this.renderPage()}
       </ChallengePageWrapper>
     )

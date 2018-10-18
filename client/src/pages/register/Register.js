@@ -13,6 +13,11 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import FormErrors from "../../components/FormErrors";
 import { isValidNumber } from "libphonenumber-js";
+import FormControl from '@material-ui/core/FormControl';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
+
 
 const styles = theme => ({
   card: {
@@ -53,7 +58,7 @@ class Register extends Component {
     if (!e) return;
     this.validateField("cellphone", e);
     this.setState({ cellphone: e });
-  }
+  };
 
   validateField(fieldName, value) {
     let fieldValidationErrors = this.state.formErrors;
@@ -120,12 +125,12 @@ class Register extends Component {
   processUser = userObject => {
     // This needs to be sent to the DB for saving
     API.saveUser(userObject)
-    .then()
-    .catch(err => {
-      console.log(err.response);
-      alert(err.response);
-    })
-  }
+      .then()
+      .catch(err => {
+        console.log(err.response);
+        alert(err.response);
+      });
+  };
 
   handleSubmit = () => {
     // post my state to the api to save the contact form,
@@ -213,16 +218,21 @@ class Register extends Component {
                 />
               </Grid> */}
               <Grid item xs={12}>
-                <TextField
+              <FormControl>
+                <InputLabel  shrink htmlFor="age-native-helper">My Device</InputLabel>
+                <NativeSelect
                   fullWidth
-                  required
-                  className={classes.textField}
-                  name="device"
-                  label="Device Type"
-                  onChange={this.handleChange}
                   value={this.state.device}
-                />
+                  onChange={this.handleChange}
+                  input={<Input name="device" id="age-native-label-placeholder" />}>
+                  
+                  <option value={'fitbit'}>Fitbit</option>
+                  <option value={'misfit'}>Misfit</option>
+                </NativeSelect>
+                </FormControl>
               </Grid>
+
+              
               <Grid item xs={12}>
                 <PhoneInput
                   placeholder="Enter phone number"

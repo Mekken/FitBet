@@ -1,4 +1,8 @@
 import React from "react";
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography'
+import TextField from '@material-ui/core/TextField';
+
 
 const ChallengeDetail = props => (
     <div className="container">
