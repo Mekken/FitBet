@@ -1,10 +1,10 @@
-import React from "react"
+import React from "react";
 
-const StepsAndRanking = (props) => (
-    <div>
+const StepsAndRanking = props => (
+  <div>
     <h2>You are at {props.ranking} place</h2>
     <h2>Your Steps: {props.stepCount}</h2>
-    </div>
-)
+  </div>
+);
 
 export default StepsAndRanking;

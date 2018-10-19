@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import styled from 'react-emotion'
-import EventsToJoin from '../../components/events/events.js'
-import API from '../../components/utils/App.js'
+import styled from "react-emotion";
+import EventsToJoin from "../../components/events/events.js";
+import API from "../../components/utils/App.js";
 
-const EventsPageWrapper = styled('div')({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center'
-})
+const EventsPageWrapper = styled("div")({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center"
+});
 
 class Events extends Component {
   state = {
@@ -23,103 +23,105 @@ class Events extends Component {
   }
 
   // This function gets the available events
-  loadEvents = () => { 
+  loadEvents = () => {
     console.log("load events");
     //API.getNotChallenge(localStorage.getItem("userID"))
     API.getChallenges()
       .then(res => this.setState({ events: res.data }))
       .catch(err => console.log(err));
-  }
+  };
 
   // This function handles when a user clicks to join event
-  handleJoinClick = (id) => { 
+  handleJoinClick = id => {
     console.log("Got into HandleJoinClick, challenge to join is ", id);
-    var self = this
+    var self = this;
 
     // Get the user data
     // We fudge the data here since it should be stored locally
     API.getUser(localStorage.getItem("userID"))
-    .then(function(respPlayer) {
-      console.log("got this player object ", respPlayer);
+      .then(function(respPlayer) {
+        console.log("got this player object ", respPlayer);
 
-      let newPlayerObj = {
-        _id: respPlayer.data._id,
-      name: respPlayer.data.nickname,
-      challenge_steps: 0
-      }
+        let newPlayerObj = {
+          _id: respPlayer.data._id,
+          name: respPlayer.data.nickname,
+          challengeSteps: 0
+        };
 
-      console.log("data to stuff into challenge ", newPlayerObj);
+        console.log("data to stuff into challenge ", newPlayerObj);
 
-      // Get the challenge data
-      API.getChallenge(id)
-      .then(function(response) {
-        console.log("got this event object ", response);
-        // Push player data onto challenge object
+        // Get the challenge data
+        API.getChallenge(id)
+          .then(function(response) {
+            console.log("got this event object ", response);
+            // Push player data onto challenge object
 
-        let newPlayerArray = response.data.players;
-        newPlayerArray.push(newPlayerObj);
+            let newPlayerArray = response.data.players;
+            newPlayerArray.push(newPlayerObj);
 
-        console.log("new player array", newPlayerArray);
-        response.data.players = newPlayerArray;
-        console.log("Response to push to DB = ", response.data);
+            console.log("new player array", newPlayerArray);
+            response.data.players = newPlayerArray;
+            console.log("Response to push to DB = ", response.data);
 
-        // Update the challenge object and add the new player
-        API.updateChallenge(response.data._id, response.data)
-        .then(function(upd) {
-          // Now need to update the player object with the new challenge
-          console.log("return from Update challenge ", upd);
-          
-          let newChallengeObj = {
-            _id: id
-          }
+            // Update the challenge object and add the new player
+            API.updateChallenge(response.data._id, response.data)
+              .then(function(upd) {
+                // Now need to update the player object with the new challenge
+                console.log("return from Update challenge ", upd);
 
-          let newChallengeArray = respPlayer.data.challenges;
+                let newChallengeObj = {
+                  _id: id
+                };
 
-          console.log("current challenges ", respPlayer.data.challenges);
-          console.log("this challenge ", id);
+                let newChallengeArray = respPlayer.data.challenges;
 
-          if (respPlayer.data.challenges[0] !== "") {
-            newChallengeArray.push(newChallengeObj);
-          }
-          else 
-            newChallengeArray[0] = newChallengeObj;
+                console.log("current challenges ", respPlayer.data.challenges);
+                console.log("this challenge ", id);
 
-          respPlayer.data.challenges = newChallengeArray;
+                if (respPlayer.data.challenges[0] !== "") {
+                  newChallengeArray.push(newChallengeObj);
+                } else {
+                  newChallengeArray[0] = newChallengeObj;
+                }
 
-          console.log("Sending this to get stuffed to user array ", respPlayer.data);
-          // Update the user array with new challenge
-          API.updateUser(respPlayer.data._id, respPlayer.data)
-          .then (function(playerResp) {
-              console.log("Player Resp ", playerResp);
-              self.loadEvents();
-          })
-        })  // UpdateChallenge
-        .catch(err => console.log(err))
-      }) // Get challenge
+                respPlayer.data.challenges = newChallengeArray;
+
+                console.log(
+                  "Sending this to get stuffed to user array ",
+                  respPlayer.data
+                );
+
+                // Update the user array with new challenge
+                API.updateUser(respPlayer.data._id, respPlayer.data).then(
+                  function(playerResp) {
+                    console.log("Player Resp ", playerResp);
+                    self.loadEvents();
+                  }
+                );
+              }) // UpdateChallenge
+              .catch(err => console.log(err));
+          }) // Get challenge
+          .catch(err => console.log(err));
+      }) // Get user
       .catch(err => console.log(err));
-    }) // Get user
-    .catch(err => console.log(err));
-  }
-
+  };
 
   // This renders the Results section if they exist
   renderPage = () => {
     console.log("rendering events");
     console.log("Events = ", this.state.events);
     if (this.state.events) {
-      return <EventsToJoin 
-        events={this.state.events}
-        handleJoinClick={this.handleJoinClick}
-      />;
+      return (
+        <EventsToJoin
+          events={this.state.events}
+          handleJoinClick={this.handleJoinClick}
+        />
+      );
     }
   };
 
   render() {
-    return (
-      <EventsPageWrapper>
-        {this.renderPage()}
-      </EventsPageWrapper>
-    )
+    return <EventsPageWrapper> {this.renderPage()} </EventsPageWrapper>;
   }
 }
-export default Events
+export default Events;

@@ -1,0 +1,56 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 2017
+    },
+    "parser": "babel-eslint",
+    "env": {
+        "es6": true,
+        "browser": true,
+        "commonjs": true,
+        "node": true
+    },
+    "extends": [
+        "prettier",
+        "plugin:react/recommended",
+        "plugin:import/recommended"
+    ],
+    "plugins": [
+        "prettier",
+        "import",
+        "react"
+      ],
+    "rules": {
+        "no-duplicate-case":"error",
+        "no-empty":"error",
+        "no-extra-semi":"error",
+        "no-func-assign": "error",
+        "no-irregular-whitespace":"error",
+        "no-unreachable": "error",
+        "curly": "error",
+        "dot-notation": "error",
+        "eqeqeq": "error",
+        "no-empty-function": "error",
+        "no-multi-spaces": "error",
+        "no-unused-vars": "error",
+        "camelcase": "error",
+        "indent": [
+            2,
+            2,
+            { "SwitchCase": 1 }
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "double"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "prettier/prettier": "error",
+        "react/forbid-prop-types": [0]
+    }
+}

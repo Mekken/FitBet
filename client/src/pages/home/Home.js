@@ -48,9 +48,9 @@ class Home extends Component {
     console.log("load my events");
 
     API.getMyEvents(localStorage.getItem("userID"))
-    .then(res => this.setState({ events: res.data }))
-    .catch(err => console.log(err));
-  }
+      .then(res => this.setState({ events: res.data }))
+      .catch(err => console.log(err));
+  };
 
   logout = () => {
     API.logout()
