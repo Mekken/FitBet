@@ -39,8 +39,8 @@ class HamburgerMenu extends React.Component {
           onClose={this.handleClose}>
           <MenuItem onClick={this.handleClose}>
             <Typography variant="subtitle1" align="left">
-              <Button component={Link} to="/challenge">
-                Challenge
+              <Button component={Link} to="/login">
+                Login
               </Button>
             </Typography>
           </MenuItem>
