@@ -6,6 +6,6 @@ const textRoutes = require("./text");
 // User routes
 router.use("/users", userRoutes);
 router.use("/challenges", challengeRoutes);
-//router.use("/text", textRoutes);
+router.use("/text", textRoutes);
 
 module.exports = router;

@@ -1,6 +1,20 @@
 import axios from "axios";
 
 export default {
+  // Calls node server to send text
+  textUsers: function(title, playersObj, msg) {
+    // Send this text to everyone who is in this challenge
+    for (var i = 0; i < playersObj.length; i++) {
+      let textObj = {
+        title: title,
+        cell: playersObj[i].cell,
+        text: msg
+      };
+
+      // Send off to text end point
+      axios.post("/api/text", textObj);
+    }
+  },
   getUsers: function() {
     return axios.get("/api/users");
   },

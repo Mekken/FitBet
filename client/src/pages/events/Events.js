@@ -24,7 +24,6 @@ class Events extends Component {
 
   // This function gets the available events
   loadEvents = () => {
-    console.log("load events");
     // API.getNotChallenge(localStorage.getItem("userID"))
     API.getChallenges()
       .then(res => this.setState({ events: res.data }))
@@ -32,52 +31,51 @@ class Events extends Component {
   };
 
   // This function handles when a user clicks to join event
-  handleJoinClick = (id) => { 
-    console.log("Got into HandleJoinClick, challenge to join is ", id);
+  handleJoinClick = id => {
     var self = this;
 
     // Get the user data
     // We fudge the data here since it should be stored locally
     API.getUser(localStorage.getItem("userID"))
       .then(function(respPlayer) {
-        console.log("got this player object ", respPlayer);
-
+        // Creating a new player object to add to the challenge array
         let newPlayerObj = {
           _id: respPlayer.data._id,
           name: respPlayer.data.nickname,
+          cell: localStorage.getItem("cell"),
           challengeSteps: 0
         };
 
-        console.log("data to stuff into challenge ", newPlayerObj);
-
-        // Get the challenge data
+        // Get the challenge data so we can add the new player
         API.getChallenge(id)
           .then(function(response) {
-            console.log("got this event object ", response);
-            // Push player data onto challenge object
-
+            // Create new player array from existing one in the challenge
             let newPlayerArray = response.data.players;
-            newPlayerArray.push(newPlayerObj);
 
-            console.log("new player array", newPlayerArray);
+            // Create a message to notify all existing players in this challenge
+            // that a new player is joining
+            let msg = newPlayerObj.name + " has joined.";
+
+            // Send the text messages out
+            API.textUsers(response.data.title, response.data.players, msg);
+
+            // Add the new player to the Challenge player object array and set this
+            // new array as the player object array
+            newPlayerArray.push(newPlayerObj);
             response.data.players = newPlayerArray;
-            console.log("Response to push to DB = ", response.data);
 
             // Update the challenge object and add the new player
             API.updateChallenge(response.data._id, response.data)
-              .then(function(upd) {
-                // Now need to update the player object with the new challenge
-                console.log("return from Update challenge ", upd);
-
+              .then(function() {
+                // Now need to update the player collection in mongo with this new challenge
                 let newChallengeObj = {
                   _id: id
                 };
 
                 let newChallengeArray = respPlayer.data.challenges;
 
-                console.log("current challenges ", respPlayer.data.challenges);
-                console.log("this challenge ", id);
-
+                // If this player ha other challenges, add this to the array
+                // otherwise, create the challenges array
                 if (respPlayer.data.challenges[0] !== "") {
                   newChallengeArray.push(newChallengeObj);
                 } else {
@@ -86,16 +84,15 @@ class Events extends Component {
 
                 respPlayer.data.challenges = newChallengeArray;
 
-                console.log("Sending this to get stuffed to user array ", respPlayer.data);
-
                 // Update the user array with new challenge
-                API.updateUser(respPlayer.data._id, respPlayer.data)
-                  .then (function(playerResp) {
-                    console.log("Player Resp ", playerResp);
+                API.updateUser(respPlayer.data._id, respPlayer.data).then(
+                  function(playerResp) {
+                    // console.log("Player Resp ", playerResp);
                     self.loadEvents();
-                  });
+                  }
+                );
               }) // UpdateChallenge
-              .catch(err => console.log(err))
+              .catch(err => console.log(err));
           }) // Get challenge
           .catch(err => console.log(err));
       }) // Get user
@@ -104,8 +101,6 @@ class Events extends Component {
 
   // This renders the Results section if they exist
   renderPage = () => {
-    console.log("rendering events");
-    console.log("Events = ", this.state.events);
     if (this.state.events) {
       return (
         <EventsToJoin
