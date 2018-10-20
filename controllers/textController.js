@@ -9,10 +9,10 @@ const client = require("twilio")(twilioSid, twilioToken);
 // Defining methods for the fitController
 module.exports = {
   create: function(req, res) {
-    console.log("text = ", req.body.text);
-    console.log("cell = ", req.body.cell);
-    var msg = "FitBet: " + req.body.text + "  challenge - <URL link here>";
-    console.log("Texting this ", req.body.text);
+    // Keep standard start message and just add their text
+    var msg =
+      "FitBet <URL link here>: " + req.body.title + " - " + req.body.text;
+
     // Send a text
     client.messages
       .create({
