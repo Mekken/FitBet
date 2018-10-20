@@ -1,6 +1,22 @@
 import axios from "axios";
 
 export default {
+  textUsers: function(name, title, playersObj) {
+    console.log("Name, ", name);
+    console.log("Title, ", title);
+    console.log("Obj ", playersObj);
+    var msg = name + " joined challenge - '" + title + "'";
+
+    for (var i = 0; i < playersObj.length; i++) {
+      let textObj = {
+        cell: playersObj[i].cell,
+        text: msg
+      };
+
+      console.log("text Obj ", textObj);
+      axios.post("/api/text", textObj);
+    }
+  },
   getUsers: function() {
     return axios.get("/api/users");
   },

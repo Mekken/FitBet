@@ -32,7 +32,7 @@ class Events extends Component {
   };
 
   // This function handles when a user clicks to join event
-  handleJoinClick = (id) => { 
+  handleJoinClick = id => {
     console.log("Got into HandleJoinClick, challenge to join is ", id);
     var self = this;
 
@@ -45,6 +45,7 @@ class Events extends Component {
         let newPlayerObj = {
           _id: respPlayer.data._id,
           name: respPlayer.data.nickname,
+          cell: localStorage.getItem("cell"),
           challengeSteps: 0
         };
 
@@ -57,6 +58,16 @@ class Events extends Component {
             // Push player data onto challenge object
 
             let newPlayerArray = response.data.players;
+
+            // Send a text to all players in this challenge
+            console.log("sending this to text ", response.data.players);
+
+            API.textUsers(
+              newPlayerObj.name,
+              response.data.title,
+              response.data.players
+            );
+
             newPlayerArray.push(newPlayerObj);
 
             console.log("new player array", newPlayerArray);
@@ -90,12 +101,12 @@ class Events extends Component {
 
                 // Update the user array with new challenge
                 API.updateUser(respPlayer.data._id, respPlayer.data)
-                  .then (function(playerResp) {
+                  .then(function(playerResp) {
                     console.log("Player Resp ", playerResp);
                     self.loadEvents();
                   });
               }) // UpdateChallenge
-              .catch(err => console.log(err))
+              .catch(err => console.log(err));
           }) // Get challenge
           .catch(err => console.log(err));
       }) // Get user
