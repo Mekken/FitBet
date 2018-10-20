@@ -56,7 +56,7 @@ class Events extends Component {
             // that a new player is joining
             let msg = newPlayerObj.name + " has joined.";
 
-            // Send the text messages out
+            // Send the text message to notify the other players
             API.textUsers(response.data.title, response.data.players, msg);
 
             // Add the new player to the Challenge player object array and set this
