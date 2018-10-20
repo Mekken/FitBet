@@ -11,7 +11,7 @@ module.exports = {
   create: function(req, res) {
     // Keep standard start message and just add their text
     var msg =
-      "FitBet <URL link here>: " + req.body.title + " - " + req.body.text;
+      "FitBet <URL link here>: (" + req.body.title + ") - " + req.body.text;
 
     // Send a text
     client.messages

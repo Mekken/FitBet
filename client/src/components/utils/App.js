@@ -1,11 +1,9 @@
 import axios from "axios";
 
 export default {
+  // Calls node server to send text
   textUsers: function(title, playersObj, msg) {
-    console.log("Obj ", playersObj);
-    console.log("msg - ", msg);
-    console.log("title - ", title);
-
+    // Send this text to everyone who is in this challenge
     for (var i = 0; i < playersObj.length; i++) {
       let textObj = {
         title: title,
@@ -13,10 +11,8 @@ export default {
         text: msg
       };
 
-      console.log("text Obj ", textObj);
-      /* Commented out next line for testing purposes */
-      /* Annette - Remember to pull these lines out later */
-      //axios.post("/api/text", textObj);
+      // Send off to text end point
+      axios.post("/api/text", textObj);
     }
   },
   getUsers: function() {
