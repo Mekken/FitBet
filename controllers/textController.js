@@ -1,10 +1,8 @@
-//var twilioSid = process.env.TWILIO_SID;
-//var twilioToken = process.env.TWILIO_TOKEN;
-const twilioSid = "AC5b6619d067d9e174372a8044c602cc43";
-const twilioToken = "0b8392a77a1a8425327ac343ee3a4f26";
-
 // Read and set environment variables
 require("dotenv").config();
+
+var twilioSid = process.env.TWILIO_SID;
+var twilioToken = process.env.TWILIO_TOKEN;
 
 console.log("SID ", process.env.TWILIO_SID);
 console.log("TOKEN ", process.env.TWILIO_TOKEN);
