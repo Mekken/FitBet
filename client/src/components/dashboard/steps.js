@@ -1,7 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import { Grid, Typography, Card, CardContent } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  Card,
+  CardContent,
+  Divider
+} from "@material-ui/core";
 import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
 
 const styles = () => ({
@@ -13,11 +19,14 @@ const styles = () => ({
   },
   icon: {
     transform: "scale(1.8)",
+    marginTop: "2%",
     marginBottom: "5%"
   },
   text: {
-    marginBottom: "5%",
-    borderBottom: "2px solid"
+    marginBottom: "2%"
+  },
+  divider: {
+    marginBottom: "3%"
   }
 });
 
@@ -38,15 +47,11 @@ const Steps = props => {
             color="primary"
             fontSize="large"
           />
-          <Typography 
-            variant="h5"
-            className={classes.text}>
+          <Typography variant="h5" className={classes.text}>
             Total Steps
           </Typography>
-          <Typography
-            variant="h4">
-            5,583,580
-          </Typography>
+          <Divider className={classes.divider} />
+          <Typography variant="h4">5,583,580</Typography>
         </CardContent>
       </Card>
     </Grid>

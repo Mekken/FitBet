@@ -1,7 +1,17 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import { Grid, Typography, Card, CardContent } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  Card,
+  CardContent,
+  CardMedia,
+  Divider,
+  List,
+  ListItem
+} from "@material-ui/core";
 import PeopleIcon from "@material-ui/icons/People";
 
 import API from "../../components/utils/App";
@@ -9,6 +19,7 @@ import API from "../../components/utils/App";
 const styles = () => ({
   card: {
     minWidth: 300,
+    maxWidth: 300,
     minHeight: 200,
     marginTop: "10%",
     textAlign: "center"
@@ -17,9 +28,17 @@ const styles = () => ({
     transform: "scale(1.8)",
     marginBottom: "5%"
   },
+  media: {
+    width: 50
+  },
+  header: {
+    marginBottom: "5%"
+  },
   text: {
-    marginBottom: "5%",
-    borderBottom: "2px solid"
+    padding: "inherit"
+  },
+  divider: {
+    marginBottom: "5%"
   }
 });
 
@@ -29,6 +48,7 @@ class Events extends Component {
   };
 
   componentDidMount() {
+    window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
     this.loadEvents();
   }
 
@@ -55,25 +75,42 @@ class Events extends Component {
               color="primary"
               fontSize="large"
             />
-            <Typography variant="h5" className={classes.text}>
+            <Typography variant="h5" className={classes.header}>
               Events
             </Typography>
-            {this.state.events.map(result => (
-              <div key={result._id}>
-                <h3>
-                  <a href={"/challenge/" + result._id} target="">
-                    Event name: {result.title}
-                  </a>
-                </h3>
-                <h3>Event description: {result.desc}</h3>
-                <h3>Stakes: {result.stakes}</h3>
-                <h3>Start date: {result.startDate}</h3>
-                <h3>End date: {result.endDate}</h3>
-                {result.players.map(res => (
-                  <h3 key={res._id}>Participants: {res.name} </h3>
-                ))}
-              </div>
-            ))}
+            <Divider className={classes.divider} />
+            <List>
+              {this.state.events.map(result => (
+                <ListItem
+                  key={result._id}
+                  component={Link}
+                  to={"/challenge/" + result._id}
+                >
+                  <CardMedia
+                    className={classes.media}
+                    component="img"
+                    image="/images/event_cover.png"
+                  />
+                  <List className={classes.text}>
+                    <Typography component="p" variant="body2">
+                      Event Name: {result.title}
+                    </Typography>
+                    {/* <Typography component="p">Description: {result.}</Typography> */}
+                    {/* <Typography component="p">Stakes: 35000</Typography> */}
+                    <Typography component="p" variant="body2">
+                      Start date:
+                      {result.startDate}
+                    </Typography>
+                    {/* <Typography component="p">End date: 35000</Typography> */}
+                    <Typography component="p" variant="body2">
+                      Players:
+                      {" " +
+                        result.players.map(player => player.name).join(",")}
+                    </Typography>
+                  </List>
+                </ListItem>
+              ))}
+            </List>
           </CardContent>
         </Card>
       </Grid>

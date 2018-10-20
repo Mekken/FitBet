@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
-import Dashboard from '../../components/dashboard'
-import API from '../../components/utils/App'
+import Dashboard from "../../components/dashboard";
+import API from "../../components/utils/App";
 
-import AddIcon from '@material-ui/icons/Add';
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { withStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
+import { withStyles } from "@material-ui/core/styles";
 
 const styles = () => ({
   root: {
@@ -19,7 +16,7 @@ const styles = () => ({
   button: {
     marginTop: "50px"
   }
-})
+});
 
 class Home extends Component {
   state = {
@@ -28,7 +25,7 @@ class Home extends Component {
 
   // When this component mounts, load/clear array
   componentDidMount() {
- //   this.updateSteps();
+    //   this.updateSteps();
     this.loadDashboard();
   }
 
@@ -43,8 +40,7 @@ class Home extends Component {
   }
   */
 
-  // This function gets the available events
-  loadDashboard = () => { 
+  loadDashboard = () => {
     console.log("load my events");
 
     API.getMyEvents(localStorage.getItem("userID"))
@@ -54,46 +50,43 @@ class Home extends Component {
 
   logout = () => {
     API.logout()
-      .then(x => {})
-      .catch(err => { console.log(err); });
-    this.props.history.push('/login');
-  }
-
-  // This renders Steps
-  renderSteps = () => {
-    console.log("rendering Steps");
-    //TODO: Display Steps
-    return (
-      <h1>Steps: 25,000</h1>
-    )
+      .then()
+      .catch(err => {
+        console.log(err);
+      });
+    this.props.history.push("/login");
   };
 
-  // This renders events I'm in if they exist
+  renderSteps = () => {
+    console.log("rendering Steps");
+    return <h1>Steps: 25,000</h1>;
+  };
+
   renderEvents = () => {
-    const { classes } = this.props;
     console.log("rendering events");
     console.log("Events = ", this.state.events);
     if (this.state.events) {
-      return ( 
-      <Dashboard
-        redirectToEvents={this.redirectToEvents}
-        events={this.state.events} />
-      )
+      return (
+        <Dashboard
+          redirectToEvents={this.redirectToEvents}
+          events={this.state.events}
+        />
+      );
     }
   };
 
   render() {
-    const { classes } = this.props; 
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
         <Dashboard />
       </div>
-    )
+    );
   }
 }
 
 Home.propTypes = {
-  classes: PropTypes.object.isRequired,
-}
+  classes: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(Home);

@@ -105,7 +105,8 @@ class Login extends Component {
                     <InputAdornment position="end">
                       <IconButton
                         aria-label="Toggle password visibility"
-                        onClick={this.handleClickShowPassword}>
+                        onClick={this.handleClickShowPassword}
+                      >
                         {this.state.showPassword ? (
                           <VisibilityOff />
                         ) : (
@@ -121,9 +122,10 @@ class Login extends Component {
             <SubmitButton
               variant="text"
               color="primary"
-              fullWidth="true"
+              fullWidth={true}
               type="submit"
-              onClick={this.handleSubmit}>
+              onClick={this.handleSubmit}
+            >
               Login
             </SubmitButton>
 
