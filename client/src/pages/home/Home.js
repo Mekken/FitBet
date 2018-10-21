@@ -1,12 +1,21 @@
 import React, { Component } from "react";
-import styled from "react-emotion";
-import MyEvents from "../../components/home/home.js";
-import API from "../../components/utils/App.js";
+import Dashboard from "../../components/dashboard";
+import API from "../../components/utils/App";
 
-const HomePageWrapper = styled("div")({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center"
+import PropTypes from "prop-types";
+
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = () => ({
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  button: {
+    marginTop: "50px"
+  }
 });
 
 class Home extends Component {
@@ -17,7 +26,7 @@ class Home extends Component {
   // When this component mounts, load/clear array
   componentDidMount() {
     //   this.updateSteps();
-    this.loadMyEvents();
+    this.loadDashboard();
   }
 
   // This function updates the steps for my events
@@ -31,32 +40,52 @@ class Home extends Component {
   }
   */
 
-  // This function gets the available events
-  loadMyEvents = () => {
+  loadDashboard = () => {
     console.log("load my events");
-
     API.getMyEvents(localStorage.getItem("userID"))
       .then(res => this.setState({ events: res.data }))
       .catch(err => console.log(err));
   };
 
-  // This renders events I'm in if they exist
-  renderPage = () => {
+  logout = () => {
+    API.logout()
+      .then()
+      .catch(err => {
+        console.log(err);
+      });
+    this.props.history.push("/login");
+  };
+
+  renderSteps = () => {
+    console.log("rendering Steps");
+    return <h1>Steps: 25,000</h1>;
+  };
+
+  renderEvents = () => {
     console.log("rendering events");
     console.log("Events = ", this.state.events);
     if (this.state.events) {
-      return <MyEvents events={this.state.events} />;
+      return (
+        <Dashboard
+          redirectToEvents={this.redirectToEvents}
+          events={this.state.events}
+        />
+      );
     }
   };
 
   render() {
+    const { classes } = this.props;
     return (
-      <HomePageWrapper>
-        Hello, welcome to my Home page!
-        {this.renderPage()}
-      </HomePageWrapper>
+      <div className={classes.root}>
+        <Dashboard />
+      </div>
     );
   }
 }
 
-export default Home;
+Home.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(Home);

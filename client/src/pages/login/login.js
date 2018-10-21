@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Grid, Paper, TextField } from "@material-ui/core";
 import Form from "@material-ui/core/FormControl";
-import API from "../../components/utils/App.js";
+import API from "../../components/utils/App";
 import SubmitButton from "@material-ui/core/Button";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
@@ -45,7 +45,7 @@ class Login extends Component {
         console.log("userID ", localStorage.getItem("userID"));
         console.log("nickname ", localStorage.getItem("nickname"));
         console.log("cell ", localStorage.getItem("cell"));
-        self.props.history.push("/");
+        self.props.history.push("/dashboard");
       })
       // res => this.setState({ user: res.data }))
       .catch(err => console.log(err));
@@ -107,7 +107,8 @@ class Login extends Component {
                     <InputAdornment position="end">
                       <IconButton
                         aria-label="Toggle password visibility"
-                        onClick={this.handleClickShowPassword}>
+                        onClick={this.handleClickShowPassword}
+                      >
                         {this.state.showPassword ? (
                           <VisibilityOff />
                         ) : (
@@ -123,9 +124,10 @@ class Login extends Component {
             <SubmitButton
               variant="text"
               color="primary"
-              fullWidth="true"
+              fullWidth={true}
               type="submit"
-              onClick={this.handleSubmit}>
+              onClick={this.handleSubmit}
+            >
               Login
             </SubmitButton>
 

@@ -8,7 +8,7 @@ import Challenge from "./pages/challenge/Challenge";
 import Create from "./pages/create/Create";
 import Register from "./pages/register/Register";
 import Events from "./pages/events/Events";
-import Login from "./pages/login/login";
+import Login from "./pages/login/Login";
 import theme from "./utils/theme-util";
 
 class App extends Component {
@@ -19,12 +19,14 @@ class App extends Component {
           <Header />
           <div>
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/" component={props => <Login {...props} />} />
+              <Route path="/login" component={props => <Login {...props} />} />
               <Route path="/challenge/:id" component={Challenge} />
               <Route path="/register" component={Register} />
               <Route path="/create" component={Create} />
               <Route path="/events" component={Events} />
-              <Route path="/login" component={props => <Login {...props} />} />
+              <Route path="/dashboard" component={Home} />
+              {/* <Route path="/*" component={props => <Login {...props} />} /> */}
               {/*}
               <Route path="/login" component={Login} />
     */}

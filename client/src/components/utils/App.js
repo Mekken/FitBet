@@ -29,6 +29,9 @@ export default {
   login: function(loginObj) {
     return axios.post("/api/users/login", loginObj);
   },
+  logout: function() {
+    return axios.get("/api/users/logout");
+  },
   // Deletes the user with the given id
   deleteUser: function(id) {
     return axios.delete("/api/users/" + id);
@@ -58,7 +61,7 @@ export default {
     return axios.get("/api/challenges/notchallengeID/" + id);
   },
   getMyEvents: function(id) {
-    //console.log("getting events for ", id)
+    console.log("getting events for ", id);
 
     // Grab this guy's user data
     return axios.get("/api/challenges/challengeID/" + id);
