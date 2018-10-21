@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -9,7 +10,6 @@ import {
   ExpansionPanelSummary,
   ExpansionPanelDetails,
   Typography,
-  CardMedia,
   Divider,
   Button
 } from "@material-ui/core";
@@ -79,7 +79,9 @@ class EventsToJoin extends Component {
 
   hasJoinedEvent(players) {
     let nickname = localStorage.getItem("nickname");
-    return players.includes(nickname);
+    let hasJoined = players.map(player => player.name).includes(nickname);
+    // console.log(hasJoined);
+    return hasJoined;
   }
 
   render() {
@@ -100,19 +102,19 @@ class EventsToJoin extends Component {
                 {this.hasJoinedEvent(result.players) ? (
                   <Button
                     variant="outlined"
+                    disabled
+                    className={classes.button}
+                  >
+                    Joined
+                  </Button>
+                ) : (
+                  <Button
+                    variant="outlined"
                     color="primary"
                     className={classes.button}
                     onClick={() => this.props.handleJoinClick(result._id)}
                   >
                     Joinable
-                  </Button>
-                ) : (
-                  <Button
-                    variant="outlined"
-                    disabled
-                    className={classes.button}
-                  >
-                    Joined
                   </Button>
                 )}
                 <Typography className={classes.eventHeader}>

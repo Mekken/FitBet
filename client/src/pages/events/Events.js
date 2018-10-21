@@ -23,7 +23,7 @@ const styles = () => ({
 });
 class Events extends Component {
   state = {
-    events: "",
+    events: [],
     playerObj: "",
     playerID: "",
     addEventID: ""
