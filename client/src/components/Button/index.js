@@ -4,10 +4,10 @@ import { withStyles } from "@material-ui/core/styles";
 
 const styles = {
   buttonRoot: {
-    borderRadius: "100px",
-    color: "#f0f0f0",
+    borderRadius: "none",
+    color: "#007cc3",
     padding: 0,
-    background: "linear-gradient(0deg, #f5f5f5 9%, #007cc3 10%)"
+    background: "linear-gradient(0deg, #007cc3 10% ,  #f5f5f5 9%)"
   }
 };
 

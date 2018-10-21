@@ -16,28 +16,25 @@ const ChallengeDetail = props => (
         xs
         justify="center"
         alignItems="stretch"
-        style={{ marginTop: "3%" , marginBottom:'5%'}}>
-        <Paper style={{ minWidth: "300", padding: "1% 10% 5%" }} >
-              <Grid item justify="center">
-                  <Typography variant="display1" align='center'>
-                    {props.events.title}
-                  </Typography>
-             
-              </Grid>
-              <Grid item justify="center">
-               
-                  <Typography variant="title" align='center' gutterBottom>
-                    "{props.events.desc}"
-                  </Typography>
-                
-              </Grid>
-            
+        style={{ marginTop: "3%", marginBottom: "5%" }}
+      >
+        <Paper style={{ minWidth: "300", padding: "1% 10% 5%" }}>
+          <Grid item justify="center">
+            <Typography variant="display1" align="center">
+              {props.events.title}
+            </Typography>
+          </Grid>
+          <Grid item justify="center">
+            <Typography variant="title" align="center" gutterBottom>
+              "{props.events.desc}"
+            </Typography>
+          </Grid>
 
           <Grid item container direction="column" xs={12} spacing={8}>
             <React.Fragment>
               <Grid item xs={12} alignItems="stretch">
                 <Paper elevation={8}>
-                  <Typography align='center'>
+                  <Typography align="center">
                     {props.events.players.map(res => (
                       <div key={res._id}> {res.name} </div>
                     ))}
@@ -46,7 +43,7 @@ const ChallengeDetail = props => (
               </Grid>
               <Grid item xs={12} alignItems="stretch">
                 <Paper elevation={8}>
-                  <Typography align='center'>
+                  <Typography align="center">
                     Stakes:
                     <br />
                     {props.events.stakes}
@@ -57,16 +54,16 @@ const ChallengeDetail = props => (
               <Grid item container direction="row" spacing="8">
                 <Grid item xs={6} wrap>
                   <Paper elevation={8}>
-                    <Typography align='center'>
+                    <Typography align="center">
                       Start date:
                       <br />
                       {props.events.startDate}
-                    </Typography >
+                    </Typography>
                   </Paper>
                 </Grid>
                 <Grid item xs={6} wrap>
                   <Paper elevation={8}>
-                    <Typography align='center'>
+                    <Typography align="center">
                       End date:
                       <br />
                       {props.events.endDate}
@@ -79,47 +76,50 @@ const ChallengeDetail = props => (
         </Paper>
       </Grid>
 
-      <Grid container direction='row' item spacing={8}>
+      <Grid container direction="row" item spacing={8}>
+        <Grid item xs={8} style={{ margin: "0 auto" }}>
+          {props.events.chat.map(res => (
+            <div>
+              <Typography variant="caption" align="left">
+                {res.name}
+              </Typography>
 
-        <Grid item xs={8} style={{margin:'0 auto'}} >
-              {props.events.chat.map(res => (
-                <div>
-                <Typography variant='caption' align='left'>{res.name}</Typography>
-                
-                <Paper elevation={6} square={false}>
+              <Paper elevation={6} square={false}>
                 <Typography variant="body2">{res.text} </Typography>
-                </Paper>
-                
-                <Typography variant='caption' align='right'>{res.date}</Typography>
-               
-                </div>
-              ))}
+              </Paper>
+
+              <Typography variant="caption" align="right">
+                {res.date}
+              </Typography>
+            </div>
+          ))}
         </Grid>
-      
-        <Grid item xs={10} style={{paddingLeft:'25%'}} >
+
+        <Grid item xs={10} style={{ paddingLeft: "25%" }}>
           <TextField
-           multiline
-           fullWidth
-           id="outlined-multiline-flexible"
-           variant="outlined"
-           rowsMax="5"
+            multiline
+            fullWidth
+            id="outlined-multiline-flexible"
+            variant="outlined"
+            rowsMax="5"
             name="chat"
             label="Start chatting"
             value={props.chat}
             onChange={props.handleChange}
           />
-          </Grid>
-          <Grid item xs={2}>
-          <Button style={{padding:'1em 1em 1em 0.2em'}}
-          color='primary'
-              onClick={props.handleSubmit}
-              type="submit"
-              className="btn btn-primary">
-              disabled={!props.formValid}
-              Send
-            </Button>
-          </Grid>
-        
+        </Grid>
+        <Grid item xs={2}>
+          <Button
+            style={{ padding: "1em 1em 1em 0.2em" }}
+            color="primary"
+            onClick={props.handleSubmit}
+            type="submit"
+            className="btn btn-primary"
+            disabled={!props.formValid}
+          >
+            Send
+          </Button>
+        </Grid>
       </Grid>
     </Grid>
   </div>

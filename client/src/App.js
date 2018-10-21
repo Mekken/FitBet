@@ -8,7 +8,7 @@ import Challenge from "./pages/challenge/Challenge";
 import Create from "./pages/create/Create";
 import Register from "./pages/register/Register";
 import Events from "./pages/events/Events";
-import Login from "./pages/login/Login";
+import Login from "./pages/login/login";
 import theme from "./utils/theme-util";
 
 class App extends Component {
