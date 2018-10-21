@@ -20,7 +20,13 @@ module.exports = {
         body.passwordSalt = salt;
         db.User.create(body)
           .then(dbModel => res.json(dbModel))
-          .catch(err => res.status(422).json(err));
+          .catch(err => {
+            let errMsg = err.errmsg;
+            if(errMsg.includes("duplicate key"))
+              errMsg = "Duplicate Key Error";
+
+            res.status(422).send(errMsg).end();
+          });
       });
     });
   },

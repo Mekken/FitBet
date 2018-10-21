@@ -4,12 +4,11 @@ import DatePicker from "react-datepicker";
 import moment from "moment";
 import FormErrors from "../../components/FormErrors";
 import API from "../../components/utils/App.js";
-import "react-datepicker/dist/react-datepicker.css";
 import { withStyles } from "@material-ui/core/styles";
-import { Grid } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import SubmitButton from "@material-ui/core/Button";
-import { Paper, Typography } from "@material-ui/core";
+import { Paper, Typography, Grid } from "@material-ui/core";
+import "react-datepicker/dist/react-datepicker.css";
 
 const styles = theme => ({
   card: {

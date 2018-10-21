@@ -1,7 +1,4 @@
 import PersonIcon from "@material-ui/icons/Person";
-import MenuIcon from "@material-ui/icons/Menu";
-import CloseIcon from "@material-ui/icons/Close";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import React from "react";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
@@ -41,7 +38,7 @@ class ProfileMenu extends React.Component {
           <MenuItem onClick={this.handleClose}>
             {" "}
             <Typography variant="subtitle1" align="justify">
-              <Button component={Link} to="/">
+              <Button component={Link} to="/dashboard">
                 Dashboard
               </Button>
             </Typography>
