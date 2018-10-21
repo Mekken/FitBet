@@ -5,7 +5,6 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import { List, ListItem } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 
 const ChallengeDetail = props => (
@@ -19,10 +18,7 @@ const ChallengeDetail = props => (
         alignItems="stretch"
         style={{ marginTop: "3%" , marginBottom:'5%'}}>
         <Paper style={{ minWidth: "300", padding: "1% 10% 5%" }} >
-         
-            
               <Grid item justify="center">
-                
                   <Typography variant="display1" align='center'>
                     {props.events.title}
                   </Typography>
