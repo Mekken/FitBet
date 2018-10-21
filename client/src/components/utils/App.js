@@ -47,7 +47,7 @@ export default {
     return axios.get("/api/challenges/notchallengeID/" + id);
   },
   getMyEvents: function(id) {
-    //console.log("getting events for ", id)
+    console.log("getting events for ", id);
 
     // Grab this guy's user data
     return axios.get("/api/challenges/challengeID/" + id);

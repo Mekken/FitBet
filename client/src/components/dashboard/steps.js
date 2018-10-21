@@ -1,19 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import {
-  Grid,
-  Typography,
-  Card,
-  CardContent,
-  Divider
-} from "@material-ui/core";
+import { Grid, Typography, Divider } from "@material-ui/core";
 import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
 
 const styles = () => ({
-  card: {
-    minWidth: 300,
-    minHeight: 200,
+  header: {
     marginTop: "10%",
     textAlign: "center"
   },
@@ -23,10 +15,10 @@ const styles = () => ({
     marginBottom: "5%"
   },
   text: {
-    marginBottom: "2%"
+    textAlign: "center"
   },
   divider: {
-    marginBottom: "3%"
+    marginBottom: "4%"
   }
 });
 
@@ -40,20 +32,20 @@ const Steps = props => {
       justify="center"
       alignContent="center"
     >
-      <Card className={classes.card}>
-        <CardContent>
-          <DirectionsRunIcon
-            className={classes.icon}
-            color="primary"
-            fontSize="large"
-          />
-          <Typography variant="h5" className={classes.text}>
-            Total Steps
-          </Typography>
-          <Divider className={classes.divider} />
+      <Grid item xs={12} className={classes.header}>
+        <DirectionsRunIcon
+          className={classes.icon}
+          color="primary"
+          fontSize="large"
+        />
+        <Typography variant="h5" className={classes.text}>
+          Total Steps
+        </Typography>
+        <Divider className={classes.divider} />
+      </Grid>
+      <Grid item xs={12} className={classes.text}>
           <Typography variant="h4">5,583,580</Typography>
-        </CardContent>
-      </Card>
+      </Grid>
     </Grid>
   );
 };
