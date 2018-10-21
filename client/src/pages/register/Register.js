@@ -217,8 +217,8 @@ class Register extends Component {
                   value={this.state.cellphone}
                 />
               </Grid> */}
-              <Grid item xs={12}>
-              <FormControl>
+              <Grid item style={{margin:'1%'}}>
+              <FormControl  fullWidth>
                 <InputLabel  shrink htmlFor="age-native-helper">My Device</InputLabel>
                 <NativeSelect
                   fullWidth
@@ -233,8 +233,8 @@ class Register extends Component {
               </Grid>
 
               
-              <Grid item xs={12}>
-                <PhoneInput
+              <Grid item xs={12} style={{margin:'1% auto'}}>
+                <PhoneInput 
                   placeholder="Enter phone number"
                   name="cellphone"
                   value={this.state.cellphone}

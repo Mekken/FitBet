@@ -5,9 +5,7 @@ import ChallengeDetail from '../../components/challenge/challenge.js'
 import API from '../../components/utils/App.js'
 
 const ChallengePageWrapper = styled('div')({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center'
+
 })
 
 class Challenge extends Component {
@@ -18,6 +16,10 @@ class Challenge extends Component {
 
   // When this component mounts, load/clear array
   componentDidMount() {
+    API.login({
+      emailaddress: "dheardjr@gmail.com",
+      password: "Password"
+    })
     //   this.updateSteps();
     this.loadChallenge();
   }
@@ -86,7 +88,7 @@ class Challenge extends Component {
   render() {
     return (
       <ChallengePageWrapper>
-        This is the challenge detail page
+      
         {this.renderPage()}
       </ChallengePageWrapper>
     )
