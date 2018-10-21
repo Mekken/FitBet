@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import React from "react";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -118,6 +119,7 @@ const ChallengeDetail = props => (
               onClick={props.handleSubmit}
               type="submit"
               className="btn btn-primary">
+              disabled={!props.formValid}
               Send
             </Button>
           </Grid>

@@ -1,16 +1,15 @@
-import React, { Component } from 'react'
-import DatePicker from 'react-datepicker';
-import moment from 'moment'
-import styled from 'react-emotion'
-
-import FormErrors from '../../components/FormErrors'
-import API from '../../components/utils/App.js'
-import 'react-datepicker/dist/react-datepicker.css';
-import {withStyles} from "@material-ui/core/styles";
+/* eslint react/prop-types: 0 */
+import React, { Component } from "react";
+import DatePicker from "react-datepicker";
+import moment from "moment";
+import FormErrors from "../../components/FormErrors";
+import API from "../../components/utils/App.js";
+import "react-datepicker/dist/react-datepicker.css";
+import { withStyles } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import SubmitButton from "@material-ui/core/Button";
-import {Paper, Typography} from '@material-ui/core'
+import { Paper, Typography } from "@material-ui/core";
 
 const styles = theme => ({
   card: {
@@ -34,76 +33,81 @@ class Create extends Component {
     titleValid: false,
     descValid: false,
     stakesValid: false,
-    formErrors: {title: '', stakes: '', desc: ''},
+    formErrors: { title: "", stakes: "", desc: "" },
     startDate: moment().add(1, "days"),
     endDate: moment().add(2, "days"),
     minDate: moment().add(2, "days"),
-    lastDate: '',
+    lastDate: "",
     players: []
   };
 
-  handleChange = (e) => {
-    console.log(e);
-    const { name, value } = e.target
-    this.setState({[name]: value}, 
-      () => { this.validateField(name, value) });
-  }
+  handleChange = e => {
+    //console.log(e);
+    const { name, value } = e.target;
+    this.setState({ [name]: value }, () => {
+      this.validateField(name, value);
+    });
+  };
 
   validateField(fieldName, value) {
     let fieldValidationErrors = this.state.formErrors;
     let titleValid = this.state.titleValid;
-    let descValid = this.state.descValid; 
+    let descValid = this.state.descValid;
     let stakesValid = this.state.stakesValid;
-  
-    switch(fieldName) {
-      case 'title':
+
+    switch (fieldName) {
+      case "title":
         titleValid = value.length >= 6;
-        fieldValidationErrors.title = titleValid ? '' : ' is invalid';
+        fieldValidationErrors.title = titleValid ? "" : " is invalid";
         break;
 
-      case 'desc':
+      case "desc":
         descValid = value.length >= 6;
-        fieldValidationErrors.desc = descValid ? '': ' is invalid';
+        fieldValidationErrors.desc = descValid ? "" : " is invalid";
         break;
 
-      case 'stakes':
+      case "stakes":
         stakesValid = value.length >= 3;
-        fieldValidationErrors.stakes = stakesValid ? '': ' is invalid';
+        fieldValidationErrors.stakes = stakesValid ? "" : " is invalid";
         break;
 
       default:
         break;
     }
-    this.setState({formErrors: fieldValidationErrors,
-                    titleValid: titleValid,
-                    descValid: descValid,
-                    stakesValid: stakesValid
-                  }, this.validateForm);
+
+    this.setState(
+      {
+        formErrors: fieldValidationErrors,
+        titleValid: titleValid,
+        descValid: descValid,
+        stakesValid: stakesValid
+      },
+      this.validateForm
+    );
   }
-  
+
   validateForm() {
-    this.setState({formValid: 
-      this.state.titleValid && this.state.descValid &&
-      this.state.stakesValid
+    this.setState({
+      formValid:
+        this.state.titleValid && this.state.descValid && this.state.stakesValid
     });
   }
-  
 
-  handleStartDateChange = (e) => {
+  handleStartDateChange = e => {
     //moment(e).add(1, "days")
     let min = moment(e).add(1, "days");
     this.setState({
       startDate: e,
       minDate: min,
       endDate: min
-    })
-  }
+    });
+  };
 
-  handleEndDateChange = (e) => {
+  handleEndDateChange = e => {
     this.setState({
       endDate: e
-    })
-  }
+    });
+  };
 
   // Save user data to DB
   processCreate = challengeObject => {
@@ -120,13 +124,12 @@ class Create extends Component {
     // and show the user some feedback
     let today = new Date();
 
-    // Convert date to YYYY-MM-DD
     // Stuff first element of players array to be me
-
     let myObj = {
       _id: localStorage.getItem("userID"),
       name: localStorage.getItem("nickname"),
-      challenge_steps: 0
+      cell: localStorage.getItem("cell"),
+      challengeSteps: 0
     };
 
     let strStartDate = moment(this.state.startDate).format("MM/DD/YYYY");
@@ -146,13 +149,13 @@ class Create extends Component {
     this.processCreate(challengeObj);
 
     this.setState({
-        title: '',
-        desc: "",
-        stakes: '',
-        startDate: moment().add(1, "days"),
-        endDate: moment(this.state.startDate).add(1, "days"),
-        lastDate: "",
-        players: []
+      title: "",
+      desc: "",
+      stakes: "",
+      startDate: moment().add(1, "days"),
+      endDate: moment(this.state.startDate).add(1, "days"),
+      lastDate: "",
+      players: []
     });
   };
 
@@ -164,11 +167,12 @@ class Create extends Component {
         spacing={0}
         alignItems="center"
         justify="center"
-        alignContent="center">
+        alignContent="center"
+      >
         <Paper className={classes.card}>
-        <Typography align='center' variant='headline' color='secondary'>
-          Create Challenge
-        </Typography> 
+          <Typography align="center" variant="headline" color="secondary">
+            Create Challenge
+          </Typography>
           <Grid item xs={12}>
             <TextField
               className={classes.TextField}
@@ -236,39 +240,40 @@ class Create extends Component {
             />
           </Grid> */}
           <div>
-          Start Date
-          <DatePicker
-            name="startDate"
-            dateFormat="MM/DD/YYYY"
-            minDate={moment().add(1, "days")}
-            placeholderText="Start Date"
-            onChange={this.handleStartDateChange}
-            selected={this.state.startDate}
-          />
-        </div>
-        <div>
-          End Date
-          <DatePicker
-            name="endDate"
-            dateFormat="MM/DD/YYYY"
-            minDate={moment(this.state.minDate)}
-            placeholderText="End Date"
-            onChange={this.handleEndDateChange}
-            selected={this.state.endDate}
-          />
-        </div>
+            Start Date
+            <DatePicker
+              name="startDate"
+              dateFormat="MM/DD/YYYY"
+              minDate={moment().add(1, "days")}
+              placeholderText="Start Date"
+              onChange={this.handleStartDateChange}
+              selected={this.state.startDate}
+            />
+          </div>
+          <div>
+            End Date
+            <DatePicker
+              name="endDate"
+              dateFormat="MM/DD/YYYY"
+              minDate={moment(this.state.minDate)}
+              placeholderText="End Date"
+              onChange={this.handleEndDateChange}
+              selected={this.state.endDate}
+            />
+          </div>
           <SubmitButton
             variant="text"
             color="secondary"
             fullWidth={true}
             type="submit"
-            onClick={this.handleSubmit}>
+            onClick={this.handleSubmit}
+          >
             Submit
           </SubmitButton>
           <FormErrors formErrors={this.state.formErrors} />
         </Paper>
       </Grid>
     );
-        }
-      }
+  }
+}
 export default withStyles(styles)(Create);

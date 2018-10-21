@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import theme from "../../utils/theme-util";
 import Button from "../../components/Button";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
+//import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import HamburgerMenu from "../../components/HamburgerMenu";
 import ProfileMenu from "../../components/Profile";
@@ -18,7 +18,8 @@ const Header = () => (
         style={{
           display: "flex",
           justifyContent: "space-between"
-        }}>
+        }}
+      >
         <Hidden smUp>
           <HamburgerMenu />
         </Hidden>

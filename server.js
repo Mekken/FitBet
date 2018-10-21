@@ -19,8 +19,14 @@ if (process.env.NODE_ENV === "production") {
 }
 
 //PassportJS Session Setup
-app.use(require('cookie-parser')('passport_cookie'));
-app.use(require('express-session')({ secret: 'passport_cookie', resave: false, saveUninitialized: false}));
+app.use(require("cookie-parser")("passport_cookie"));
+app.use(
+  require("express-session")({
+    secret: "passport_cookie",
+    resave: false,
+    saveUninitialized: false
+  })
+);
 
 // Initialize Passport and restore authentication state, if any, from the
 // session.
