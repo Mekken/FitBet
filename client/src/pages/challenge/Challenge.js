@@ -18,10 +18,7 @@ class Challenge extends Component {
 
   // When this component mounts, load/clear array
   componentDidMount() {
-    API.login({
-      emailaddress: "dheardjr@gmail.com",
-      password: "Password"
-    })
+
     //   this.updateSteps();
     this.loadChallenge();
   }
