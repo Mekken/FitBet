@@ -40,10 +40,6 @@ class Home extends Component {
   }
   */
 
-  constructor(props) {
-    super(props);
-  }
-
   loadDashboard = () => {
     console.log("load my events");
     API.getMyEvents(localStorage.getItem("userID"))

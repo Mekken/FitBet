@@ -1,14 +1,26 @@
 import React, { Component } from "react";
-import styled from "react-emotion";
-import EventsToJoin from "../../components/events/events.js";
-import API from "../../components/utils/App.js";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import { Grid, Typography, Divider } from "@material-ui/core";
+import EventsToJoin from "../../components/events/events";
+import API from "../../components/utils/App";
 
-const EventsPageWrapper = styled("div")({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center"
+const styles = () => ({
+  root: {
+    display: "flex",
+    justifyContent: "center"
+  },
+  header: {
+    textAlign: "center",
+    marginTop: "4%",
+    marginBottom: "2%"
+  },
+  text: {
+    textAlign: "center",
+    marginTop: "5%",
+    marginBottom: "5%"
+  }
 });
-
 class Events extends Component {
   state = {
     events: "",
@@ -108,20 +120,42 @@ class Events extends Component {
 
   // This renders the Results section if they exist
   renderPage = () => {
-    console.log("rendering events");
-    console.log("Events = ", this.state.events);
-    if (this.state.events) {
-      return (
-        <EventsToJoin
-          events={this.state.events}
-          handleJoinClick={this.handleJoinClick}
-        />
-      );
-    }
+    // console.log("rendering events");
+    // console.log("Events = ", this.state.events);
+    const { classes } = this.props;
+    return this.state.events ? (
+      <EventsToJoin
+        events={this.state.events}
+        handleJoinClick={this.handleJoinClick}
+      />
+    ) : (
+      <Typography className={classes.text}>
+        No Events Currently Available
+      </Typography>
+    );
   };
 
   render() {
-    return <EventsPageWrapper> {this.renderPage()} </EventsPageWrapper>;
+    const { classes } = this.props;
+    console.log(classes);
+    return (
+      <Grid container spacing={0} className={classes.root}>
+        <Grid item xs={12}>
+          <Typography component="h3" variant="h3" className={classes.header}>
+            Events
+          </Typography>
+          <Divider />
+        </Grid>
+        <Grid item xs={12}>
+          {this.renderPage()}
+        </Grid>
+      </Grid>
+    );
   }
 }
-export default Events;
+
+Events.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(Events);

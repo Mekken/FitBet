@@ -31,7 +31,8 @@ const styles = () => ({
     marginBottom: "5%"
   },
   media: {
-    width: 50
+    width: 50,
+    margin: "auto"
   },
   header: {
     marginBottom: "5%"
@@ -50,16 +51,6 @@ class Events extends Component {
   };
 
   componentDidMount() {
-    // //For Testing:
-    // API.login({
-    //   emailaddress: "dheardjr@gmail.com",
-    //   password: "Password"
-    // }).then(response => {
-    //   console.log("data: ", response.data);
-    //   this.setState({ userid: response.data.id });
-    // });
-
-    window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
     this.loadEvents();
   }
 

@@ -38,7 +38,7 @@ class ProfileMenu extends React.Component {
           <MenuItem onClick={this.handleClose}>
             {" "}
             <Typography variant="subtitle1" align="justify">
-              <Button component={Link} to="/">
+              <Button component={Link} to="/dashboard">
                 Dashboard
               </Button>
             </Typography>

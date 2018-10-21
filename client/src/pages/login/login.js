@@ -43,7 +43,7 @@ class Login extends Component {
         localStorage.setItem("nickname", response.data.nickname);
         console.log("userID ", localStorage.getItem("userID"));
         console.log("nickname ", localStorage.getItem("nickname"));
-        self.props.history.push("/");
+        self.props.history.push("/dashboard");
       })
       // res => this.setState({ user: res.data }))
       .catch(err => console.log(err));

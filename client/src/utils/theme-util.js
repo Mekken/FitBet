@@ -11,6 +11,7 @@ const theme = createMuiTheme({
   },
   typography: {
     // Use the system font instead of the default Roboto font.
+    useNextVariants: true,
     fontFamily: [
       "Quicksand",
       "BlinkMacSystemFont",

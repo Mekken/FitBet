@@ -44,7 +44,7 @@ const Steps = props => {
         <Divider className={classes.divider} />
       </Grid>
       <Grid item xs={12} className={classes.text}>
-          <Typography variant="h4">5,583,580</Typography>
+        <Typography variant="h4">5,583,580</Typography>
       </Grid>
     </Grid>
   );
