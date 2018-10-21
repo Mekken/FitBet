@@ -14,6 +14,12 @@ import "react-phone-number-input/style.css";
 import FormErrors from "../../components/FormErrors";
 import { isValidNumber } from "libphonenumber-js";
 
+var fitbitPath =
+  "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=22D8HT&scope=activity&redirect_uri=http%3A%2F%2Flocalhost%3A3001%2Fapi%2Fdevices%2Ffitbit%2Fcallback&prompt=&state=";
+
+var misfitPath =
+  "https://api.misfitwearables.com/auth/dialog/authorize?response_type=code&client_id=vqLcjvasg1cbYUvB&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fdevices%2Fmisfitcallback&scope=tracking";
+
 const styles = theme => ({
   card: {
     minWidth: 300,
@@ -123,8 +129,17 @@ class Register extends Component {
   processUser = userObject => {
     // This needs to be sent to the DB for saving
     API.saveUser(userObject)
-      .then()
-      .catch(err => console.log(err.response.data));
+      .then(function() {
+        if (userObject.deviceType === "fitbit") {
+          window.location.href = fitbitPath + userObject.emailaddress;
+        } else if (userObject.deviceType === "misfit") {
+          window.location.href = misfitPath + userObject.emailaddress;
+        }
+      })
+      .catch(err => {
+        console.log(err.response);
+        alert(err.response);
+      });
   };
 
   handleSubmit = () => {

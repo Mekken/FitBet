@@ -1,4 +1,3 @@
-/*
 const router = require("express").Router();
 const textController = require("../../controllers/textController");
 const authController = require("../../controllers/authController");
@@ -9,4 +8,3 @@ router
   .post(authController.checkAuthentication, textController.create);
 
 module.exports = router;
-*/

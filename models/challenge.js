@@ -12,6 +12,7 @@ const challengeSchema = new Schema({
     {
       _id: { type: String },
       name: { type: String },
+      cell: { type: String },
       challengeSteps: { type: Number }
     }
   ],

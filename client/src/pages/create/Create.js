@@ -123,12 +123,11 @@ class Create extends Component {
     // and show the user some feedback
     let today = new Date();
 
-    // Convert date to YYYY-MM-DD
     // Stuff first element of players array to be me
-
     let myObj = {
       _id: localStorage.getItem("userID"),
       name: localStorage.getItem("nickname"),
+      cell: localStorage.getItem("cell"),
       challengeSteps: 0
     };
 

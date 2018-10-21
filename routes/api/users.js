@@ -15,7 +15,8 @@ router.route("/register").post(fitController.create);
 router.route("/login").post(passport.authenticate("local"), (req, res) => {
   let userInfo = {
     id: req.user._id,
-    nickname: req.user.nickname
+    nickname: req.user.nickname,
+    cellphone: req.user.cellphone
   };
   res.json(userInfo);
   res.status(200).end();
