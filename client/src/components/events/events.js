@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import {
@@ -127,7 +128,13 @@ class EventsToJoin extends Component {
                   {" " + result.players.map(player => player.name).join(", ")}
                 </Typography>
                 <Typography className={classes.link} xs={12}>
-                  <Button color="primary">Details</Button>
+                  <Button
+                    color="primary"
+                    component={Link}
+                    to={`/challenge/${result._id}`}
+                  >
+                    Details
+                  </Button>
                 </Typography>
                 <Divider />
                 {false ? (

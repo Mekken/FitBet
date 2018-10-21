@@ -137,7 +137,7 @@ class Events extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log(classes);
+    // console.log(classes);
     return (
       <Grid container spacing={0} className={classes.root}>
         <Grid item xs={12}>
