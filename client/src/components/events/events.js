@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+
 import {
   Grid,
   ExpansionPanel,
@@ -55,6 +56,10 @@ const styles = theme => ({
     textAlign: "center",
     marginTop: "3%",
     marginBottom: "3%"
+  },
+  divider: {
+    marginTop: "3%",
+    marginBottom: "3%"
   }
 });
 
@@ -72,6 +77,11 @@ class EventsToJoin extends Component {
     this.setState({ events: this.props.events });
   }
 
+  hasJoinedEvent(players) {
+    let nickname = localStorage.getItem("nickname");
+    return players.includes(nickname);
+  }
+
   render() {
     const { classes } = this.props;
     const { expanded } = this.props;
@@ -87,12 +97,24 @@ class EventsToJoin extends Component {
               onChange={() => this.handleExpanded(!expanded)}
             >
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography className={classes.placing}>1st</Typography>
-                <CardMedia
-                  className={classes.media}
-                  component="img"
-                  image="/images/place.png"
-                />
+                {this.hasJoinedEvent(result.players) ? (
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    className={classes.button}
+                    onClick={() => this.props.handleJoinClick(result._id)}
+                  >
+                    Joinable
+                  </Button>
+                ) : (
+                  <Button
+                    variant="outlined"
+                    disabled
+                    className={classes.button}
+                  >
+                    Joined
+                  </Button>
+                )}
                 <Typography className={classes.eventHeader}>
                   {result.title}
                 </Typography>
@@ -127,34 +149,16 @@ class EventsToJoin extends Component {
                 <Typography xs={12} className={classes.indent}>
                   {" " + result.players.map(player => player.name).join(", ")}
                 </Typography>
-                <Typography className={classes.link} xs={12}>
-                  <Button
-                    color="primary"
-                    component={Link}
-                    to={`/challenge/${result._id}`}
-                  >
-                    Details
-                  </Button>
-                </Typography>
-                <Divider />
-                {false ? (
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    className={classes.button}
-                    onClick={() => this.props.handleJoinClick(result._id)}
-                  >
-                    Joinable
-                  </Button>
-                ) : (
-                  <Button
-                    variant="outlined"
-                    disabled
-                    className={classes.button}
-                  >
-                    Joined
-                  </Button>
-                )}
+                <Divider className={classes.divider} />
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  component={Link}
+                  to={`/challenge/${result._id}`}
+                  className={classes.button}
+                >
+                  Details
+                </Button>
               </ExpansionPanelDetails>
             </ExpansionPanel>
           </Grid>
