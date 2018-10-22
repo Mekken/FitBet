@@ -23,7 +23,7 @@ const styles = () => ({
 });
 class Events extends Component {
   state = {
-    events: "",
+    events: [],
     playerObj: "",
     playerID: "",
     addEventID: ""
@@ -36,8 +36,8 @@ class Events extends Component {
 
   // This function gets the available events
   loadEvents = () => {
-    // API.getNotChallenge(localStorage.getItem("userID"))
-    API.getChallenges()
+    // API.getChallengesNotJoined(localStorage.getItem("userID"))
+    API.getAllChallenges()
       .then(res => this.setState({ events: res.data }))
       .catch(err => console.log(err));
   };
@@ -48,7 +48,7 @@ class Events extends Component {
 
     // Get the user data
     // We fudge the data here since it should be stored locally
-    API.getUser(localStorage.getItem("userID"))
+    API.getUserById(localStorage.getItem("userID"))
       .then(function(respPlayer) {
         // Creating a new player object to add to the challenge array
         let newPlayerObj = {
@@ -59,7 +59,7 @@ class Events extends Component {
         };
 
         // Get the challenge data so we can add the new player
-        API.getChallenge(id)
+        API.getChallengesById(id)
           .then(function(response) {
             // Create new player array from existing one in the challenge
             let newPlayerArray = response.data.players;

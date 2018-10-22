@@ -15,10 +15,10 @@ export default {
       axios.post("/api/text", textObj);
     }
   },
-  getUsers: function() {
+  getAllUsers: function() {
     return axios.get("/api/users");
   },
-  getUser: function(id) {
+  getUserById: function(id) {
     return axios.get("/api/users/" + id);
   },
   updateUser: function(id, data) {
@@ -37,11 +37,11 @@ export default {
     return axios.delete("/api/users/" + id);
   },
   // Saves a user to the database
-  saveUser: function(userObj) {
+  createUser: function(userObj) {
     //console.log("Stuffing this: ", userObj);
     return axios.post("/api/users/register", userObj);
   },
-  saveChallenge: function(challengeObj) {
+  createChallenge: function(challengeObj) {
     //console.log("Stuffing this to challenge: ", challengeObj);
     return axios.post("/api/challenges", challengeObj);
   },
@@ -49,18 +49,18 @@ export default {
     //console.log("updating this challenge id = ", id, " record = ", record);
     return axios.put("/api/challenges/" + id, record);
   },
-  getChallenges: function() {
+  getAllChallenges: function() {
     return axios.get("/api/challenges/");
   },
-  getChallenge: function(id) {
+  getChallengesById: function(id) {
     //console.log("getting this challenge ", id)
     return axios.get("/api/challenges/" + id);
   },
-  getNotChallenge: function(id) {
+  getChallengesNotJoined: function(id) {
     //console.log("Getting challenges this user not in  ", id)
     return axios.get("/api/challenges/notchallengeID/" + id);
   },
-  getMyEvents: function(id) {
+  getChallengedByUserId: function(id) {
     console.log("getting events for ", id);
 
     // Grab this guy's user data
