@@ -29,7 +29,7 @@ class HamburgerMenu extends React.Component {
           aria-owns={anchorEl ? "simple-menu" : null}
           aria-haspopup="true"
           onClick={this.handleClick}>
-          <MenuIcon />
+          <MenuIcon fontSize='large'/>
         </AButton>
         <Menu
           id="simple-menu"

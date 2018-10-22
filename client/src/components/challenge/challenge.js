@@ -3,9 +3,9 @@ import React from "react";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
-import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import PeopleIcon from "@material-ui/icons/People";
 
 const ChallengeDetail = props => (
   <div className="container">
@@ -34,7 +34,10 @@ const ChallengeDetail = props => (
             <React.Fragment>
               <Grid item xs={12} alignItems="stretch">
                 <Paper elevation={8}>
-                  <Typography align="center">
+                  <Typography variant="title" color="primary" align="center">
+                    Participants <PeopleIcon />
+                  </Typography>
+                  <Typography align="center" variant="subheading">
                     {props.events.players.map(res => (
                       <div key={res._id}> {res.name} </div>
                     ))}
@@ -43,9 +46,11 @@ const ChallengeDetail = props => (
               </Grid>
               <Grid item xs={12} alignItems="stretch">
                 <Paper elevation={8}>
-                  <Typography align="center">
-                    Stakes:
+                  <Typography align="center" variant="title" color="primary">
+                    Stakes
                     <br />
+                  </Typography>
+                  <Typography align="center" variant="subheading">
                     {props.events.stakes}
                   </Typography>
                 </Paper>
@@ -54,18 +59,23 @@ const ChallengeDetail = props => (
               <Grid item container direction="row" spacing="8">
                 <Grid item xs={6} wrap>
                   <Paper elevation={8}>
-                    <Typography align="center">
-                      Start date:
+                    <Typography align="center" variant="title" color="primary">
+                      Start date
                       <br />
+                    </Typography>
+                    <Typography align="left" variant="subheading">
+                      {" "}
                       {props.events.startDate}
                     </Typography>
                   </Paper>
                 </Grid>
                 <Grid item xs={6} wrap>
                   <Paper elevation={8}>
-                    <Typography align="center">
-                      End date:
+                    <Typography align="center" variant="title" color="primary">
+                      End date
                       <br />
+                    </Typography>
+                    <Typography align="left" variant="subheading">
                       {props.events.endDate}
                     </Typography>
                   </Paper>
@@ -77,6 +87,12 @@ const ChallengeDetail = props => (
       </Grid>
 
       <Grid container direction="row" item spacing={8}>
+        <Grid item xs={12}>
+          <Typography variant="subheading" align="center" color="primary">
+            -Chats-
+          </Typography>
+        </Grid>
+
         <Grid item xs={8} style={{ margin: "0 auto" }}>
           {props.events.chat.map(res => (
             <div>

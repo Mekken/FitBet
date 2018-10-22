@@ -28,7 +28,7 @@ class ProfileMenu extends React.Component {
           aria-owns={anchorEl ? "simple-menu" : null}
           aria-haspopup="true"
           onClick={this.handleClick}>
-          <PersonIcon />
+          <PersonIcon fontSize='large'/>
         </AButton>
         <Menu
           id="simple-menu"
