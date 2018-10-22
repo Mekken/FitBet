@@ -40,7 +40,7 @@ class Challenge extends Component {
   // "event"
   loadChallenge = () => {
     //console.log("Challenge ID ", this.props.match.params.id);
-    API.getChallenge(this.props.match.params.id)
+    API.getChallengesById(this.props.match.params.id)
       .then(res => this.setState({ event: res.data }))
       .catch(err => console.log(err));
   };

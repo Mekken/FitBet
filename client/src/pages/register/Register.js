@@ -133,7 +133,7 @@ class Register extends Component {
   // Save user data to DB
   processUser = userObject => {
     // This needs to be sent to the DB for saving
-    API.saveUser(userObject)
+    API.createUser(userObject)
       .then(function() {
         if (userObject.deviceType === "fitbit") {
           window.location.href = fitbitPath + userObject.emailaddress;

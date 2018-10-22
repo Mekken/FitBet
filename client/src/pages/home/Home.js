@@ -42,7 +42,7 @@ class Home extends Component {
 
   loadDashboard = () => {
     console.log("load my events");
-    API.getMyEvents(localStorage.getItem("userID"))
+    API.getChallengedByUserId(localStorage.getItem("userID"))
       .then(res => this.setState({ events: res.data }))
       .catch(err => console.log(err));
   };
