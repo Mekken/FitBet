@@ -112,7 +112,7 @@ class Create extends Component {
   processCreate = challengeObject => {
     // This needs to be sent to the DB for saving
     console.log("Create challenge data ", challengeObject);
-    API.saveChallenge(challengeObject)
+    API.createChallenge(challengeObject)
       .then()
       .catch(err => console.log(err));
   };
