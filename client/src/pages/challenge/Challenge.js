@@ -42,7 +42,7 @@ class Challenge extends Component {
     //console.log("Challenge ID ", this.props.match.params.id);
     API.getChallengesById(this.props.match.params.id)
       .then(res => this.setState({ event: res.data }))
-      .catch(err => console.log(err));
+      .catch(err => API.redirectOn401(err, this.props));
   };
 
   // Manages actions after user submits.  Will add the chat
@@ -81,7 +81,7 @@ class Challenge extends Component {
       .then(function(upd) {
         console.log("return from Update challenge ", upd);
       })
-      .catch(err => console.log(err));
+      .catch(err => API.redirectOn401(err, this.props));
 
     // Clear out parameters
     this.setState({

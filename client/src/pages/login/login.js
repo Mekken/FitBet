@@ -8,7 +8,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import Typography from '@material-ui/core/Typography';
+import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 
 const styles = theme => ({
@@ -48,7 +48,7 @@ class Login extends Component {
         self.props.history.push("/dashboard");
       })
       // res => this.setState({ user: res.data }))
-      .catch(err => console.log(err));
+      .catch(err => API.redirectOn401(err, this.props));
   };
 
   handleChange = e => {
@@ -82,9 +82,12 @@ class Login extends Component {
         spacing={0}
         alignItems="center"
         justify="center"
-        alignContent="center">
+        alignContent="center"
+      >
         <Paper className={classes.paper}>
-        <Typography variant='headline' align='center' color='primary'>-Welcome- <br /> <hr /></Typography>
+          <Typography variant="headline" align="center" color="primary">
+            -Welcome- <br /> <hr />
+          </Typography>
           <Form>
             <Grid item xs={12}>
               <TextField

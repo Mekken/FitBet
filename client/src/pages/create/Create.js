@@ -13,7 +13,7 @@ import "react-datepicker/dist/react-datepicker.css";
 const styles = theme => ({
   card: {
     marginTop: "5%",
-    marginBottom: '5%',
+    marginBottom: "5%",
     padding: "2% 8% 2%",
     justifyContent: "center"
   },
@@ -39,6 +39,16 @@ class Create extends Component {
     lastDate: "",
     players: []
   };
+
+  componentDidMount() {
+    this.checkSession();
+  }
+
+  checkSession() {
+    if (!localStorage.getItem("userID")) {
+      this.props.history.push("/");
+    }
+  }
 
   handleChange = e => {
     //console.log(e);
@@ -114,7 +124,7 @@ class Create extends Component {
     console.log("Create challenge data ", challengeObject);
     API.createChallenge(challengeObject)
       .then()
-      .catch(err => console.log(err));
+      .catch(err => API.redirectOn401(err, this.props));
   };
 
   handleSubmit = () => {
@@ -170,7 +180,8 @@ class Create extends Component {
       >
         <Paper className={classes.card}>
           <Typography align="center" variant="headline" color="primary">
-            Create Challenge <br /><hr />
+            Create Challenge <br />
+            <hr />
           </Typography>
           <Grid item xs={12}>
             <TextField
@@ -212,9 +223,10 @@ class Create extends Component {
               value={this.state.stakes}
             />
           </Grid>
-    
           <Grid item xs={12}>
-            <Typography variant='body2' color='primary'>Start Date</Typography>
+            <Typography variant="body2" color="primary">
+              Start Date
+            </Typography>
             <DatePicker
               name="startDate"
               dateFormat="MM/DD/YYYY"
@@ -225,7 +237,9 @@ class Create extends Component {
             />
           </Grid>
           <Grid item xs={12}>
-            <Typography variant='body2' color='primary'>End Date</Typography>
+            <Typography variant="body2" color="primary">
+              End Date
+            </Typography>
             <DatePicker
               name="endDate"
               dateFormat="MM/DD/YYYY"

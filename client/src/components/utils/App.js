@@ -65,5 +65,11 @@ export default {
 
     // Grab this guy's user data
     return axios.get("/api/challenges/challengeID/" + id);
+  },
+  redirectOn401: function(err, props) {
+    if (err.response.status === 401) {
+      props.history.push("/");
+    }
+    console.log(err);
   }
 };

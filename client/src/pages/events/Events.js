@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -31,7 +32,14 @@ class Events extends Component {
 
   // When this component mounts, load/clear array
   componentDidMount() {
+    // this.checkSession();
     this.loadEvents();
+  }
+
+  checkSession() {
+    if (localStorage.getItem("nickname")) {
+      this.props.history.push("/");
+    }
   }
 
   // This function gets the available events
@@ -39,7 +47,7 @@ class Events extends Component {
     // API.getChallengesNotJoined(localStorage.getItem("userID"))
     API.getAllChallenges()
       .then(res => this.setState({ events: res.data }))
-      .catch(err => console.log(err));
+      .catch(err => API.redirectOn401(err, this.props));
   };
 
   // This function handles when a user clicks to join event
@@ -104,11 +112,14 @@ class Events extends Component {
                   }
                 );
               }) // UpdateChallenge
-              .catch(err => console.log(err));
+              .catch(err => API.redirectOn401(err, this.props));
           }) // Get challenge
-          .catch(err => console.log(err));
+          .catch(err => API.redirectOn401(err, this.props));
       }) // Get user
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log("Status", err.status);
+        API.redirectOn401(err, this.props);
+      });
   };
 
   // This renders the Results section if they exist

@@ -11,8 +11,10 @@ const userSeed = [
     password: "$2b$10$bdG2CYItXENG5uxuCL3bJeOxAZI3gqyVu/xq9FvDz.my7tl0TKdIy",
     nickname: "annette",
     cellphone: "+18587752704",
-    deviceToken: "123456789",
-    refreshToken: "123456789",
+    deviceToken:
+      "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMkQ4SFQiLCJzdWIiOiI1UlBMWloiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyYWN0IiwiZXhwIjoxNTQwMjkxODg1LCJpYXQiOjE1NDAyNjMwODV9.fkq0B6z6ZzEDDDGBRoaAph4jljC2BpzxsQZD8vl41Ws",
+    refreshToken:
+      "041dcccea5ea23e0f14568068b22fe86948646f87fec35abefbc05301020d458",
     deviceType: "FitBit",
     passwordSalt: "$2b$10$bdG2CYItXENG5uxuCL3bJe",
     challenges: ""

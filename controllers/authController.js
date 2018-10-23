@@ -22,10 +22,14 @@ module.exports = {
           .then(dbModel => res.json(dbModel))
           .catch(err => {
             let errMsg = err.errmsg;
-            if(errMsg.includes("duplicate key"))
+            if (errMsg.includes("duplicate key")) {
               errMsg = "Duplicate Key Error";
+            }
 
-            res.status(422).send(errMsg).end();
+            res
+              .status(422)
+              .send(errMsg)
+              .end();
           });
       });
     });
