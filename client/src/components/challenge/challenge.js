@@ -6,7 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import PeopleIcon from "@material-ui/icons/People";
-
+import moment from 'moment';
 const ChallengeDetail = props => (
   <div className="container">
     <Grid container spacing={8}>
@@ -37,7 +37,6 @@ const ChallengeDetail = props => (
                   <Typography variant="body2" color="primary" align="center">
                     Participants <PeopleIcon />
                     <br />
-                    <hr />
                   </Typography>
                   <Typography align="center" variant="subheading">
                     {props.events.players.map(res => (
@@ -51,7 +50,6 @@ const ChallengeDetail = props => (
                   <Typography align="center" variant="body2" color="primary">
                     Stakes
                     <br />
-                    <hr />
                   </Typography>
                   <Typography align="center" variant="subheading">
                     {props.events.stakes}
@@ -67,8 +65,8 @@ const ChallengeDetail = props => (
                       <br />
                     </Typography>
                     <Typography align="center" variant="subheading">
-                      {" "}
-                      {props.events.startDate}
+                    {moment(props.events.startDate).format("MM-DD-YYYY")}
+                      
                     </Typography>
                   </Paper>
                 </Grid>
@@ -79,7 +77,8 @@ const ChallengeDetail = props => (
                       <br />
                     </Typography>
                     <Typography align="center" variant="subheading">
-                      {props.events.endDate}
+                    {moment(props.events.endDate).format("MM-DD-YYYY")}
+    
                     </Typography>
                   </Paper>
                 </Grid>
