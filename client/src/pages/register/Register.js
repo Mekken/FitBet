@@ -13,6 +13,11 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import FormErrors from "../../components/FormErrors";
 import { isValidNumber } from "libphonenumber-js";
+import FormControl from '@material-ui/core/FormControl';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
+
 
 var fitbitPath =
   "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=22D8HT&scope=activity&redirect_uri=http%3A%2F%2Flocalhost%3A3001%2Fapi%2Fdevices%2Ffitbit%2Fcallback&prompt=&state=";
@@ -228,19 +233,24 @@ class Register extends Component {
                   value={this.state.cellphone}
                 />
               </Grid> */}
-              <Grid item xs={12}>
-                <TextField
+              <Grid item style={{margin:'1%'}}>
+              <FormControl  fullWidth>
+                <InputLabel  shrink htmlFor="age-native-helper">My Device</InputLabel>
+                <NativeSelect
                   fullWidth
-                  required
-                  className={classes.textField}
-                  name="device"
-                  label="Device Type"
-                  onChange={this.handleChange}
                   value={this.state.device}
-                />
+                  onChange={this.handleChange}
+                  input={<Input name="device" id="age-native-label-placeholder" />}>
+                  
+                  <option value={'fitbit'}>Fitbit</option>
+                  <option value={'misfit'}>Misfit</option>
+                </NativeSelect>
+                </FormControl>
               </Grid>
-              <Grid item xs={12}>
-                <PhoneInput
+
+              
+              <Grid item xs={12} style={{margin:'1% auto'}}>
+                <PhoneInput 
                   placeholder="Enter phone number"
                   name="cellphone"
                   value={this.state.cellphone}

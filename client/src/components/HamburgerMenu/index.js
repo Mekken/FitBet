@@ -1,6 +1,7 @@
 import MenuIcon from "@material-ui/icons/Menu";
 import React from "react";
-import Button from "@material-ui/core/Button";
+import Button from "../../components/Button";
+import AButton from '@material-ui/core/Button'
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Typography from "@material-ui/core/Typography";
@@ -24,12 +25,12 @@ class HamburgerMenu extends React.Component {
 
     return (
       <div>
-        <Button
+        <AButton
           aria-owns={anchorEl ? "simple-menu" : null}
           aria-haspopup="true"
           onClick={this.handleClick}>
-          <MenuIcon />
-        </Button>
+          <MenuIcon fontSize='large'/>
+        </AButton>
         <Menu
           id="simple-menu"
           anchorEl={anchorEl}
@@ -43,18 +44,18 @@ class HamburgerMenu extends React.Component {
             </Typography>
           </MenuItem>
           <MenuItem onClick={this.handleClose}>
-            <Typography variant="subtitle1" align="justify">
-              <Button component={Link} to="/events">
-                Events
-              </Button>
-            </Typography>
+          <Typography variant="subtitle1" align="justify">
+            <Button component={Link} to="/events">
+              Events
+            </Button>
+          </Typography>
           </MenuItem>
           <MenuItem onClick={this.handleClose}>
-            <Typography variant="subtitle1" align="justify">
-              <Button component={Link} to="/Create">
-                Create
-              </Button>
-            </Typography>
+          <Typography variant="subtitle1" align="right">
+            <Button component={Link} to="/create">
+              Create
+            </Button>
+          </Typography>
           </MenuItem>
         </Menu>
       </div>

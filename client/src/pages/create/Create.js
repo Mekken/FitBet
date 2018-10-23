@@ -12,9 +12,9 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const styles = theme => ({
   card: {
-    minWidth: 300,
-    marginTop: "2%",
-    padding: "1% 10% 1%",
+    marginTop: "5%",
+    marginBottom: '5%',
+    padding: "2% 8% 2%",
     justifyContent: "center"
   },
   textField: {
@@ -169,15 +169,15 @@ class Create extends Component {
         alignContent="center"
       >
         <Paper className={classes.card}>
-          <Typography align="center" variant="headline" color="secondary">
-            Create Challenge
+          <Typography align="center" variant="headline" color="primary">
+            Create Challenge <br /><hr />
           </Typography>
           <Grid item xs={12}>
             <TextField
               className={classes.TextField}
               fullWidth
               name="title"
-              label="Challenge Title (> 6 characters)"
+              label="Title"
               onChange={this.handleChange}
               value={this.state.title}
             />
@@ -187,7 +187,7 @@ class Create extends Component {
               fullWidth
               name="desc"
               id="outlined-multiline-static"
-              label="Describe your challenge (> 6 characters)"
+              label="Description"
               multiline
               rows="4"
               defaultValue="Default Value"
@@ -202,7 +202,7 @@ class Create extends Component {
               fullWidth
               name="stakes"
               id="outlined-multiline-static"
-              label="Stakes (> 3 characters)"
+              label="Stakes"
               multiline
               rows="4"
               defaultValue="Default Value"
@@ -212,34 +212,9 @@ class Create extends Component {
               value={this.state.stakes}
             />
           </Grid>
-          {/* <Grid item xs={12}>
-            <TextField
-              fullWidth
-              type="date"
-              name="startDate"
-              label="Start Date"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange={this.handleChange}
-              value={this.state.startDate}
-            />
-          </Grid>
+    
           <Grid item xs={12}>
-            <TextField
-              fullWidth
-              name="endDate"
-              label="End Date"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              type="date"
-              onChange={this.handleChange}
-              value={this.state.endDate}
-            />
-          </Grid> */}
-          <div>
-            Start Date
+            <Typography variant='body2' color='primary'>Start Date</Typography>
             <DatePicker
               name="startDate"
               dateFormat="MM/DD/YYYY"
@@ -248,9 +223,9 @@ class Create extends Component {
               onChange={this.handleStartDateChange}
               selected={this.state.startDate}
             />
-          </div>
-          <div>
-            End Date
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant='body2' color='primary'>End Date</Typography>
             <DatePicker
               name="endDate"
               dateFormat="MM/DD/YYYY"
@@ -259,7 +234,7 @@ class Create extends Component {
               onChange={this.handleEndDateChange}
               selected={this.state.endDate}
             />
-          </div>
+          </Grid>
           <SubmitButton
             variant="text"
             color="secondary"

@@ -5,11 +5,7 @@ import moment from "moment";
 import ChallengeDetail from "../../components/challenge/challenge.js";
 import API from "../../components/utils/App.js";
 
-const ChallengePageWrapper = styled("div")({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center"
-});
+const ChallengePageWrapper = styled("div")({});
 
 class Challenge extends Component {
   state = {
@@ -20,6 +16,7 @@ class Challenge extends Component {
 
   // When this component mounts, load/clear array
   componentDidMount() {
+    //   this.updateSteps();
     this.loadChallenge();
   }
 
@@ -109,12 +106,7 @@ class Challenge extends Component {
   };
 
   render() {
-    return (
-      <ChallengePageWrapper>
-        Hello, welcome to my Challenge page!
-        {this.renderPage()}
-      </ChallengePageWrapper>
-    );
+    return <ChallengePageWrapper>{this.renderPage()}</ChallengePageWrapper>;
   }
 }
 

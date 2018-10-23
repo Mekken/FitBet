@@ -8,12 +8,12 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import Typography from '@material-ui/core/Typography';
 import { Link } from "react-router-dom";
 
 const styles = theme => ({
   paper: {
-    padding: "4% 10% 4%",
-    minWidth: 300,
+    padding: "2% 6% 2%",
     marginTop: "3%"
   },
 
@@ -84,6 +84,7 @@ class Login extends Component {
         justify="center"
         alignContent="center">
         <Paper className={classes.paper}>
+        <Typography variant='headline' align='center' color='primary'>-Welcome- <br /> <hr /></Typography>
           <Form>
             <Grid item xs={12}>
               <TextField
