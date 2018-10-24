@@ -13,7 +13,7 @@ class Dashboard extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.events}>
-        <Steps />
+        <Steps totalSteps={this.props.totalSteps} />
         <Events events={this.props.events} />
       </div>
     );
