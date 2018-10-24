@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -44,7 +45,7 @@ const Steps = props => {
         <Divider className={classes.divider} />
       </Grid>
       <Grid item xs={12} className={classes.text}>
-        <Typography variant="h4">5,583,580</Typography>
+        <Typography variant="h4">{props.totalSteps}</Typography>
       </Grid>
     </Grid>
   );

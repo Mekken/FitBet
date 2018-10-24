@@ -5,6 +5,7 @@ const db = require("../models");
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitlist");
 
+/*
 const userSeed = [
   {
     emailaddress: "annette.beatty@gmail.com",
@@ -17,6 +18,7 @@ const userSeed = [
       "041dcccea5ea23e0f14568068b22fe86948646f87fec35abefbc05301020d458",
     deviceType: "FitBit",
     passwordSalt: "$2b$10$bdG2CYItXENG5uxuCL3bJe",
+    totalSteps: 0,
     challenges: ""
   },
   {
@@ -28,6 +30,7 @@ const userSeed = [
     refreshToken: "123456789",
     deviceType: "MisFit",
     passwordSalt: "$2b$10$bdG2CYItXENG5uxuCL3bJe",
+    totalSteps: 0,
     challenges: ""
   },
   {
@@ -41,22 +44,23 @@ const userSeed = [
     refreshToken:
       "1ff5abb676c50654da18236637332f42a64cbb41b9f73dd0c0f59fe6425be455",
     passwordSalt: "$2b$10$DlLhKMbaZY5H03tOIl2M8e",
+    totalSteps: 0,
     challenges: ""
   }
 ];
 
 db.User.remove({})
   .then(() => db.User.collection.insertMany(userSeed))
-  .then((/*data*/) => {
+  .then(() => {
     // console.log(data.result.n + " records inserted!");
     process.exit(0);
   })
-  .catch((/*err*/) => {
+  .catch(() => {
     //console.error(err);
     process.exit(1);
   });
+*/
 
-/*
 // This file empties the users collection and inserts the users below
 
 const challengeSeed = [
@@ -69,25 +73,25 @@ const challengeSeed = [
     lastDate: "2018-10-21T04:12:12.738Z",
     players: [
       {
-        _id: "5bce94c7ca8f8922e3c0b819",
+        _id: "5bd007ab23da3c7476a22d5f",
         name: "Annette",
         cell: "+18587752704",
         challengeSteps: 0
       },
       {
-        _id: "5bce94c7ca8f8922e3c0b81a",
+        _id: "5bd007ab23da3c7476a22d60",
         name: "John",
         cell: "+18583952704",
         challengeSteps: 0
       },
       {
-        _id: "5bce94c7ca8f8922e3c0b81c",
+        _id: "5bd00b0046232f77db1d820d",
         name: "Senyan",
         cell: "+18587752704",
         challengeSteps: 0
       },
       {
-        _id: "5bce94c7ca8f8922e3c0b81b",
+        _id: "5bd007ab23da3c7476a22d61",
         name: "DarnelTheTester",
         cell: "+19164960963",
         challengeSteps: 0
@@ -117,7 +121,7 @@ const challengeSeed = [
     ]
   },
   {
-    title: "Annette's Challenge #1",
+    title: "Spouse versus Spouse",
     desc: "Most steps in 2 weeks",
     stakes: "$20",
     startDate: "2018-10-14T07:00:00.000Z",
@@ -125,13 +129,13 @@ const challengeSeed = [
     lastDate: "2018-10-21T04:12:12.738Z",
     players: [
       {
-        _id: "5bce94c7ca8f8922e3c0b819",
+        _id: "5bd007ab23da3c7476a22d5f",
         name: "Annette",
         cell: "+18587752704",
         challengeSteps: 0
       },
       {
-        _id: "5bce94c7ca8f8922e3c0b81a",
+        _id: "5bd007ab23da3c7476a22d60",
         name: "John",
         cell: "+18583952704",
         challengeSteps: 0
@@ -162,4 +166,3 @@ db.Challenge.remove({})
     //console.error(err);
     process.exit(1);
   });
-*/

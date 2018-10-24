@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import React, { Component } from "react";
 import Dashboard from "../../components/dashboard";
 import API from "../../components/utils/App";
@@ -21,7 +22,8 @@ const styles = () => ({
 class Home extends Component {
   state = {
     events: "",
-    userId: ""
+    userId: "",
+    totalSteps: 0
   };
 
   // When this component mounts, load/clear array
@@ -49,11 +51,20 @@ class Home extends Component {
     }
   }
 
+  // Get my events by first grabbing the user object and passing
+  // it to getAllSteps which will pull all my steps for the year
   loadDashboard = () => {
-    console.log("load my events");
-    API.getChallengedByUserId(this.state.userId)
-      .then(res => this.setState({ events: res.data }))
-      .catch(err => API.redirectOn401(err, this.props));
+    console.log("load my events for user ", this.state.userId);
+    API.getUserById(this.state.userId).then(function(resp) {
+      console.log("user object ", resp);
+      API.getAllStepsByUserId(resp).then(function(res) {
+        console.log("response for total steps ", res.data);
+        this.setState({ totalSteps: res.data });
+        API.getChallengedByUserId(this.state.userId)
+          .then(res => this.setState({ events: res.data }))
+          .catch(err => API.redirectOn401(err, this.props));
+      });
+    });
   };
 
   logout = () => {
@@ -74,7 +85,12 @@ class Home extends Component {
     console.log("rendering events");
     console.log("Events = ", this.state.events);
     if (this.state.events) {
-      return <Dashboard events={this.state.events} />;
+      return (
+        <Dashboard
+          events={this.state.events}
+          totalSteps={this.state.totalSteps}
+        />
+      );
     }
   };
 

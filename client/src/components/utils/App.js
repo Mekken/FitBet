@@ -66,6 +66,12 @@ export default {
     // Grab this guy's user data
     return axios.get("/api/challenges/challengeID/" + id);
   },
+  getAllStepsByUserId: function(id) {
+    console.log("getting steps for ", id);
+
+    // Grab this guy's user data
+    return axios.get("/api/devices/challengeID/" + id);
+  },
   redirectOn401: function(err, props) {
     if (err.response.status === 401) {
       props.history.push("/");

@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -15,7 +16,7 @@ import {
 } from "@material-ui/core";
 import PeopleIcon from "@material-ui/icons/People";
 
-import API from "../../components/utils/App";
+//import API from "../../components/utils/App";
 
 const styles = () => ({
   root: {

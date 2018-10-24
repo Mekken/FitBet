@@ -9,7 +9,7 @@ const userSchema = new Schema({
   deviceToken: { type: String, required: true },
   refreshToken: { type: String, required: true },
   deviceType: { type: String, required: true },
-  passwordSalt: { type: String, required: true },
+  passwordSalt: { type: String, required: true }
   challenges: [
     {
       _id: { type: String }
