@@ -40,7 +40,9 @@ const ChallengeDetail = props => (
                   </Typography>
                   <Typography align="center" variant="subheading">
                     {props.events.players.map(res => (
-                      <div key={res._id}> {res.name} </div>
+                      <div key={res._id}>
+                        {res.name} - {res.challengeSteps}
+                      </div>
                     ))}
                   </Typography>
                 </Paper>

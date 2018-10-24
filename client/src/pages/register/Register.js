@@ -13,11 +13,10 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import FormErrors from "../../components/FormErrors";
 import { isValidNumber } from "libphonenumber-js";
-import FormControl from '@material-ui/core/FormControl';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
-
+import FormControl from "@material-ui/core/FormControl";
+import NativeSelect from "@material-ui/core/NativeSelect";
+import InputLabel from "@material-ui/core/InputLabel";
+import Input from "@material-ui/core/Input";
 
 var fitbitPath =
   "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=22D8HT&scope=activity&redirect_uri=http%3A%2F%2Flocalhost%3A3001%2Fapi%2Fdevices%2Ffitbit%2Fcallback&prompt=&state=";
@@ -43,13 +42,12 @@ class Register extends Component {
     password: "",
     nickname: "",
     cellphone: "",
-    device: "",
+    device: "fitbit",
     formErrors: { email: "", password: "", nickname: "", cell: "" },
     emailValid: false,
     cellValid: false,
     passwordValid: false,
     nicknameValid: false,
-    deviceValid: false,
     formValid: false
   };
 
@@ -75,7 +73,6 @@ class Register extends Component {
     let cellValid = this.state.cellValid;
     let passwordValid = this.state.passwordValid;
     let nicknameValid = this.state.nicknameValid;
-    let deviceValid = this.state.deviceValid;
 
     switch (fieldName) {
       case "email":
@@ -98,22 +95,17 @@ class Register extends Component {
         fieldValidationErrors.nickname = nicknameValid ? "" : " is invalid";
         break;
 
-      case "device":
-        deviceValid = value.length >= 1;
-        fieldValidationErrors.device = deviceValid ? "" : " is invalid";
-        break;
-
       default:
         break;
     }
+
     this.setState(
       {
         formErrors: fieldValidationErrors,
         emailValid: emailValid,
         cellValid: cellValid,
         passwordValid: passwordValid,
-        nicknameValid: nicknameValid,
-        deviceValid: deviceValid
+        nicknameValid: nicknameValid
       },
       this.validateForm
     );
@@ -125,14 +117,14 @@ class Register extends Component {
         this.state.emailValid &&
         this.state.cellValid &&
         this.state.passwordValid &&
-        this.state.nicknameValid &&
-        this.state.deviceValid
+        this.state.nicknameValid
     });
   }
 
   // Save user data to DB
   processUser = userObject => {
     // This needs to be sent to the DB for saving
+    console.log("User = ", userObject);
     API.createUser(userObject)
       .then(function() {
         if (userObject.deviceType === "fitbit") {
@@ -169,7 +161,7 @@ class Register extends Component {
       password: "",
       nickname: "",
       cellphone: "",
-      deviceType: ""
+      deviceType: "fitbit"
     });
   };
 
@@ -233,29 +225,30 @@ class Register extends Component {
                   value={this.state.cellphone}
                 />
               </Grid> */}
-              <Grid item style={{margin:'1%'}}>
-              <FormControl  fullWidth>
-                <InputLabel  shrink htmlFor="age-native-helper">My Device</InputLabel>
-                <NativeSelect
-                  fullWidth
-                  value={this.state.device}
-                  onChange={this.handleChange}
-                  input={<Input name="device" id="age-native-label-placeholder" />}>
-                  
-                  <option value={'fitbit'}>Fitbit</option>
-                  <option value={'misfit'}>Misfit</option>
-                </NativeSelect>
+              <Grid item style={{ margin: "1%" }}>
+                <FormControl fullWidth>
+                  <InputLabel shrink htmlFor="age-native-helper">
+                    My Device
+                  </InputLabel>
+                  <NativeSelect
+                    fullWidth
+                    value={this.state.device}
+                    onChange={this.handleChange}
+                    input={
+                      <Input name="device" id="age-native-label-placeholder" />
+                    }
+                  >
+                    <option value={"fitbit"}>Fitbit</option>
+                    <option value={"misfit"}>Misfit</option>
+                  </NativeSelect>
                 </FormControl>
               </Grid>
-
-              
-              <Grid item xs={12} style={{margin:'1% auto'}}>
-                <PhoneInput 
+              <Grid item xs={12} style={{ margin: "1% auto" }}>
+                <PhoneInput
                   placeholder="Enter phone number"
                   name="cellphone"
                   value={this.state.cellphone}
                   country="US"
-                  indicateInvalid="true"
                   onChange={this.handleCell}
                 />
               </Grid>

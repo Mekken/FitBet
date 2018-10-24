@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// Defining methods for the fitController
+// Defining methods for the challengeController
 module.exports = {
   findAll: function(req, res) {
     db.Challenge.find(req.query)
