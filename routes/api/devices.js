@@ -1,15 +1,36 @@
+require("dotenv").config();
 // eslint-disable-next-line
 const passport = require("passport");
 const router = require("express").Router();
 const deviceController = require("../../controllers/deviceController");
 const FitbitApiClient = require("fitbit-node");
+const misfit = require("node-misfit");
 // eslint-disable-next-line
 const db = require("../../models");
 
 const client = new FitbitApiClient({
-  clientId: "22D8HT",
-  clientSecret: "3d4a6d06dd7f0cc939a3e91042a5fc9f",
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
   apiVersion: "1.2"
+});
+
+// eslint-disable-next-line
+const misfitHandler = new misfit({
+  clientId: process.env.MFCLIENT_ID,
+  clientSecret: process.env.MFCLIENT_SECRET,
+  redirectUri: "http://localhost:3001/api/devices/misfit/callback",
+  scope: "tracking"
+});
+
+router.route("/misfit/callback").get((req, res) => {
+  let regUser = req.query.state;
+  console.log("state: ", regUser);
+  misfitHandler.getAccessToken(req.query.code, function(err, token) {
+    console.log("token: ", token);
+    console.log("user: ", regUser);
+    deviceController.insertMFcodes(token, regUser);
+  });
+  res.redirect("http://localhost:3000/events");
 });
 
 // Matches with "/api/devices/fitbit/callback"
@@ -33,13 +54,13 @@ router.route("/fitbit/callback").get((req, res) => {
           res.status(err.status).send(err);
         });
     })
-    .then(res.redirect("http://localhost:3000/login"))
+    .then(res.redirect("http://localhost:3000/events"))
     .catch(err => {
       res.status(err.status).send(err);
     });
 });
 
 //Matches with /api/devices/challenge/:id
-router.route("/challenge/:id").get(deviceController.challengeCalc);
+router.route("/challenge/:id").get(deviceController.findChallengeById);
 
 module.exports = router;
