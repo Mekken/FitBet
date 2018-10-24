@@ -70,7 +70,7 @@ export default {
     console.log("getting steps for ", id);
 
     // Grab this guy's user data
-    return axios.get("/api/devices/challengeID/" + id);
+    return axios.get("/api/devices/lifetime/" + id);
   },
   redirectOn401: function(err, props) {
     if (err.response.status === 401) {
