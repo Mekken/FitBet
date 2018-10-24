@@ -23,7 +23,7 @@ class Home extends Component {
   state = {
     events: "",
     userId: "",
-    totalSteps: 0
+    totalSteps: ""
   };
 
   // When this component mounts, load/clear array
@@ -55,16 +55,12 @@ class Home extends Component {
   // it to getAllSteps which will pull all my steps for the year
   loadDashboard = () => {
     console.log("load my events for user ", this.state.userId);
-    API.getUserById(this.state.userId).then(function(resp) {
-      console.log("user object ", resp);
-      API.getAllStepsByUserId(resp).then(function(res) {
-        console.log("response for total steps ", res.data);
-        this.setState({ totalSteps: res.data });
-        API.getChallengedByUserId(this.state.userId)
-          .then(res => this.setState({ events: res.data }))
-          .catch(err => API.redirectOn401(err, this.props));
-      });
-    });
+    API.getAllStepsByUserId(this.state.userId)
+      .then(res => this.setState({ totalSteps: res.data.steps }))
+      .catch(err => API.redirectOn401(err, this.props));
+    API.getChallengedByUserId(this.state.userId)
+      .then(res => this.setState({ events: res.data }))
+      .catch(err => API.redirectOn401(err, this.props));
   };
 
   logout = () => {

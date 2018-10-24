@@ -52,6 +52,11 @@ module.exports = {
       .then(dbModel => getSteps(dbModel, 0, res))
       .catch(err => res.status(422).json(err));
   },
+  stepsLifetimebyId: function(req, res) {
+    db.User.findById(req.params.id)
+      .then(dbUser => getLifetime(dbUser, res))
+      .catch(err => res.status(422).json(err));
+  },
   create: function(req, res) {
     db.Challenge.create(req.body)
       .then(dbModel => res.json(dbModel))
@@ -147,4 +152,43 @@ function getFitBitSteps(dbModel, dbUser, playerNum, res) {
         })
         .catch(err => res.status(422).json(err));
     });
+}
+
+function getLifetime(dbUser, res) {
+  if (dbUser.deviceType === "fitbit") {
+    client
+      .refreshAccessToken(dbUser.deviceToken, dbUser.refreshToken, "28800")
+      .then(authOut => {
+        console.log(
+          "**** completed Refresh, new token: ",
+          authOut.refresh_token
+        );
+        db.User.findOneAndUpdate(
+          { _id: dbUser._id },
+          { refreshToken: authOut.refresh_token }
+        )
+          .then(dbOut => {
+            console.log(dbOut);
+            client
+              .get("/activities.json", authOut.access_token)
+              .then(results => {
+                let stepObject = { steps: results[0].lifetime.tracker.steps };
+                console.log("lifetime: ", stepObject.steps);
+                res.json(stepObject);
+              })
+              .catch(err => res.status(422).json(err));
+          })
+          .catch(err => res.status(422).json(err));
+      });
+  } else {
+    misfitHandler.getSummary(
+      dbUser.deviceToken,
+      "2018-10-01",
+      moment().format("YYYY-MM-DD"),
+      function(err, output) {
+        let stepObject = { steps: output.steps };
+        res.json(stepObject);
+      }
+    );
+  }
 }
