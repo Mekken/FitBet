@@ -32,7 +32,7 @@ const styles = () => ({
   },
   media: {
     width: 50,
-    margin: "auto"
+    margin: "1%"
   },
   header: {
     marginBottom: "5%"
