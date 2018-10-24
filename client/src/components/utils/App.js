@@ -54,7 +54,7 @@ export default {
   },
   getChallengesById: function(id) {
     //console.log("getting this challenge ", id)
-    return axios.get("/api/challenges/" + id);
+    return axios.get("/api/devices/challenge/" + id);
   },
   getChallengesNotJoined: function(id) {
     //console.log("Getting challenges this user not in  ", id)
