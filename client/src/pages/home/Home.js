@@ -20,13 +20,16 @@ const styles = () => ({
 
 class Home extends Component {
   state = {
-    events: ""
+    events: "",
+    userId: ""
   };
 
   // When this component mounts, load/clear array
   componentDidMount() {
-    //   this.updateSteps();
-    this.loadDashboard();
+    this.setState({ userId: localStorage.getItem("userID") }, () => {
+      this.checkSession();
+      this.loadDashboard();
+    });
   }
 
   // This function updates the steps for my events
@@ -36,22 +39,28 @@ class Home extends Component {
     
     API.updateSteps()
     .then(res => this.setState({ events: res.data }))
-    .catch(err => console.log(err));
+    .catch(err => API.redirectOn401(err, this.props));
   }
   */
 
+  checkSession() {
+    if (!this.state.userId) {
+      this.props.history.push("/");
+    }
+  }
+
   loadDashboard = () => {
     console.log("load my events");
-    API.getChallengedByUserId(localStorage.getItem("userID"))
+    API.getChallengedByUserId(this.state.userId)
       .then(res => this.setState({ events: res.data }))
-      .catch(err => console.log(err));
+      .catch(err => API.redirectOn401(err, this.props));
   };
 
   logout = () => {
     API.logout()
       .then()
       .catch(err => {
-        console.log(err);
+        API.redirectOn401(err, this.props);
       });
     this.props.history.push("/login");
   };
@@ -65,22 +74,13 @@ class Home extends Component {
     console.log("rendering events");
     console.log("Events = ", this.state.events);
     if (this.state.events) {
-      return (
-        <Dashboard
-          redirectToEvents={this.redirectToEvents}
-          events={this.state.events}
-        />
-      );
+      return <Dashboard events={this.state.events} />;
     }
   };
 
   render() {
     const { classes } = this.props;
-    return (
-      <div className={classes.root}>
-        <Dashboard />
-      </div>
-    );
+    return <div className={classes.root}>{this.renderEvents()}</div>;
   }
 }
 

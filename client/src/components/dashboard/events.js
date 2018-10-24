@@ -51,14 +51,14 @@ class Events extends Component {
   };
 
   componentDidMount() {
-    this.loadEvents();
+    this.setState({ events: this.props.events });
   }
 
-  loadEvents = () => {
-    API.getChallengedByUserId(localStorage.getItem("userID"))
-      .then(res => this.setState({ events: res.data }))
-      .catch(err => console.log(err));
-  };
+  // loadEvents = () => {
+  //   API.getChallengedByUserId(localStorage.getItem("userID"))
+  //     .then(res => this.setState({ events: res.data }))
+  //     .catch(err => API.redirectOn401(err, this.props));
+  // };
 
   render() {
     const { classes } = this.props;

@@ -39,6 +39,7 @@ router.route("/fitbit/callback").get((req, res) => {
     });
 });
 
+//Matches with /api/devices/challenge/:id
 router.route("/challenge/:id").get(deviceController.challengeCalc);
 
 module.exports = router;
